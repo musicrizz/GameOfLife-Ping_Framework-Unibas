@@ -1,0 +1,13 @@
+TERMINI DELLA LICENZA
+----------------------
+
+Questo lavoro viene concesso in uso secondo i termini della licenza “Attribution-ShareAlike”
+di Creative Commons. Per ottenere una copia della licenza, è possibile visitare
+http://creativecommons.org/licenses/by-sa/1.0/ oppure inviare una lettera all’indirizzo 
+Creative Commons, 559 Nathan Abbott Way, Stanford, California 94305, USA.
+
+This work is licensed under the Creative Commons Attribution-ShareAlike License. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/1.0/ 
+or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford, 
+California 94305, USA.
+
