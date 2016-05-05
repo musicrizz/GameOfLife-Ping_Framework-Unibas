@@ -6,6 +6,7 @@ import it.unibas.ping.framework.Modello;
 import it.musicrizz.gameoflife.Costanti;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -28,33 +29,28 @@ public class Sistema {
     
     
     @BindingPing(Costanti.MONDO_MATRICE)
-    public Map<String,Cellula> getMondoMatrice()   {
-        return this.mondo.getMatrice();
+    public Set<Cellula> getMondoMatrice()   {
+        return this.mondo.getGenerazione();
     }
     
     public void addCellula(int x, int y, boolean statoCorrente, boolean statoFuturo)   {
-        this.mondo.addCellula(x, y, statoCorrente, statoFuturo);
+        this.mondo.addCellula(new Cellula(x, y));
         modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, x, y);
         log.debug("Cellula Creata in : "+x+","+y);
-    }
-    
-    public void setCellulaStatoFuturo(int x,int y,boolean b)   {
-        this.mondo.getCellula(x, y).setStatoFuturo(b);
-        modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, x, y);
-    }
-    
-    public Cellula getCellula(int x, int y)   {
-        //assert(x<=ConfigurazioneParametri.getInstance().getRighe()&&y<=ConfigurazioneParametri.getInstance().getColonne()) : 
-        //     "getCellula(x,y) --> Errore nell'indice di riga o colonna  GetCellula(x,y)";
-        return this.mondo.getCellula(x, y);
     }
     
     public void removeCellula(int x,int y)   {
         //assert(x<=ConfigurazioneParametri.getInstance().getRighe()&&y<=ConfigurazioneParametri.getInstance().getColonne()) : 
         //     "getCellula(x,y) --> Errore nell'indice di riga o colonna  GetCellula(x,y)";
-        this.mondo.removeCellula(x, y);
+        this.mondo.removeCellula(new Cellula(x, y));
         modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, x, y);
         log.debug("Cellula Creata in : "+x+","+y);
+    }
+    
+    public void addCellule(Map<String,Cellula> mappa)   {
+        this.mondo.addCellule(mappa);
+        //modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, 0, 0);
+        log.debug("Mappa cellule caricata");
     }
     
     public void addCellule(Map<String,Cellula> mappa)   {
