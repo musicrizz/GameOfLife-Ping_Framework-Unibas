@@ -1,11 +1,9 @@
 package it.musicrizz.gameoflife.modello;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -16,96 +14,84 @@ import org.apache.commons.logging.LogFactory;
  */
 public class Mondo {
     
-    private Log log = LogFactory.getLog(Mondo.class);
-    
-    private Map<String,Cellula> matrice = new HashMap<String, Cellula>();
+    private static final Log log = LogFactory.getLog(Mondo.class);
+     
+    private Set<Cellula> generazione = new HashSet<Cellula>();
+    private Set<Cellula> newGenerazione = new HashSet<Cellula>();
+    private Set<Cellula> memoized = new HashSet<Cellula>();
     
     public Mondo()   {}
     
-    public Map<String,Cellula> getMatrice()   {
-        return this.matrice;
+    public Set<Cellula> getGenerazione()   {
+        return this.generazione;
     }
     
-    public Cellula getCellula(int x,int y)   {
-        return this.matrice.get(x+","+y);
+    public void addCellula(Cellula cell)   {
+        this.generazione.add(cell);
     }
     
-    public void addCellula(int x, int y, boolean statoCorrente ,boolean statoFuturo)   {
-        this.matrice.put(x+","+y,new Cellula(x,y,statoCorrente,statoFuturo));
+    public void addCellule(Set<Cellula> cells)   {
+        this.generazione.addAll(cells);
     }
     
-    public void addCellule(Map<String,Cellula> mappa)   {
-        this.matrice.putAll(mappa);
+    public void addCellule(List<Cellula> cells)   {
+        this.generazione.addAll(cells);
     }
     
-    public void removeCellula(int x,int y)   {
-        this.matrice.remove(x+","+y);
-    }
+    public void removeCellula(Cellula c)   {
+        this.generazione.remove(c);
+    }  
     
-    public List<Cellula> getListaCellule()   {
-        Collection<Cellula> value = matrice.values();
-        return new ArrayList<Cellula>(value);
-    }   
-    /**
-     * 
-     * @param x
-     * @param y
-     * @return int
-     * Analizza la mappe e cerca se esistono cellule vicine a quella selezionata dalla posizione x,y
-     */
-    private int analizzaIntornoMoore(int x, int y)   {
+    private int analizzaIntornoMoore(Cellula c,boolean flag)   {
         int cont = 0;
-        for(int i = (x-1);i<=(x+1);i++)   {
-            for(int j = (y-1);j<=(y+1);j++)   {
-                if((i == x)&&(j == y)) continue;
-                if((i > ConfigurazioneParametri.getInstance().getRighe()-1)||(j > ConfigurazioneParametri.getInstance().getColonne()-1)) continue;
-                if((i < 0) || (j < 0))continue;;
-                if((getCellula(i, j) != null) && (getCellula(i, j).isStatoCorrente())) cont++;
-                log.debug("Cellula "+x+","+y+" Parametri i,j : "+i+","+j+ "  intorno : "+cont);
+        for(int i = (c.getX()-1);i<=(c.getX()+1);i++)   {
+            for(int j = (c.getY()-1);j<=(c.getY()+1);j++)   {
+                if((i == c.getX())&&(j == c.getY())) continue;
+                Cellula cell = new Cellula(i, j);
+                if(generazione.contains(cell)) {
+                    cont++;
+                }
+                if(!generazione.contains(cell) && !memoized.contains(cell) && flag)   {
+                    memoized.add(cell);
+                    controllaIntorno(cell, analizzaIntornoMoore(cell,false));
+                    continue;
+                }                      
             }
         }
-        log.debug("Analizza Intorno --> cont: "+cont+" della cellula -> "+x+","+y);
+        log.debug("AnalizzaIntorno --> cont: "+cont+" della cellula -> "+c.getX()+","+c.getY());
         return cont;
     }
     
-    public void analizzaMondo()   {
-        for(int i=0;i<ConfigurazioneParametri.getInstance().getRighe();i++)   {
-            for(int j=0;j<ConfigurazioneParametri.getInstance().getColonne();j++)   {
-                int intorno = analizzaIntornoMoore(i, j);
-                if((getCellula(i, j) == null) && (intorno == 3))  {
-                    addCellula(i, j, false, true);
-                    log.debug("AnalizzaMondo crea la cellula che nascerà alla prox generaz "+i+","+j);
-                    continue;
-                }
-                if(((getCellula(i,j) != null) && (getCellula(i, j).isStatoCorrente())) && ((intorno < 2) || (intorno > 3))) {
-                        getCellula(i, j).setStatoFuturo(false);//viene usato questi metodi per ridurre l' invio di eventi al modello
-                        log.debug("AnalizzaMondo setta la cellula gia  esistente a morire nella prox generaz "+i+","+j);
-                        continue;
-                }
-                if(((getCellula(i,j) != null) && getCellula(i, j).isStatoCorrente()) && ((intorno == 2) || (intorno == 3))) {
-                        getCellula(i, j).setStatoFuturo(true);//viene usato questi metodi per ridurre l' invio di eventi al modello
-                        log.debug("AnalizzaMondo setta la cellula gia esistente a restare viva "+i+","+j);
-                        continue;
-                }
-             }
-         }
-        aggiornaMondo();
-    }
-    
-    private void aggiornaMondo()   {
-        for(int i=0;i<ConfigurazioneParametri.getInstance().getRighe();i++)   {
-            for(int j=0;j<ConfigurazioneParametri.getInstance().getColonne();j++)   {
-                if((getCellula(i, j) != null) && (!getCellula(i, j).isStatoFuturo()))   {
-                    removeCellula(i, j);
-                    log.debug("AggiornaMondo uccide la cellula -> "+i+","+j);
-                    continue;
-                }
-                if(((getCellula(i, j)) != null) && (getCellula(i, j).isStatoFuturo()))   {
-                    getCellula(i, j).setStatoCorrente(true);
-                    getCellula(i, j).setStatoFuturo(false);
-                    log.debug("AggiornaMondo setta  a false lo stato futuro ->  "+i+","+j);
-                }
-            }
+    private void controllaIntorno(Cellula cell, int intorno)   {
+        if(!(generazione.contains(cell)) && (intorno == 3))   {
+            newGenerazione.add(cell);
+            log.debug("controlla crea la cellula che nascera alla prox generaz "+cell.getX()+","+cell.getY());
+            return;
+        }
+        if((generazione.contains(cell)) && ((intorno == 2) || (intorno == 3)))   {
+            newGenerazione.add(cell);
+            log.debug("controlla setta la cellula gia esistente a restare viva "+cell.getX()+","+cell.getY());
+            return;
+        }
+        if((generazione.contains(cell)) && ((intorno < 2) || (intorno > 3)))   {
+            log.debug("controlla setta la cellula gia  esistente a morire nella prox generaz "+cell.getX()+","+cell.getY());
+            return;
         }
     }
+    
+    public void analizzaMondo()   {
+        log.debug("Inizio analizza Mondo");
+        for(Cellula c : generazione)   {
+            log.debug("Controllo Cellula -> X:"+c.getX()+"  Y:"+c.getY());
+            controllaIntorno(c, analizzaIntornoMoore(c,true));
+        }
+        nuovaGenerazione();
+    }
+    
+    private void nuovaGenerazione()   {
+        generazione = new HashSet<Cellula>(newGenerazione);
+        newGenerazione.clear();
+        memoized.clear();
+    }
+    
 }

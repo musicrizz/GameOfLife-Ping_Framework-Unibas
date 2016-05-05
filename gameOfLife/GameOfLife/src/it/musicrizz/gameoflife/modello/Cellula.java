@@ -3,88 +3,63 @@ package it.musicrizz.gameoflife.modello;
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  * 
- * La Classe Cellula mantiene oltre a due boolean per sapere lo stato corrente e quello futuro,
- * anche due variabili x,y per sapere quale posizione occupa, in questa versione con matrice sparsa
- * abbiamo solo una Mappa di cellule vive
  */
 public class Cellula {
     
-    private int posX;
-    private int posY;
-    private boolean statoCorrente;
-    private boolean statoFuturo;
-    
+    private int X;
+    private int Y;
+
     public Cellula() {
     }
-   
-    /**
-     * 
-     * @param posX
-     * @param posY
-     * @param statoCorrente
-     * @param statoFuturo 
-     */
-    public Cellula(int posX, int posY,boolean statoCorrente, boolean statoFuturo) {
-        this.posX = posX;
-        this.posY = posY;
-        this.statoCorrente = statoCorrente;
-        this.statoFuturo = statoFuturo;
+
+    public Cellula(int X, int Y) {
+        this.X = X;
+        this.Y = Y;
     }
 
-    /**
-     * @return the posX
-     */
-    public int getPosX() {
-        return posX;
+    public int getX() {
+        return X;
     }
 
-    /**
-     * @param posX the posX to set
-     */
-    public void setPosX(int posX) {
-        this.posX = posX;
+    public void setX(int X) {
+        this.X = X;
     }
 
-    /**
-     * @return the posY
-     */
-    public int getPosY() {
-        return posY;
+    public int getY() {
+        return Y;
     }
 
-    /**
-     * @param posY the posY to set
-     */
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
-
-    /**
-     * @return the statoFuturo
-     */
-    public boolean isStatoFuturo() {
-        return statoFuturo;
-    }
-
-    /**
-     * @param statoFuturo the statoFuturo to set
-     */
-    public void setStatoFuturo(boolean statoFuturo) {
-        this.statoFuturo = statoFuturo;
-    }
-
-    /**
-     * @return the statoCorrente
-     */
-    public boolean isStatoCorrente() {
-        return statoCorrente;
-    }
-
-    /**
-     * @param statoCorrente the statoCorrente to set
-     */
-    public void setStatoCorrente(boolean statoCorrente) {
-        this.statoCorrente = statoCorrente;
+    public void setY(int Y) {
+        this.Y = Y;
     }
     
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + this.X;
+        hash = 67 * hash + this.Y;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cellula other = (Cellula) obj;
+        if (this.X != other.X) {
+            return false;
+        }
+        if (this.Y != other.Y) {
+            return false;
+        }
+        return true;
+    }
+
 }
