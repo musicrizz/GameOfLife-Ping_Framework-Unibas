@@ -8,7 +8,6 @@ import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.Inietta;
 import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
-import it.unibas.ping.xml.DAOConfigurazione;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.modello.Cellula;
@@ -54,9 +53,10 @@ public class AzioneSalvaDB extends AzionePingAstratta   {
              if(!trovato)   {
                  DAOMondoSQL.doInsertConfigurazioneMondo(nome);
                  log.debug("Configurazione Mondo Inserita");
-                 for(Cellula c : sistema.getListaCellule())   {
+                 //TODO
+                 /*for(Cellula c : sistema.getListaCellule())   {
                      DAOMondoSQL.doInsertCellula(c, nome);
-                 }
+                 }*/
                  log.debug("Cellule Inserite");
                  if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_IT);
                  if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_EN);

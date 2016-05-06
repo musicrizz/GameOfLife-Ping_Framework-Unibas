@@ -13,7 +13,6 @@ import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.Language;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoProperties;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoXML;

@@ -10,7 +10,6 @@ import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.vista.FinestraNuovoMondo;
 import it.musicrizz.gameoflife.vista.FramePrincipale;

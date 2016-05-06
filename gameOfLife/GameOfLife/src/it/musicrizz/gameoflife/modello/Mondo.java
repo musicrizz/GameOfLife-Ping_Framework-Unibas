@@ -26,6 +26,10 @@ public class Mondo {
         return this.generazione;
     }
     
+    public int getPopolazione()   {
+        return generazione.size();
+    }
+    
     public void addCellula(Cellula cell)   {
         this.generazione.add(cell);
     }

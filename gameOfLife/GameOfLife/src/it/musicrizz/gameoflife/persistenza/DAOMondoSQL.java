@@ -4,8 +4,8 @@
  */
 package it.musicrizz.gameoflife.persistenza;
 
+import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Cellula;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,12 +56,13 @@ public class DAOMondoSQL {
         try {
             connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
             statement = connection.createStatement();
-            String query =
+            //TODO
+            /*String query =
                     "insert into cellule values (" + c.getPosX() + ", " +
                                                      c.getPosY() + ", " +
                                                 "'" + nomeConf + "')";
             log.debug("doInsertCellula query -> "+query);
-            statement.executeUpdate(query);
+            statement.executeUpdate(query);*/
         } catch (SQLException sqle) {
             log.error(sqle);
             throw new DAOException(sqle);
@@ -161,7 +162,7 @@ public class DAOMondoSQL {
         Statement statement = null;
         ResultSet resultSet = null;
         Map<String,Cellula> listaCellule = new HashMap<String,Cellula>();
-        try {
+        /*try {
             connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
             statement = connection.createStatement();
             String query = "select * from cellule where configurazione = '"+nome+"'";
@@ -183,7 +184,7 @@ public class DAOMondoSQL {
             DataSource.closeResultSet(resultSet);
             DataSource.closeStatement(statement);
             DataSource.closeConnection(connection);
-        }
+        }*/
         return listaCellule;
     }
 }

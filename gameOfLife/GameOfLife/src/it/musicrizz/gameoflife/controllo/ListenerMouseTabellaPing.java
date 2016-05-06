@@ -34,13 +34,14 @@ public class ListenerMouseTabellaPing extends MouseAdapter{
             int x = tabella.getSelectedRow();
             int y = tabella.getSelectedColumn();
             Sistema s = (Sistema)m.getBean(Costanti.SISTEMA);
-            if((s.getCellula(x, y) == null) || ((s.getCellula(x, y) != null)&& (!s.getCellula(x, y).isStatoCorrente())))   {
+            //TODO
+            /*if((s.getCellula(x, y) == null) || ((s.getCellula(x, y) != null)&& (!s.getCellula(x, y).isStatoCorrente())))   {
                 s.addCellula(tabella.getSelectedRow(), tabella.getSelectedColumn(), true, false);
                 m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Cellula creata in pos : "+tabella.getSelectedRow()+","+tabella.getSelectedColumn()));
             }else{
                 s.removeCellula(tabella.getSelectedRow(), tabella.getSelectedColumn());
                 m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Cellula uccisa in pos : "+tabella.getSelectedRow()+","+tabella.getSelectedColumn()));
-            }
+            }*/
      }
 }
     

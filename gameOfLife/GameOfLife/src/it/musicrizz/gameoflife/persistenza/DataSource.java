@@ -11,7 +11,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class DataSource {
     

@@ -1,10 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
+import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
+import it.musicrizz.gameoflife.modello.Cellula;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,8 +9,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.JDOMException;
-import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -47,17 +42,13 @@ public class DAOSalvataggioXML implements IDAOSalvataggio   {
                 root.addContent(timer);
                 
                 Element listaCellule = new Element("listaCellule");
-                
-                for (int i=0;i< ConfigurazioneParametri.getInstance().getRighe();i++)   {
-                    for(int j=0;j<ConfigurazioneParametri.getInstance().getColonne();j++)   {
-                        if((s.getCellula(i, j) != null) && (s.getCellula(i, j).isStatoCorrente()))   {
-                            Element cellula = new Element("cellula");
-                            cellula.setAttribute("posX",""+s.getCellula(i, j).getPosX());
-                            cellula.setAttribute("posY", ""+s.getCellula(i, j).getPosY());
-                            listaCellule.addContent(cellula);
-                            log.debug("Cellula viva  scritta nel file con pos -> "+i+","+j);
-                        }
-                    }
+                Element cellula = null;
+                for(Cellula cell : s.getMondoMatrice())   {
+                    cellula = new Element("cellula");
+                    cellula.setAttribute("posX",""+cell.getX());
+                    cellula.setAttribute("posY", ""+cell.getY());
+                    listaCellule.addContent(cellula);
+                    log.debug("Cellula viva  scritta nel file xml con pos -> "+cell.getX()+","+cell.getY());
                 }
                 root.addContent(listaCellule);
                 Document doc = new Document(root);

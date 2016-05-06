@@ -7,7 +7,6 @@
 package it.musicrizz.gameoflife.vista;
 
 import it.musicrizz.gameoflife.controllo.ListenerMouseMove;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -52,7 +51,8 @@ public class PannelloGraphics2D extends JPanel{
     public void paintComponent(Graphics g)   {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        g2.setPaint(Color.BLACK);
+        //TODO
+        /*g2.setPaint(Color.BLACK);
         g2.draw(new Rectangle2D.Double(0, 0, colonne*16, righe*16));
         g2.draw(new Rectangle2D.Double(0, 0, colonne*16+2, righe*16+2));
         if(mappa == null)return;
@@ -70,7 +70,7 @@ public class PannelloGraphics2D extends JPanel{
                 e.setFrame(r);
                 g2.setPaint(Color.GREEN);
                 g2.fill(e);
-            }
+            }*/
     }
     
     public Map<String,Rectangle2D.Double> getMappaRett()   {

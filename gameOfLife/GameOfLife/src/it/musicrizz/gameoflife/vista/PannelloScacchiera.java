@@ -4,17 +4,14 @@
  */
 package it.musicrizz.gameoflife.vista;
 
-import it.unibas.ping.binding.osservatori.IOsservatore;
-import it.unibas.ping.binding.osservatori.OsservatoreLabel;
 import it.unibas.ping.binding.osservatori.OsservatoreTabellaBidim;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.Modello;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.controllo.AzioneTimer;
-import it.musicrizz.gameoflife.controllo.ListenerMouseMove;
+import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.controllo.ListenerMousePannello2D;
 import it.musicrizz.gameoflife.controllo.ListenerMouseTabellaPing;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;

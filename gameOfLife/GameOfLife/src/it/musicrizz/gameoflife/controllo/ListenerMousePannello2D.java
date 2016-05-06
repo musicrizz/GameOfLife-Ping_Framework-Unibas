@@ -6,7 +6,6 @@
 
 package it.musicrizz.gameoflife.controllo;
 
-import it.unibas.ping.azioni.MouseListenerGenerico;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.musicrizz.gameoflife.Costanti;
@@ -33,7 +32,8 @@ public class ListenerMousePannello2D extends MouseAdapter  {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if(pannello.getPannello2D() == null)return;
+        //TODO
+        /*if(pannello.getPannello2D() == null)return;
         sistema = (Sistema)controllo.getModello().getBean(Costanti.SISTEMA);
         for(String s : pannello.getPannello2D().getMappaRett().keySet())   {
             if(pannello.getPannello2D().getMappaRett().get(s).contains(e.getPoint()))  {
@@ -51,7 +51,7 @@ public class ListenerMousePannello2D extends MouseAdapter  {
                                                     new MessaggioPing("Cellula uccisa in pos : "+(int)r.getY()/16+","+(int)r.getX()/16));
                 }
             }
-        }
+        }*/
         pannello.getPannello2D().ridisegna();
     }
     

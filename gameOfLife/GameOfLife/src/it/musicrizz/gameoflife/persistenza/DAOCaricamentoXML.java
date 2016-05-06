@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
+import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +23,20 @@ public class DAOCaricamentoXML implements IDAOCaricamento   {
     public DAOCaricamentoXML(){}
 
     public Sistema carica(File file) throws DAOException {
+        return caricaXML(file);
+    }
+  
+    public Sistema carica(String file) throws DAOException {
+        File f = null;
+        try{
+            f = new File(file);
+            return caricaXML(f);
+        }catch(DAOException dao)   {
+            throw dao;
+        }
+    }
+    
+    private Sistema caricaXML(File file) throws DAOException  {
         Sistema s = null;
         SAXBuilder builder = new SAXBuilder();
         builder.setValidation(false);
@@ -56,49 +66,8 @@ public class DAOCaricamentoXML implements IDAOCaricamento   {
             for(Element e : listaC)   {
                 int posX = Integer.parseInt(e.getAttributeValue("posX").trim());
                 int posY = Integer.parseInt(e.getAttributeValue("posY").trim());
-                s.addCellula(posX, posY, true, false);
+                s.addCellula(posX, posY);
                 log.debug("Cellula aggiunta al sistema x-> "+posX+"  y-> "+posY);
-            }
-            return s;
-        }catch(Exception e)  {
-            throw new DAOException("Exception nel caricamento(file) -> \n" +e);
-        }
-    }
-
-    
-    public Sistema carica(String file) throws DAOException {
-        Sistema s = null;
-        SAXBuilder builder = new SAXBuilder();
-        builder.setValidation(false);
-        Document doc = null;
-        try{
-            s = new Sistema();
-            
-            doc = builder.build(new File(file));
-            Element root = doc.getRootElement();
-            
-            Element numeroRighe = root.getChild("numeroRighe");
-            Element numeroColonne = root.getChild("numeroColonne");
-            Element timer = root.getChild("timer");
-            
-            log.debug("Inizio caricamento Configurazione");
-            ConfigurazioneParametri.getInstance().setRighe(Integer.parseInt(numeroRighe.getAttributeValue("num").trim()));
-            log.debug("Righe Settate");
-            ConfigurazioneParametri.getInstance().setColonne(Integer.parseInt(numeroColonne.getAttributeValue("num").trim()));
-            log.debug("Colonne Settate");
-            ConfigurazioneParametri.getInstance().setTimer(Integer.parseInt(timer.getAttributeValue("time").trim()));
-            log.debug("Timer Settato ");
-            log.debug("Configurazione settata");
-            
-            Element lista = root.getChild("listaCellule");
-            
-            List<Element> listaC =  lista.getChildren();
-            
-            for(Element e : listaC)   {
-                int posX = Integer.parseInt(e.getAttributeValue("posX").trim());
-                int posY = Integer.parseInt(e.getAttributeValue("posY").trim());
-                s.addCellula(posX, posY, true, false);
-                log.debug("Cellula settata con pos -> "+posX+","+posY);
             }
             return s;
         }catch(JDOMException e)   {
@@ -109,6 +78,4 @@ public class DAOCaricamentoXML implements IDAOCaricamento   {
             throw new DAOException("Exception nel caricamento(string) -> \n" +e);
         }
     }
-    
-    
 }

@@ -4,7 +4,6 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
-import it.unibas.ping.annotazioni.Inietta;
 import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
@@ -12,14 +11,12 @@ import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.Language;
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOMondoSQL;
 import it.musicrizz.gameoflife.persistenza.Descrizione;
 import it.musicrizz.gameoflife.vista.FinestraSceltaMondiDataBase;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.util.EventObject;
-import java.util.List;
 import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,8 +48,9 @@ public class AzioneOKSceltaMondoDB extends AzionePingAstratta   {
             try{
                 if(DAOMondoSQL.doSelectNomeMondo(nome))  {
                     Sistema sistema = new Sistema();
-                    sistema.addCellule(DAOMondoSQL.doSelectCellule(nome));
-                    log.debug("Cellule Caricate -> "+sistema.getListaCellule().size());
+                    //TODO
+                    //sistema.addCellule(DAOMondoSQL.doSelectCellule(nome));
+                    //log.debug("Cellule Caricate -> "+sistema.getListaCellule().size());
                     modello.putBean(Costanti.SISTEMA, sistema);
                     log.debug("Sistema inserito nel bean");
                     modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));

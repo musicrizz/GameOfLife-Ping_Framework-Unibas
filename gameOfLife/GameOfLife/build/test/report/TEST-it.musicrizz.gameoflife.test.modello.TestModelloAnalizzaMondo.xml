@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="hack-PC" name="it.musicrizz.gameoflife.test.modello.TestModelloAnalizzaMondo" skipped="0" tests="1" time="0.187" timestamp="2016-05-06T15:13:10">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="lib.dir" value="./lib" />
+    <property name="netbeans.user" value="C:\Users\Musicrizz\AppData\Roaming\NetBeans\8.1" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+    <property name="netbeans.autoupdate.version" value="1.23" />
+    <property name="test.data.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\test\data" />
+    <property name="build.sysclasspath" value="ignore" />
+    <property name="os.name" value="Windows 7" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_60\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_60\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_60\jre\classes" />
+    <property name="netbeans.importclass" value="org.netbeans.upgrade.AutoUpgrade" />
+    <property name="user.country.format" value="IT" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="C:\Program Files\NetBeans 8.1\extide\ant" />
+    <property name="java.runtime.version" value="1.8.0_60-b27" />
+    <property name="test.build.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\test\classes" />
+    <property name="netbeans.default_userdir_root" value="C:\Users\Musicrizz\AppData\Roaming\NetBeans" />
+    <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
+    <property name="user.name" value="Musicrizz" />
+    <property name="user.language.format" value="it" />
+    <property name="build.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\classes" />
+    <property name="nb.show.statistics.ui" value="usageStatisticsEnabled" />
+    <property name="utilita.src.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\util\src" />
+    <property name="user.language" value="en" />
+    <property name="test.report.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\test\report" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_60\jre\bin" />
+    <property name="ant.file.swing-ping-template-build" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\swing-ping-template-build.xml" />
+    <property name="nb.native.filechooser" value="false" />
+    <property name="ant.project.default-target" value="build" />
+    <property name="utilita.javadoc.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\util\dist\javadoc" />
+    <property name="org.openide.awt.ActionReference.completion" value="org.netbeans.modules.apisupport.project.layers.PathCompletions" />
+    <property name="ant.project.name" value="gameoflife" />
+    <property name="java.version" value="1.8.0_60" />
+    <property name="sun.java2d.dpiaware" value="true" />
+    <property name="user.timezone" value="" />
+    <property name="resources.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\var\res" />
+    <property name="sun.arch.data.model" value="32" />
+    <property name="test.data.dir.present" value="true" />
+    <property name="test.src.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\test" />
+    <property name="http.nonProxyHosts" value="localhost|127.0.0.1|hack-PC" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_60\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
+    <property name="netbeans.productversion" value="NetBeans IDE 8.1 (Build 201510222201)" />
+    <property name="sun.jnu.encoding" value="Cp1252" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="build.debuglevel" value="lines,vars,source" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="US" />
+    <property name="ant.file.swing-template-build" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\swing-template-build.xml" />
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_60\jre" />
+    <property name="dist.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\dist" />
+    <property name="netbeans.buildnumber" value="201510222201" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="org.openide.version" value="deprecated" />
+    <property name="ant.file" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build.xml" />
+    <property name="os.version" value="6.1" />
+    <property name="netbeans.hash.code" value="unique=NB_EXTIDE_GFMOD_JAVA_TOMCAT_WEBCOMMON_WEBEE068bb92fc-2c30-4fd2-9d61-715e4665b42c_f2e9621c-e65a-4e2e-82d0-9a8e17b8156e" />
+    <property name="netbeans.autoupdate.country" value="US" />
+    <property name="https.nonProxyHosts" value="localhost|127.0.0.1|hack-PC" />
+    <property name="sun.awt.keepWorkingSetOnMinimize" value="true" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.60-b23" />
+    <property name="user.variant" value="" />
+    <property name="netbeans.dynamic.classpath" value="C:\Program Files\NetBeans 8.1\platform\core\asm-all-5.0.1.jar;C:\Program Files\NetBeans 8.1\platform\core\core-base.jar;C:\Program Files\NetBeans 8.1\platform\core\core.jar;C:\Program Files\NetBeans 8.1\platform\core\org-netbeans-libs-asm.jar;C:\Program Files\NetBeans 8.1\platform\core\org-openide-filesystems-compat8.jar;C:\Program Files\NetBeans 8.1\platform\core\org-openide-filesystems.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core-base_ja.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core-base_pt_BR.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core-base_ru.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core-base_zh_CN.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core_ja.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core_pt_BR.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core_ru.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\core_zh_CN.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-netbeans-libs-asm_ja.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-netbeans-libs-asm_pt_BR.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-netbeans-libs-asm_ru.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-netbeans-libs-asm_zh_CN.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems-compat8_ja.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems-compat8_pt_BR.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems-compat8_ru.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems-compat8_zh_CN.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems_ru.jar;C:\Program Files\NetBeans 8.1\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files\NetBeans 8.1\nb\core\org-netbeans-upgrader.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\core_nb.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\core_nb_ja.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\core_nb_ru.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\org-netbeans-upgrader_ru.jar;C:\Program Files\NetBeans 8.1\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
+    <property name="jna.boot.library.name" value="jnidispatch-410" />
+    <property name="sun.awt.enableExtraMouseButtons" value="true" />
+    <property name="ping.version" value="1.1" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="ant.junit.enabletestlistenerevents" value="true" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="netbeans.autoupdate.variant" value="" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="ant.file.type.swing-template-build" value="file" />
+    <property name="user.script" value="" />
+    <property name="org.openide.major.version" value="IDE/1" />
+    <property name="ant.file.type.swing-ping-template-build" value="file" />
+    <property name="main.class" value="it.unibas.ping.framework.Applicazione" />
+    <property name="netbeans.home" value="C:\Program Files\NetBeans 8.1\platform" />
+    <property name="user.home" value="C:\Users\Musicrizz" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="apple.laf.useScreenMenuBar" value="true" />
+    <property name="org.xml.sax.driver" value="com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser" />
+    <property name="test.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\test" />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_60\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\AMD APP\bin\x86;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\ATI Technologies\ATI.ACE\Core-Static;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files\GNU\GnuPG\pub;c:\apache-ant-1.9.3\bin;c:\nant-0.92\bin;C:\Program Files\PostgreSQL\9.3\bin;C:\apache-maven-3.2.1\bin;C:\Program Files\MATLAB\R2011a\runtime\win32;C:\Program Files\MATLAB\R2011a\bin;C:\Program Files\Calibre2\;C:\Program Files\Microsoft SQL Server\110\DTS\Binn\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;C:\Program Files\Microsoft Visual Studio 10.0\Common7\IDE\PrivateAssemblies\;C:\Program Files\Skype\Phone\;C:\Program Files\Java\jdk1.8.0_60\bin;C:\Program Files\CutyCapt;C:\Program Files\boxcutter;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\CMake\bin;." />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="build.optimize" value="off" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner it.musicrizz.gameoflife.test.modello.TestModelloAnalizzaMondo skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\test\report\TEST-it.musicrizz.gameoflife.test.modello.TestModelloAnalizzaMondo.xml crashfile=D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\junitvmwatcher4372433968701925847.properties propsfile=D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\junit136525959146115396.properties" />
+    <property name="java.class.path" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\classes;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\lib\ping-1.1.jar;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\lib\commons-logging-1.2.jar;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\lib\jdom-2.0.5.jar;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\lib\log4j-1.2.17.jar;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build\test\classes;D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\lib\junit.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-launcher.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit.jar;C:\Program Files\NetBeans 8.1\extide\ant\lib\ant-junit4.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.4 compiled on April 29 2014" />
+    <property name="sun.java2d.noddraw" value="true" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="jdk.home" value="C:\Program Files\Java\jdk1.8.0_60" />
+    <property name="org.openide.specification.version" value="6.2" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.os.patch.level" value="Service Pack 1" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="build.debug" value="on" />
+    <property name="java.io.tmpdir" value="C:\Users\MUSICR~1\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="ant.file.gameoflife" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\build.xml" />
+    <property name="netbeans.dirs" value="C:\Program Files\NetBeans 8.1\nb;C:\Program Files\NetBeans 8.1\ergonomics;C:\Program Files\NetBeans 8.1\ide;C:\Program Files\NetBeans 8.1\extide;C:\Program Files\NetBeans 8.1\java;C:\Program Files\NetBeans 8.1\apisupport;C:\Program Files\NetBeans 8.1\webcommon;C:\Program Files\NetBeans 8.1\websvccommon;C:\Program Files\NetBeans 8.1\enterprise;C:\Program Files\NetBeans 8.1\mobility;C:\Program Files\NetBeans 8.1\profiler;C:\Program Files\NetBeans 8.1\python;C:\Program Files\NetBeans 8.1\php;C:\Program Files\NetBeans 8.1\identity;C:\Program Files\NetBeans 8.1\harness;C:\Program Files\NetBeans 8.1\cnd;C:\Program Files\NetBeans 8.1\cndext;C:\Program Files\NetBeans 8.1\dlight;C:\Program Files\NetBeans 8.1\groovy;C:\Program Files\NetBeans 8.1\extra;C:\Program Files\NetBeans 8.1\javacard;C:\Program Files\NetBeans 8.1\javafx" />
+    <property name="conf.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\src\conf" />
+    <property name="netbeans.autoupdate.language" value="en" />
+    <property name="os.arch" value="x86" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="ant.file.type.gameoflife" value="file" />
+    <property name="java.util.logging.config.class" value="org.netbeans.core.startup.TopLogging" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_60\jre\lib\ext;C:\Windows\Sun\Java\lib\ext" />
+    <property name="user.dir" value="C:\Program Files\NetBeans 8.1" />
+    <property name="build.compiler.emacs" value="true" />
+    <property name="misc.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\var" />
+    <property name="resources.dir.present" value="true" />
+    <property name="apple.awt.graphics.UseQuartz" value="true" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+    <property name="basedir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife" />
+    <property name="utilita.build.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\util\build\classes" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="sun.awt.datatransfer.timeout" value="1000" />
+    <property name="ant.core.lib" value="C:\Program Files\NetBeans 8.1\extide\ant\lib\ant.jar" />
+    <property name="file.encoding" value="Cp1252" />
+    <property name="conf.dir.present" value="true" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="src.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\src" />
+    <property name="ant.project.invoked-targets" value="clean,build" />
+    <property name="javadoc.dir" value="D:\Dropbox\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\dist\javadoc" />
+  </properties>
+  <testcase classname="it.musicrizz.gameoflife.test.modello.TestModelloAnalizzaMondo" name="testGlinder" time="0.109" />
+  <system-out><![CDATA[ANALIZZA MONDO Generazione 0
+ANALIZZA MONDO Generazione 1
+ANALIZZA MONDO Generazione 2
+ANALIZZA MONDO Generazione 3
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

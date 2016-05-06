@@ -5,7 +5,6 @@ import it.unibas.ping.framework.Applicazione;
 import it.unibas.ping.framework.Modello;
 import it.musicrizz.gameoflife.Costanti;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -32,37 +31,32 @@ public class Sistema {
     public Set<Cellula> getMondoMatrice()   {
         return this.mondo.getGenerazione();
     }
+    public boolean isCellula(Cellula c)   {
+        return mondo.getGenerazione().contains(c);
+    }
     
-    public void addCellula(int x, int y, boolean statoCorrente, boolean statoFuturo)   {
+    public void addCellula(int x, int y)   {
         this.mondo.addCellula(new Cellula(x, y));
         modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, x, y);
         log.debug("Cellula Creata in : "+x+","+y);
     }
     
     public void removeCellula(int x,int y)   {
-        //assert(x<=ConfigurazioneParametri.getInstance().getRighe()&&y<=ConfigurazioneParametri.getInstance().getColonne()) : 
-        //     "getCellula(x,y) --> Errore nell'indice di riga o colonna  GetCellula(x,y)";
         this.mondo.removeCellula(new Cellula(x, y));
         modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, x, y);
         log.debug("Cellula Creata in : "+x+","+y);
     }
     
-    public void addCellule(Map<String,Cellula> mappa)   {
+    public void addCellule(Set<Cellula> mappa)   {
         this.mondo.addCellule(mappa);
-        //modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, 0, 0);
         log.debug("Mappa cellule caricata");
     }
     
-    public void addCellule(Map<String,Cellula> mappa)   {
+    public void addCellule(List<Cellula> mappa)   {
         this.mondo.addCellule(mappa);
-        //modello.notificaModificaCella(this, Costanti.MONDO_MATRICE, 0, 0);
         log.debug("Mappa cellule caricata");
     }
-    
-    public List<Cellula> getListaCellule()   {
-        return mondo.getListaCellule();
-    }
-    
+   
     public Mondo getMondo()   {
         return this.mondo;
     }
@@ -71,4 +65,7 @@ public class Sistema {
         mondo.analizzaMondo();
     }
     
+    public int getPopolazione()   {
+        return mondo.getPopolazione();
+    }
 }

@@ -4,7 +4,8 @@
  */
 package it.musicrizz.gameoflife.persistenza;
 
-import it.musicrizz.gameoflife.modello.ConfigurazioneParametri;
+import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
+import it.musicrizz.gameoflife.modello.Cellula;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -32,15 +33,11 @@ public class DAOSalvataggioProperties implements IDAOSalvataggio{
                 pw.println("NumeroColonne="+ConfigurazioneParametri.getInstance().getColonne());
                 pw.println("Timer="+ConfigurazioneParametri.getInstance().getTimer());
                 pw.println(" ");
-                for (int i=0;i< ConfigurazioneParametri.getInstance().getRighe();i++)   {
-                    for(int j=0;j<ConfigurazioneParametri.getInstance().getColonne();j++)   {
-                        if((s.getCellula(i, j) != null) && (s.getCellula(i, j).isStatoCorrente()))   {
-                            pw.println("Cellula"+cont+"X="+i);
-                            pw.println("Cellula"+cont+"Y="+j);
-                            log.debug("Cellula viva "+cont+" scritta nel file con pos -> "+i+","+j);
-                            cont++;
-                        }
-                    }
+                for(Cellula cell : s.getMondoMatrice())   {
+                    pw.println("Cellula"+cont+"X="+cell.getX());
+                    pw.println("Cellula"+cont+"Y="+cell.getY());
+                    log.debug("Cellula viva "+cont+" scritta nel file con pos -> "+cell.getX()+","+cell.getY());
+                    cont++;
                 }
                 pw.println("NumeroCellule="+cont);
             }
