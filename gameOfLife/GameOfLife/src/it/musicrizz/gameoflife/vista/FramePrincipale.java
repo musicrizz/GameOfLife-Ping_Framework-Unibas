@@ -12,7 +12,6 @@ import it.musicrizz.gameoflife.controllo.AzioneCaricaMondo;
 import it.musicrizz.gameoflife.controllo.AzioneFinestraCaricaDB;
 import it.musicrizz.gameoflife.controllo.AzioneSalvaMondo;
 import it.musicrizz.gameoflife.controllo.AzioneSalvaDB;
-import it.musicrizz.gameoflife.controllo.AzioneLanguage;
 import it.musicrizz.gameoflife.controllo.AzioneFinestraNuovoMondo;
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import java.awt.BorderLayout;
@@ -26,7 +25,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -40,7 +38,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
@@ -60,7 +57,6 @@ public class FramePrincipale extends FramePing {
     private JMenu jMenu3View;
     private JMenu JSottoMenuTool;
     private JMenu jMenu4Edit;
-    private JMenu JMenu5Language;
     private JMenuBar jMenuBar1;
     private JMenuItem jMenuItemIstruzioni;
     private JMenuItem jMenuItem1InfoApp;
@@ -79,8 +75,6 @@ public class FramePrincipale extends FramePing {
     private JPopupMenu.Separator JsepSeparator3;
     private JPopupMenu.Separator JSeparator4;
     private JPopupMenu.Separator JSeparator5;
-    private JPopupMenu.Separator JSeparator6;
-    private JPopupMenu.Separator JSeparator7;
     private JLabel etichettaStato;
     private JToolBar toolbar;
     private final JFileChooser fileChooser = new JFileChooser();
@@ -100,12 +94,8 @@ public class FramePrincipale extends FramePing {
     private JCheckBoxMenuItem jCheckBoxMenuToolbar;
     private JCheckBoxMenuItem jCheckBoxMenuExample;
     private JCheckBoxMenuItem jCheckBoxMenuChat;
-    private JRadioButtonMenuItem jRadioButtonMenuIT;
-    private JRadioButtonMenuItem jRadioButtonMenuEN;
     private JButton JButtonTabwSing;
     private JButton JButtonGraphics2D;
-    private JButton JButtonOpenGL;
-    private ButtonGroup buttonGroup;
     private PannelloChat pannelloChat;  
     private Image img;
     private JSlider sliderTime;
@@ -123,20 +113,11 @@ public class FramePrincipale extends FramePing {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if(isRadioMenuIT())   {
-                    int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
-                    if(num == JOptionPane.OK_OPTION) {
-                        System.exit(0);
-                    }else{
-                        return;
-                    }
-                }else if(isRadioMenuEN())   {
-                    int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_EN);
-                    if(num == JOptionPane.OK_OPTION) {
-                        System.exit(0);
-                    }else{
-                        return;
-                    }
+                int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
+                if(num == JOptionPane.OK_OPTION) {
+                    System.exit(0);
+                }else{
+                    return;
                 }
             }
         });
@@ -189,17 +170,11 @@ public class FramePrincipale extends FramePing {
         jMenu3View = new JMenu();
         JSottoMenuTool = new JMenu();
         jMenu4Edit = new JMenu();
-        JMenu5Language = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
         jCheckBoxMenuToolbar = new JCheckBoxMenuItem();
         jCheckBoxMenuExample = new JCheckBoxMenuItem();
         jCheckBoxMenuChat = new JCheckBoxMenuItem();
-        JSeparator6 = new JPopupMenu.Separator();
-        JSeparator7 = new JPopupMenu.Separator();
-        jRadioButtonMenuIT = new JRadioButtonMenuItem();
-        getjRadioButtonMenuIT().setSelected(true);
-        jRadioButtonMenuEN = new JRadioButtonMenuItem();
-        buttonGroup = new ButtonGroup();
+
         
 
         jMenu1File.setText("File");
@@ -237,24 +212,14 @@ public class FramePrincipale extends FramePing {
             }
             getjMenuItem6Esci().addActionListener(new ActionListener() {
 
-              public void actionPerformed(ActionEvent e) {
-                    if(isRadioMenuIT())   {
-                        int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
-                    if(num == JOptionPane.OK_OPTION) {
-                        System.exit(0);
-                    }else{
-                        return;
-                    }
-                    }else if(isRadioMenuEN())   {
-                        int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_EN);
+              public void actionPerformed(ActionEvent e) {                
+                    int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
                     if(num == JOptionPane.OK_OPTION) {
                         System.exit(0);
                     }else{
                         return;
                     }
                 }
-              }
-
              });
             jMenu1File.add(getjMenuItem6Esci());
 
@@ -362,35 +327,7 @@ public class FramePrincipale extends FramePing {
                 }
             });
         jMenu4Edit.add(getjMenuItem6ConfChat());
-        jMenu4Edit.add(JSeparator6);
-        jMenu4Edit.add(JSeparator7);
-        
-        getjRadioButtonMenuIT().setAction(controllo.getAzioneSwing(AzioneLanguage.class.getName()));
-        try{
-                getjRadioButtonMenuIT().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_LANG_IT))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine menuIT ->\n"+e);
-        }
-        getjRadioButtonMenuIT().setText("IT");
-        getjRadioButtonMenuEN().setAction(controllo.getAzioneSwing(AzioneLanguage.class.getName()));
-        try{
-                getjRadioButtonMenuEN().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_LANG_EN))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine menuEN ->\n"+e);
-        }
-        getjRadioButtonMenuEN().setText("EN");
-        buttonGroup.add(getjRadioButtonMenuIT());
-        buttonGroup.add(getjRadioButtonMenuEN());
-        getJMenu5Language().setText("Lingua");
-        try{
-            getJMenu5Language().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_LANGUAGE))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine menuLingua ->\n"+e);
-        }
-        getJMenu5Language().add(getjRadioButtonMenuIT());
-        getJMenu5Language().add(getjRadioButtonMenuEN());
-        jMenu4Edit.add(getJMenu5Language());
-        
+     
         jMenuBar1.add(jMenu4Edit);
         
             
@@ -492,7 +429,6 @@ public class FramePrincipale extends FramePing {
         JbuttonConfChat = new JButton();
         JButtonGraphics2D = new JButton(); 
         JButtonTabwSing = new JButton();
-        JButtonOpenGL = new JButton();
         
         try{
             JButtonTabwSing.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_TAB_SWING))));
@@ -504,13 +440,7 @@ public class FramePrincipale extends FramePing {
             JButtonGraphics2D.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_GRAPHICS2D))));
         }catch(Exception e)   {
             log.error("Errore caricamento immagine bottoneTabSwing");
-        }
-        
-        try{
-            JButtonOpenGL.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_OPENGL))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneOpenGL");
-        }
+        }       
         
         toolbar = new JToolBar();
         
@@ -579,6 +509,7 @@ public class FramePrincipale extends FramePing {
                 if(pannelloScacchiera == null) return;
                 if(pannelloScacchiera.getPannello2D() != null)   {
                     pannelloScacchiera.disabilitaMouseListeberPann2D();
+                    pannelloScacchiera.getPannello2D().disablePainting();
                     pannelloScacchiera.rimuoviPannello2D();
                     pannelloScacchiera.initTabella();
                     pannelloScacchiera.abilitaMouseListenerTabella();
@@ -600,15 +531,13 @@ public class FramePrincipale extends FramePing {
                     Dimension d = new Dimension(w, h);
                     pannelloScacchiera.rimuoviTabella();
                     pannelloScacchiera.initPannello2D();
-                    pannelloScacchiera.getPannello2D().initMappa();
+                    pannelloScacchiera.getPannello2D().enablePainting();
                     pannelloScacchiera.getPannello2D().ridisegna();
                     pannelloScacchiera.abilitaMouseListenerPann2D();
                     FramePrincipale.this.setSize(d);
                 }
             }
         });
-    
-        JButtonOpenGL.setToolTipText("Visualizzazione OpenGL 3D");
         
         try{
             JButtonTabwSing.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_TAB_SWING))));
@@ -620,12 +549,6 @@ public class FramePrincipale extends FramePing {
             JButtonGraphics2D.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_GRAPHICS2D))));
         }catch(Exception e)   {
             log.error("Errore caricamento immagine bottoneTabSwing");
-        }
-        
-        try{
-            JButtonOpenGL.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_OPENGL))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneOpenGL");
         }
      
         toolbar.add(getjButtonNew());toolbar.addSeparator();
@@ -641,8 +564,6 @@ public class FramePrincipale extends FramePing {
         toolbar.add(JButtonTabwSing);
         toolbar.addSeparator();
         toolbar.add(JButtonGraphics2D);
-        toolbar.addSeparator();
-        toolbar.add(JButtonOpenGL);
         toolbar.addSeparator();
         visualizzaMenuToolBar();
         
@@ -715,21 +636,6 @@ public class FramePrincipale extends FramePing {
         getPannelloChat().pulisciTextArea();
     }
     
-    public boolean isRadioMenuIT()   {
-        return getjRadioButtonMenuIT().isSelected();
-    }
-    
-    public boolean isRadioMenuEN()   {
-        return getjRadioButtonMenuEN().isSelected();
-    }
-
-    /**
-     * @return the JMenu5Language
-     */
-    public JMenu getJMenu5Language() {
-        return JMenu5Language;
-    }
-
     /**
      * @return the jMenuItemIstruzioni
      */
@@ -990,20 +896,6 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the jRadioButtonMenuIT
-     */
-    public JRadioButtonMenuItem getjRadioButtonMenuIT() {
-        return jRadioButtonMenuIT;
-    }
-
-    /**
-     * @return the jRadioButtonMenuEN
-     */
-    public JRadioButtonMenuItem getjRadioButtonMenuEN() {
-        return jRadioButtonMenuEN;
-    }
-
-    /**
      * @return the pannelloChat
      */
     public PannelloChat getPannelloChat() {
@@ -1043,20 +935,6 @@ public class FramePrincipale extends FramePing {
      */
     public void setJSottoMenuTool(JMenu JSottoMenuTool) {
         this.JSottoMenuTool = JSottoMenuTool;
-    }
-
-    /**
-     * @return the JButtonOpenGL
-     */
-    public JButton getJButtonOpenGL() {
-        return JButtonOpenGL;
-    }
-
-    /**
-     * @param JButtonOpenGL the JButtonOpenGL to set
-     */
-    public void setJButtonOpenGL(JButton JButtonOpenGL) {
-        this.JButtonOpenGL = JButtonOpenGL;
     }
 
     /**

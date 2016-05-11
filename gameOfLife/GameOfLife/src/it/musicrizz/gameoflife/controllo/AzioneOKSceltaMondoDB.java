@@ -38,12 +38,12 @@ public class AzioneOKSceltaMondoDB extends AzionePingAstratta   {
         Descrizione descrizione = (Descrizione)finestraSceltaMondiDataBase.getSelectedValue();
         String nome = descrizione.getNome();
         if(nome == null) {
-            if(framePrincipale.isRadioMenuIT()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
+            /*if(framePrincipale.isRadioMenuIT()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
                                                                                 Language.TEXT_DIALOG_CARICA_DB_NO_SELCT_IT, "OPS !!", 
                                                                                 JOptionPane.INFORMATION_MESSAGE);
             if(framePrincipale.isRadioMenuEN()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
                                                                                 Language.TEXT_DIALOG_CARICA_DB_NO_SELECT_EN, 
-                                                                                "OPS !!", JOptionPane.INFORMATION_MESSAGE);
+                                                                                "OPS !!", JOptionPane.INFORMATION_MESSAGE);*/
         }else{
             try{
                 if(DAOMondoSQL.doSelectNomeMondo(nome))  {
@@ -66,12 +66,12 @@ public class AzioneOKSceltaMondoDB extends AzionePingAstratta   {
                     log.debug("Abilito il listener Mouse della tabella");
                     finestraSceltaMondiDataBase.nascondi();
                 }else{
-                     if(framePrincipale.isRadioMenuIT()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
+                    /* if(framePrincipale.isRadioMenuIT()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
                                                                                 Language.TEXT_DIALOG_CARICA_DB_NO_NAME_IT, "OPS !!", 
                                                                                 JOptionPane.INFORMATION_MESSAGE);
                      if(framePrincipale.isRadioMenuEN()) JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, 
                                                                                 Language.TEXT_DIALOG_CARICA_DB_NO_NAME_EN, 
-                                                                                "OPS !!", JOptionPane.INFORMATION_MESSAGE);
+                                                                                "OPS !!", JOptionPane.INFORMATION_MESSAGE);*/
                 }
             }catch(Exception e)   {
                 log.error("AzioneOKSceltaMondi -> "+e);

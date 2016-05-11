@@ -37,12 +37,12 @@ public class AzioneSalvaDB extends AzionePingAstratta   {
         boolean continua = true;
         String nome = null;;
         while(continua)   {
-            if(frame.isRadioMenuIT())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_IT);
-            if(frame.isRadioMenuEN())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_EN);
+            //if(frame.isRadioMenuIT())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_IT);
+            //if(frame.isRadioMenuEN())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_EN);
             if(nome == null) return;
             if(nome.isEmpty())   {
-                if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_IT);
-                if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_EN);
+                //if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_IT);
+                //if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_EN);
             }else{
                 continua = false;
             }
@@ -58,11 +58,11 @@ public class AzioneSalvaDB extends AzionePingAstratta   {
                      DAOMondoSQL.doInsertCellula(c, nome);
                  }*/
                  log.debug("Cellule Inserite");
-                 if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_IT);
-                 if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_EN);
+                 //if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_IT);
+                 //if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_OK_EN);
              }else{
-                 if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_LOOKUP_IT);
-                 if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_LOOKUP_EN);
+                 //if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_LOOKUP_IT);
+                 //if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_LOOKUP_EN);
              }
          }catch(Exception e)   {
                 JOptionPane.showMessageDialog(frame,"Eccezzione : \n"+e,"ERROR",JOptionPane.ERROR_MESSAGE);

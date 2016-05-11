@@ -30,7 +30,7 @@ public class DataSource {
     
     public static Connection getConnection(String sottProt) throws DAOException   {
         Connection con = null;
-        try{
+        /*try{
             if(sottProt.equals(Costanti.DRIVER_SQL_SERVER))   {
                 String connectionURL ="jdbc:"+sottProt+"://localhost:"+ConfigurazioneDatabase.getInstance().getPortaServerSql()+";"+
                                                   "databaseName="+ConfigurazioneDatabase.getInstance().getDbName()+";"+
@@ -46,7 +46,7 @@ public class DataSource {
         }catch(SQLException e)  {
             log.error("GetConnection -> "+e);
             throw new DAOException("getConnection -> "+e);
-        }
+        }*/
         return con;
     }
     

@@ -21,31 +21,20 @@ import java.util.EventObject;
 public class AzioneTimer extends AzionePingAstratta   {
     
     private FramePrincipale framePrincipale;
-
+    private static boolean flagStart = false;
     
     public void esegui(EventObject o)   {
         String text = framePrincipale.getPannelloScacchiera().getTextButtonTimer();
-        if(text.equalsIgnoreCase("Start Timer"))  {
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Stop Timer");
-            
-            if(framePrincipale.getPannelloScacchiera().getTabella() != null)   {
-                framePrincipale.getPannelloScacchiera().disabilitaMouseListenerTabella();
-                framePrincipale.getPannelloScacchiera().startTimer();
-            }else if(framePrincipale.getPannelloScacchiera().getPannello2D() != null)   {
-                framePrincipale.getPannelloScacchiera().disabilitaMouseListeberPann2D();
-                framePrincipale.getPannelloScacchiera().startTimer();
-            }
+        if(!flagStart)  {
+            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Stop Timer");   //ferma timer      
+            framePrincipale.getPannelloScacchiera().startTimer();
+            flagStart = true;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_START_TIMER));
-            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Timer partito per aggiungere o rimuovere Cellule FERMA IL TIMER"));
+            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("TIMER PARTITO"));
         }else{
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Start Timer");
-            if(framePrincipale.getPannelloScacchiera().getTabella()!=null)   {
-                framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
-                framePrincipale.getPannelloScacchiera().stopTimer();
-            }else if(framePrincipale.getPannelloScacchiera().getPannello2D() != null)   {
-                framePrincipale.getPannelloScacchiera().abilitaMouseListenerPann2D();
-                framePrincipale.getPannelloScacchiera().stopTimer();
-            }
+            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Start Timer"); //avvia timer
+            framePrincipale.getPannelloScacchiera().stopTimer();
+            flagStart = false;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_STOP_TIMER));
             modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("TIMER FERMATO"));
         }

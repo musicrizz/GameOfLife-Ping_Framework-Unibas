@@ -39,11 +39,11 @@ public class AzioneFinestraCaricaDB extends AzionePingAstratta   {
             lista = DAOMondoSQL.doSelectAllMondiDescrizione();
             log.debug("Lista descrizione mondi carica ta - size -> "+lista.size());
             if(lista.size() == 0)   {
-                if(framePrincipale.isRadioMenuIT())   {
+                /*if(framePrincipale.isRadioMenuIT())   {
                     JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, Language.TEXT_DIALOG_CARICA_DB_IT, "OPS !!", JOptionPane.INFORMATION_MESSAGE);
                 }else if(framePrincipale.isRadioMenuEN())   {
                     JOptionPane.showMessageDialog(finestraSceltaMondiDataBase, Language.TEXT_DIALOG_CARICA_DB_EN, "OPS !!", JOptionPane.INFORMATION_MESSAGE);
-                }
+                }*/
             }else{
                 finestraSceltaMondiDataBase.initJList(lista);
                 finestraSceltaMondiDataBase.visualizza();

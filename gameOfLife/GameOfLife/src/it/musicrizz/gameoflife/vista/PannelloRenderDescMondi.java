@@ -27,8 +27,8 @@ public class PannelloRenderDescMondi extends JPanel   {
         this.setBorder(bordo);
         initLabel();
         FramePrincipale frame = (FramePrincipale)controllo.getVista().getSottoVista(FramePrincipale.class.getName());
-        if(frame.isRadioMenuIT()) label.setText(descrizione.toStringIT());
-        if(frame.isRadioMenuEN()) label.setText(descrizione.toStringEN());
+        //if(frame.isRadioMenuIT()) label.setText(descrizione.toStringIT());
+        //if(frame.isRadioMenuEN()) label.setText(descrizione.toStringEN());
     }
     
     private void initLabel()   {

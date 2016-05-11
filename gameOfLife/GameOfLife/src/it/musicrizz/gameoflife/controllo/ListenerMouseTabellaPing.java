@@ -4,6 +4,7 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.framework.Applicazione;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
@@ -34,14 +35,13 @@ public class ListenerMouseTabellaPing extends MouseAdapter{
             int x = tabella.getSelectedRow();
             int y = tabella.getSelectedColumn();
             Sistema s = (Sistema)m.getBean(Costanti.SISTEMA);
-            //TODO
-            /*if((s.getCellula(x, y) == null) || ((s.getCellula(x, y) != null)&& (!s.getCellula(x, y).isStatoCorrente())))   {
-                s.addCellula(tabella.getSelectedRow(), tabella.getSelectedColumn(), true, false);
-                m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Cellula creata in pos : "+tabella.getSelectedRow()+","+tabella.getSelectedColumn()));
+            if(!s.isCellula(new Cellula(x, y)))   {
+                s.addCellula(tabella.getSelectedRow(), tabella.getSelectedColumn());
+                m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.B_MSG_NUOVA_CELL, tabella.getSelectedRow(),tabella.getSelectedColumn())));
             }else{
                 s.removeCellula(tabella.getSelectedRow(), tabella.getSelectedColumn());
-                m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Cellula uccisa in pos : "+tabella.getSelectedRow()+","+tabella.getSelectedColumn()));
-            }*/
+                m.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.B_MSG_CELL_RIMOSSA, tabella.getSelectedRow(),tabella.getSelectedColumn())));
+            }
      }
 }
     

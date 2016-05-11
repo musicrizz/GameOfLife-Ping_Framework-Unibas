@@ -53,13 +53,13 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
                         daoSalvataggioXML.salva(sistema, nomeFile);
                     }
                 }else{
-                    if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_FORMATO_FILE_IT);
-                    if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_FORMATO_FILE_EN);
+                    //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_FORMATO_FILE_IT);
+                    //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_FORMATO_FILE_EN);
                 }
             }
         }catch(Exception e)   {
-            if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_IT+" \n"+e);
-            if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_EN+"\n"+e);
+            //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_IT+" \n"+e);
+            //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_EN+"\n"+e);
         }
     }
 

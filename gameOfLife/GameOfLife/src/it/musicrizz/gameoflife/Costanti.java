@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife;
 
 /**
  *
- * @author musicrizz
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
 public class Costanti {
     
@@ -71,7 +68,12 @@ public class Costanti {
     //Configurazione Parametri
     public static final String CONF = "ConfigurazParam";
     
-    //Sottoprotocollo Driver
-    public static final String DRIVER_POSTGRESQL = "postgresql";
-    public static final String DRIVER_SQL_SERVER = "sqlserver";
+    //BUNDLE
+        //Azione Iniziale
+    public static final String B_MSG_STATO_CONF_VUOTA = "MSG_STATO_CONF_VUOTA";
+        //MouseListener Tabella & 2D 
+    public static final String B_MSG_NUOVA_CELL = "MSG_NUOVA_CELL";
+    public static final String B_MSG_CELL_RIMOSSA = "MSG_CELL_RIMOSSA";
+    
+    
 }
