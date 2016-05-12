@@ -13,6 +13,8 @@ import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoProperties;
 import it.musicrizz.gameoflife.persistenza.IDAOCaricamento;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
+import it.unibas.ping.annotazioni.DescrizioneSwing;
+import it.unibas.ping.annotazioni.NomeSwing;
 import java.util.EventObject;
 import javax.swing.JButton;
 import org.apache.commons.logging.Log;
@@ -22,6 +24,8 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Grandinetti Giovanni <musicrizz@hotmail.it>
  */
+@NomeSwing("dkjhfs")
+@DescrizioneSwing("sdlfjk")
 public class AzioneBottoneExample extends AzionePingAstratta   {
     
     private static Log log = LogFactory.getLog(AzioneBottoneExample.class);

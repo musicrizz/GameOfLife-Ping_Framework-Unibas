@@ -133,8 +133,7 @@ public class Language {
                                                             "Or misconfiguration";
     public static final String MSG_ERRORE_SALVATAGGIO_FILE_IT = "Errore nella Creazione del File -> \n";
     public static final String MSG_ERRORE_SALVATAGGIO_FILE_EN = "Error in Creating a File";
-    public static final String MSG_CHIUSURA_FRAME_IT = "Sei sicuro di chiudere?";
-    public static final String MSG_CHIUSURA_FRAME_EN = "Are you sure you close?";
+
     
     //TESTO MESSAGGI DI STATO
     

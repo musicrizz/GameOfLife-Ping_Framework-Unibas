@@ -16,7 +16,7 @@ import it.musicrizz.gameoflife.vista.FramePrincipale;
 
 /**
  *
- * @author musicrizz
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class PingConfig extends Configurazione  {
      

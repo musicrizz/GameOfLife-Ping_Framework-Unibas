@@ -74,6 +74,17 @@ public class Costanti {
         //MouseListener Tabella & 2D 
     public static final String B_MSG_NUOVA_CELL = "MSG_NUOVA_CELL";
     public static final String B_MSG_CELL_RIMOSSA = "MSG_CELL_RIMOSSA";
+        //AzioneTimer
+    public static final String B_BUTTON_LABEL_TIMER_START = "BUTTON_LABEL_TIMER_START";
+    public static final String B_BUTTON_LABEL_TIMER_STOP = "BUTTON_LABEL_TIMER_STOP";
+    public static final String B_MSG_STATO_TIMER_START = "MSG_STATO_TIMER_START";
+    public static final String B_MSG_STATO_TIMER_STOP = "MSG_STATO_TIMER_STOP";
+        //PannelloScacchiera
+    public static final String B_LABEL_GENERAZIONI = "LABEL_GENERAZIONI";
+    public static final String B_LABEL_POPOLAZIONE = "LABEL_POPOLAZIONE";
+        //Frame Principale
+    public static final String B_FRAME_P_TITLE = "FRAME_P_TITLE";
+    public static final String B_FRAME_P_MSG_CHIUSURA_FRAME = "FRAME_P_MSG_CHIUSURA_FRAME";
     
     
 }

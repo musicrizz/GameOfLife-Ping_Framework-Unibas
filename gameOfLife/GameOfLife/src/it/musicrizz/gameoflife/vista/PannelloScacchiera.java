@@ -4,6 +4,7 @@
  */
 package it.musicrizz.gameoflife.vista;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.binding.osservatori.OsservatoreTabellaBidim;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.Modello;
@@ -38,8 +39,10 @@ public class PannelloScacchiera extends JPanel   {
     private ListenerMousePannello2D mousePannello2D;
     private JTable tabella;
     private JButton jButtonTimer;
-    private JLabel labelG;
+    private JLabel labelGenerazioiText;
     private JLabel labelGenerazione;
+    private JLabel labelPopolazioneText;
+    private JLabel labelPopolazione;
     private JPanel pannelloGenerazini;
     private PannelloGraphics2D pannello2D;
     private Timer timer;
@@ -100,11 +103,15 @@ public class PannelloScacchiera extends JPanel   {
     }
     
     private void initLabelGenerazioni()   {
-        labelG = new JLabel("Numero Generazioni : ");
+        labelGenerazioiText = new JLabel(Bundle.getString(Costanti.B_LABEL_GENERAZIONI));
         labelGenerazione = new JLabel();
+        labelPopolazioneText = new JLabel(Bundle.getString(Costanti.B_LABEL_POPOLAZIONE));
+        labelPopolazione = new JLabel();
         pannelloGenerazini = new JPanel();
-        pannelloGenerazini.add(labelG);
+        pannelloGenerazini.add(labelGenerazioiText);
         pannelloGenerazini.add(labelGenerazione);
+        pannelloGenerazini.add(labelPopolazioneText);
+        pannelloGenerazini.add(labelPopolazione);
         this.add(pannelloGenerazini,BorderLayout.NORTH);
     }
     
@@ -112,6 +119,10 @@ public class PannelloScacchiera extends JPanel   {
         labelGenerazione.setText(s);
     }
     
+    public void setTextLabelPopolazione(String s)   {
+        labelPopolazione.setText(s);
+    }
+        
     public void abilitaMouseListenerTabella()   {
         try{
             if(getTabella() == null)return;
@@ -185,21 +196,16 @@ public class PannelloScacchiera extends JPanel   {
         contGenerazioni = 0;
         setTextLabelGenerazioni(0+"");
         final Sistema s = (Sistema)controllo.getModello().getBean(Costanti.SISTEMA);
+        PannelloScacchiera.this.setTextLabelPopolazione(s.getPopolazione()+"");
         timer = new Timer(delay, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 s.analizzaMondo();
-                if(getPannello2D() != null) {
-                    getPannello2D().ridisegna();
-                    PannelloScacchiera.this.setTextLabelGenerazioni(++contGenerazioni+"");
-                    return;
-                }
-                if(tabella != null)  {
-                    controllo.getModello().notificaModificaCella(s, Costanti.MONDO_MATRICE, Modello.TUTTE_LE_CELLE, Modello.TUTTE_LE_CELLE);
-                    PannelloScacchiera.this.setTextLabelGenerazioni(++contGenerazioni+"");
-                    return;
-                }
-                
+                if(getPannello2D() != null) getPannello2D().ridisegna();
+                if(tabella != null) controllo.getModello()
+                        .notificaModificaCella(s, Costanti.MONDO_MATRICE, Modello.TUTTE_LE_CELLE, Modello.TUTTE_LE_CELLE);
+                PannelloScacchiera.this.setTextLabelGenerazioni(++contGenerazioni+"");
+                PannelloScacchiera.this.setTextLabelPopolazione(s.getPopolazione()+"");
             }
         });
     }

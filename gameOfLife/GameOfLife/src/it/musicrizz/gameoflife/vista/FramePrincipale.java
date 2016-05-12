@@ -1,5 +1,6 @@
 package it.musicrizz.gameoflife.vista;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.azioni.AzioneInformazioniApplicazione;
 import it.unibas.ping.azioni.AzioneInformazioniPing;
 import it.unibas.ping.binding.osservatori.OsservatoreLabel;
@@ -7,7 +8,6 @@ import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.FramePing;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.Language;
-import it.musicrizz.gameoflife.controllo.AzioneBottoneExample;
 import it.musicrizz.gameoflife.controllo.AzioneCaricaMondo;
 import it.musicrizz.gameoflife.controllo.AzioneFinestraCaricaDB;
 import it.musicrizz.gameoflife.controllo.AzioneSalvaMondo;
@@ -16,7 +16,6 @@ import it.musicrizz.gameoflife.controllo.AzioneFinestraNuovoMondo;
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -56,6 +55,7 @@ public class FramePrincipale extends FramePing {
     private JMenu jMenu2Info;
     private JMenu jMenu3View;
     private JMenu JSottoMenuTool;
+    private JMenu jMenuExsample;
     private JMenu jMenu4Edit;
     private JMenuBar jMenuBar1;
     private JMenuItem jMenuItemIstruzioni;
@@ -70,6 +70,10 @@ public class FramePrincipale extends FramePing {
     private JMenuItem jMenuItem9SalvaSuDB;
     private JMenuItem jMenuItem10ConfDB;
     private JMenuItem jMenuItem6Esci;
+    
+    private JMenuItem jMenuItemCannoneAlianti;
+    private JMenuItem jMenuItemArrow;
+    
     private JPopupMenu.Separator jSeparator1;
     private JPopupMenu.Separator jSeparator2;
     private JPopupMenu.Separator JsepSeparator3;
@@ -108,12 +112,12 @@ public class FramePrincipale extends FramePing {
     }
     
     public void inizializza()   {
-        this.setTitle("Gioco della vita");
+        this.setTitle(Bundle.getString(Costanti.B_FRAME_P_TITLE));
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
+                int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Bundle.getString(Costanti.B_FRAME_P_MSG_CHIUSURA_FRAME));
                 if(num == JOptionPane.OK_OPTION) {
                     System.exit(0);
                 }else{
@@ -127,8 +131,7 @@ public class FramePrincipale extends FramePing {
             if(img != null) this.setIconImage(img);
         }catch(Exception e)   {
             log.error("Errore nel caricamento dell' immagine del frame -> "+e);
-        }
-        
+        }      
         Toolkit tol = Toolkit.getDefaultToolkit();
         Dimension d = tol.getScreenSize();
         int altezza = d.height;
@@ -137,14 +140,11 @@ public class FramePrincipale extends FramePing {
         initMenu();
         inizializzaFileChooser();
         pannelloIniziale = new PannelloIniziale();
-        pannelloExample =  PannelloExample();
         pannelloChat = new PannelloChat(controllo);
         this.getContentPane().add(pannelloIniziale,BorderLayout.CENTER);
         initMenuToolBar();
         initEtichettaStato();
-        visualizzaPannelloConfigurazioni();
-        this.pack();
-        
+        this.pack();        
     }
     
     private void initMenu()   {
@@ -169,6 +169,8 @@ public class FramePrincipale extends FramePing {
         JSeparator5 = new JPopupMenu.Separator();
         jMenu3View = new JMenu();
         JSottoMenuTool = new JMenu();
+        jMenuExsample = new JMenu();
+        
         jMenu4Edit = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
         jCheckBoxMenuToolbar = new JCheckBoxMenuItem();
@@ -213,7 +215,7 @@ public class FramePrincipale extends FramePing {
             getjMenuItem6Esci().addActionListener(new ActionListener() {
 
               public void actionPerformed(ActionEvent e) {                
-                    int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Language.MSG_CHIUSURA_FRAME_IT);
+                    int num = JOptionPane.showConfirmDialog(FramePrincipale.this, Bundle.getString(Costanti.B_FRAME_P_MSG_CHIUSURA_FRAME));
                     if(num == JOptionPane.OK_OPTION) {
                         System.exit(0);
                     }else{
@@ -261,10 +263,10 @@ public class FramePrincipale extends FramePing {
 
                 public void actionPerformed(ActionEvent e) {
                     if(getjCheckBoxMenuExample().isSelected())   {
-                        visualizzaPannelloConfigurazioni();
+                        
                         
                     }else{
-                        nascondiPannelloConfigurazioni();
+
                       
                     }
                 }
@@ -363,62 +365,6 @@ public class FramePrincipale extends FramePing {
         etichettaStato = new JLabel();
         this.getContentPane().add(etichettaStato, BorderLayout.SOUTH);
         new OsservatoreLabel(etichettaStato, Controllo.MESSAGGIO_STATO, Controllo.VALORE_MESSAGGIO);
-    }
-    
-    private JPanel PannelloExample()   {
-        JPanel pannello = new JPanel();
-        pannello.setLayout(new GridLayout(5, 1));
-        try{
-            jButtonCannoneAlianti = new JButton();
-            getjButtonCannoneAlianti().setAction(controllo.getAzioneSwing(AzioneBottoneExample.class.getName()));
-            getjButtonCannoneAlianti().setName("aliante");
-            getjButtonCannoneAlianti().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_CANNONE_ALIANTI_IT);
-            getjButtonCannoneAlianti().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_CANNONE_ALIANTE))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneCannoneALianti ->\n"+e);
-        }
-        try{
-            jButtonAstronave = new JButton();
-            getjButtonAstronave().setAction(controllo.getAzioneSwing(AzioneBottoneExample.class.getName()));
-            getjButtonAstronave().setName("astronave");
-            getjButtonAstronave().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_ASTRONAVE_IT);
-            getjButtonAstronave().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_ASTRONAVE))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneAstronave ->\n"+e);
-        }
-        try{
-            jButtonLampeggiatore = new JButton();
-            getjButtonLampeggiatore().setAction(controllo.getAzioneSwing(AzioneBottoneExample.class.getName()));
-            getjButtonLampeggiatore().setName("lampeggiatore");
-            getjButtonLampeggiatore().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_LAMPEGGIATORE_IT);
-            getjButtonLampeggiatore().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_LAMPEGGIATORE))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneLampeggiatore ->\n"+e);
-        }
-        try{
-            jButtonRospo = new JButton();
-            getjButtonRospo().setAction(controllo.getAzioneSwing(AzioneBottoneExample.class.getName()));
-            getjButtonRospo().setName("rospo");
-            getjButtonRospo().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_RANA_IT);
-            getjButtonRospo().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_ROSPO))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneRospo ->\n"+e);
-        }
-        try{
-            jButtonFreccia = new JButton();
-            getjButtonFreccia().setAction(controllo.getAzioneSwing(AzioneBottoneExample.class.getName()));
-            getjButtonFreccia().setName("freccia");
-            getjButtonFreccia().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_FRECCIA_IT);
-            getjButtonFreccia().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_FRECCIA))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine bottoneFreccia ->\n"+e);
-        }
-        pannello.add(getjButtonCannoneAlianti());
-        pannello.add(getjButtonAstronave());
-        pannello.add(getjButtonFreccia());
-        pannello.add(getjButtonLampeggiatore());
-        pannello.add(getjButtonRospo());
-        return pannello;
     }
     
     private void initMenuToolBar()   {
@@ -593,16 +539,6 @@ public class FramePrincipale extends FramePing {
     private void nascondiChat()   {
         getContentPane().remove(getPannelloChat());
         pack();
-    }
-    
-    private void visualizzaPannelloConfigurazioni()   {
-        getContentPane().add(getPannelloExample(),BorderLayout.WEST);
-        this.pack();
-    }
-    
-    private void nascondiPannelloConfigurazioni()   {
-        getContentPane().remove(getPannelloExample());
-        this.pack();
     }
     
     private void visualizzaMenuToolBar()   {
@@ -903,13 +839,6 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the pannelloExample
-     */
-    public JPanel getPannelloExample() {
-        return pannelloExample;
-    }
-
-    /**
      * @return the sliderTime
      */
     public JSlider getSliderTime() {
@@ -949,5 +878,19 @@ public class FramePrincipale extends FramePing {
      */
     public void setModVisDesc(JLabel modVisDesc) {
         this.labelModVisDesc = modVisDesc;
+    }
+
+    /**
+     * @return the jMenuExsample
+     */
+    public JMenu getjMenuExsample() {
+        return jMenuExsample;
+    }
+
+    /**
+     * @param jMenuExsample the jMenuExsample to set
+     */
+    public void setjMenuExsample(JMenu jMenuExsample) {
+        this.jMenuExsample = jMenuExsample;
     }
 }

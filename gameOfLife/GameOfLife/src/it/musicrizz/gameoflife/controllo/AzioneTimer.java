@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
@@ -15,7 +12,7 @@ import java.util.EventObject;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@hotmail.com>
  */
 @NomeSwing("Start Timer")
 public class AzioneTimer extends AzionePingAstratta   {
@@ -24,19 +21,18 @@ public class AzioneTimer extends AzionePingAstratta   {
     private static boolean flagStart = false;
     
     public void esegui(EventObject o)   {
-        String text = framePrincipale.getPannelloScacchiera().getTextButtonTimer();
         if(!flagStart)  {
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Stop Timer");   //ferma timer      
+            framePrincipale.getPannelloScacchiera().setTextButtonTimer(Bundle.getString(Costanti.B_BUTTON_LABEL_TIMER_STOP));      
             framePrincipale.getPannelloScacchiera().startTimer();
             flagStart = true;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_START_TIMER));
-            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("TIMER PARTITO"));
+            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.B_MSG_STATO_TIMER_START)));
         }else{
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer("Start Timer"); //avvia timer
+            framePrincipale.getPannelloScacchiera().setTextButtonTimer(Bundle.getString(Costanti.B_BUTTON_LABEL_TIMER_START)); 
             framePrincipale.getPannelloScacchiera().stopTimer();
             flagStart = false;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_STOP_TIMER));
-            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("TIMER FERMATO"));
+            modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.B_MSG_STATO_TIMER_STOP)));
         }
     }
 

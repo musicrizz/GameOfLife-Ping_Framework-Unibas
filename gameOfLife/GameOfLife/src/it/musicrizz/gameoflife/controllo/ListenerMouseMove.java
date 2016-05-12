@@ -22,7 +22,7 @@ public class ListenerMouseMove implements MouseMotionListener  {
     public ListenerMouseMove(PannelloGraphics2D p)   {
         pannello = p;
     }
-         @Override
+        @Override
         public void mouseMoved(MouseEvent e) {
             if(pannello.contains(e.getPoint()))   {
                 pannello.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
