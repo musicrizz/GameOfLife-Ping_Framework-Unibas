@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.Timer;
@@ -37,6 +38,7 @@ public class PannelloScacchiera extends JPanel   {
     private Controllo controllo;
     private ListenerMouseTabellaPing mouseTabella;
     private ListenerMousePannello2D mousePannello2D;
+    private JScrollPane jScrollPaneTabella;
     private JTable tabella;
     private JButton jButtonTimer;
     private JLabel labelGenerazioiText;
@@ -44,6 +46,7 @@ public class PannelloScacchiera extends JPanel   {
     private JLabel labelPopolazioneText;
     private JLabel labelPopolazione;
     private JPanel pannelloGenerazini;
+    private JScrollPane jScrollPanePannello2D;
     private PannelloGraphics2D pannello2D;
     private Timer timer;
     private int contGenerazioni;
@@ -67,15 +70,20 @@ public class PannelloScacchiera extends JPanel   {
         getTabella().setForeground(Color.GREEN);
         getTabella().setRowHeight(15);
         getTabella().setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        this.add(getTabella(),BorderLayout.CENTER);
+        jScrollPaneTabella = new JScrollPane();
+        jScrollPaneTabella.setViewportView(tabella);
+        //this.add(getTabella(),BorderLayout.CENTER);
+        this.add(jScrollPaneTabella,BorderLayout.CENTER);
         new OsservatoreTabellaBidim(tabella, new ModelloTabella(), Costanti.SISTEMA, Sistema.class, Costanti.MONDO_MATRICE);
     }
     
     public void rimuoviTabella()   {
         if(tabella == null)  return;
-        this.remove(tabella);
+        jScrollPaneTabella.remove(tabella);
+        this.remove(jScrollPaneTabella);
         disabilitaMouseListenerTabella();
         tabella = null;
+        jScrollPaneTabella = null;
         repaint();
     }    
     
@@ -84,18 +92,21 @@ public class PannelloScacchiera extends JPanel   {
         setPannello2D(new PannelloGraphics2D(ConfigurazioneParametri.getInstance().getColonne(), 
                                              ConfigurazioneParametri.getInstance().getRighe(),
                                             (Sistema)controllo.getModello().getBean(Costanti.SISTEMA)));
-        this.add(getPannello2D(),BorderLayout.CENTER);
+        jScrollPanePannello2D = new JScrollPane();
+        jScrollPanePannello2D.setViewportView(getPannello2D());    
+        //this.add(getPannello2D(),BorderLayout.CENTER);
+        this.add(jScrollPanePannello2D,BorderLayout.CENTER);
     }
     
     public void rimuoviPannello2D()   {
         if(pannello2D == null) return;
-        this.remove(pannello2D);
+        jScrollPanePannello2D.remove(pannello2D);
+        this.remove(jScrollPanePannello2D);
         pannello2D = null;
+        jScrollPanePannello2D = null;
         repaint();
     }
-     
-    
-    
+
     private void intiButtonTimer()   {
         jButtonTimer = new JButton();
         jButtonTimer.setAction(controllo.getAzioneSwing(AzioneTimer.class.getName()));
@@ -126,14 +137,9 @@ public class PannelloScacchiera extends JPanel   {
     public void abilitaMouseListenerTabella()   {
         try{
             if(getTabella() == null)return;
-            if(mouseTabella != null)   {           
-                getTabella().addMouseListener(mouseTabella);
-                getTabella().setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-            }else{
-                mouseTabella = new ListenerMouseTabellaPing();
-                getTabella().addMouseListener(mouseTabella);
-                getTabella().setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
-            }
+            if(mouseTabella == null) mouseTabella = new ListenerMouseTabellaPing();       
+            getTabella().addMouseListener(mouseTabella);
+            getTabella().setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
         }catch(Exception e)   {
             //log debug
         }
@@ -154,12 +160,8 @@ public class PannelloScacchiera extends JPanel   {
     public void abilitaMouseListenerPann2D()   {
         if(getPannello2D() == null) return ;
         try{
-            if(mousePannello2D != null)   {
-                getPannello2D().abilitaMouseListener(mousePannello2D);
-            }else{
-                mousePannello2D = new ListenerMousePannello2D(this,controllo);
-                getPannello2D().abilitaMouseListener(mousePannello2D);
-            }
+            if(mousePannello2D == null) mousePannello2D = new ListenerMousePannello2D(this,controllo);
+            getPannello2D().abilitaMouseListener(mousePannello2D);
         }catch(Exception e)  {
             //log Debug
         }
@@ -168,9 +170,7 @@ public class PannelloScacchiera extends JPanel   {
     public void disabilitaMouseListeberPann2D()   {
         if(getPannello2D() == null)return;
         try{
-            if(mousePannello2D != null)   {
-                getPannello2D().disabilitaMouseListener(mousePannello2D);
-            }
+            if(mousePannello2D != null) getPannello2D().disabilitaMouseListener(mousePannello2D);
         }catch(Exception e)   {
             //log DEBUG
         }

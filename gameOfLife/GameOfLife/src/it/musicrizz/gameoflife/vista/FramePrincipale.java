@@ -54,8 +54,6 @@ public class FramePrincipale extends FramePing {
     private JMenu jMenu1File;
     private JMenu jMenu2Info;
     private JMenu jMenu3View;
-    private JMenu JSottoMenuTool;
-    private JMenu jMenuExsample;
     private JMenu jMenu4Edit;
     private JMenuBar jMenuBar1;
     private JMenuItem jMenuItemIstruzioni;
@@ -71,6 +69,7 @@ public class FramePrincipale extends FramePing {
     private JMenuItem jMenuItem10ConfDB;
     private JMenuItem jMenuItem6Esci;
     
+    private JMenu jSottoMenuExsample;
     private JMenuItem jMenuItemCannoneAlianti;
     private JMenuItem jMenuItemArrow;
     
@@ -89,7 +88,6 @@ public class FramePrincipale extends FramePing {
     private JButton jButtonFreccia;
     private PannelloIniziale pannelloIniziale;
     private PannelloScacchiera pannelloScacchiera;
-    private JPanel pannelloExample;
     private JButton jButtonNew;
     private JButton jButtonOpen;
     private JButton jButtonSave;
@@ -149,6 +147,7 @@ public class FramePrincipale extends FramePing {
     
     private void initMenu()   {
         jMenuBar1 = new javax.swing.JMenuBar();
+        
         jMenu1File = new javax.swing.JMenu();
         setjMenuItem3NuovoMondo(new javax.swing.JMenuItem());
         setjMenuItem4CaricaMondo(new javax.swing.JMenuItem());
@@ -157,6 +156,7 @@ public class FramePrincipale extends FramePing {
         setjMenuItem6ConfChat(new JMenuItem());
         JsepSeparator3 = new JPopupMenu.Separator();
         setjMenuItem6Esci(new javax.swing.JMenuItem());
+        
         jMenu2Info = new javax.swing.JMenu();
         setjMenuItem1InfoApp(new javax.swing.JMenuItem());
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
@@ -168,8 +168,6 @@ public class FramePrincipale extends FramePing {
         JSeparator4 = new JPopupMenu.Separator();
         JSeparator5 = new JPopupMenu.Separator();
         jMenu3View = new JMenu();
-        JSottoMenuTool = new JMenu();
-        jMenuExsample = new JMenu();
         
         jMenu4Edit = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
@@ -177,9 +175,18 @@ public class FramePrincipale extends FramePing {
         jCheckBoxMenuExample = new JCheckBoxMenuItem();
         jCheckBoxMenuChat = new JCheckBoxMenuItem();
 
+        jSottoMenuExsample = new JMenu(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE_EXAMPLE));
+        try{
+                jSottoMenuExsample.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME))));
+            }catch(Exception e)   {
+                log.error("Errore caricamento immagine menuConfDB ->\n"+e);
+            }
+        setjMenuItemCannoneAlianti(new JMenuItem());
+        setjMenuItemArrow(new JMenuItem());
+        //TODO add other exsample
         
 
-        jMenu1File.setText("File");
+        jMenu1File.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE));
 
             getjMenuItem3NuovoMondo().setAction(controllo.getAzioneSwing(AzioneFinestraNuovoMondo.class.getName()));
             getjMenuItem3NuovoMondo().setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
@@ -203,9 +210,11 @@ public class FramePrincipale extends FramePing {
             jMenu1File.add(getjMenuItem9SalvaSuDB());
         
             jMenu1File.add(JSeparator5); 
+            jMenu1File.add(jSottoMenuExsample);
+            //TODO add exsample
             jMenu1File.add(JsepSeparator3);
         
-            getjMenuItem6Esci().setText("Esci");
+            getjMenuItem6Esci().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE_EXIT));
             getjMenuItem6Esci().setAccelerator(KeyStroke.getKeyStroke("ctrl E"));
             try{
                 getjMenuItem6Esci().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_EXIT))));
@@ -227,54 +236,27 @@ public class FramePrincipale extends FramePing {
 
             jMenuBar1.add(jMenu1File);
         
-        jMenu3View.setText("View");
-        JSottoMenuTool.setText("Tool");
+        jMenu3View.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_VIEW));       
+        getjCheckBoxMenuToolbar().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_VIEW_TOOLB));
         try{
-            JSottoMenuTool.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_TOOL_BAR))));
+            getjCheckBoxMenuToolbar().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_TOOL_BAR))));
         }catch(Exception e)   {
-            log.error("Errore caricamento immagine toolMenu ->\n"+e);
-        }
-            getjCheckBoxMenuToolbar().setText("ToolBar Menu");
-            try{
-                getjCheckBoxMenuToolbar().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_TOOL_BAR))));
-            }catch(Exception e)   {
             log.error("Errore caricamento immagine toolBarMenu ->\n"+e);
-            }
-            getjCheckBoxMenuToolbar().setSelected(true);
-            getjCheckBoxMenuToolbar().addActionListener(new ActionListener() {
+        }
+        getjCheckBoxMenuToolbar().setSelected(true);
+        getjCheckBoxMenuToolbar().addActionListener(new ActionListener() {
 
-                public void actionPerformed(ActionEvent e) {
-                    if(getjCheckBoxMenuToolbar().isSelected())   {
-                        visualizzaMenuToolBar();
-                    }else{
-                        nascondiMenuToolBar();
-
-                    }
+            public void actionPerformed(ActionEvent e) {
+                if(getjCheckBoxMenuToolbar().isSelected())   {
+                    visualizzaMenuToolBar();
+                }else{
+                    nascondiMenuToolBar();
                 }
-            });
-         JSottoMenuTool.add(getjCheckBoxMenuToolbar());
-            getjCheckBoxMenuExample().setText(Language.FRAME_P_TEXT_BUTTON_EXAMPLES_IT);
-            try{
-                getjCheckBoxMenuExample().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_EXAMPLE))));
-            }catch(Exception e)   {
-                log.error("Errore caricamento immagine menu Example ->\n"+e);
             }
-            getjCheckBoxMenuExample().addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    if(getjCheckBoxMenuExample().isSelected())   {
-                        
-                        
-                    }else{
-
-                      
-                    }
-                }
-            });
-        JSottoMenuTool.add(getjCheckBoxMenuExample());
-        jMenu3View.add(JSottoMenuTool);
+        });
+        jMenu3View.add(getjCheckBoxMenuToolbar());
         jMenu3View.addSeparator();
-        getjCheckBoxMenuChat().setText("Chat");
+        getjCheckBoxMenuChat().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_VIEW_CHAT));
         try{
             getjCheckBoxMenuChat().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_CHAT))));
         }catch(Exception e)   {
@@ -290,12 +272,11 @@ public class FramePrincipale extends FramePing {
                     }
                 }
             });
-            getjCheckBoxMenuExample().setSelected(true);
             jMenu3View.add(getjCheckBoxMenuChat());
             
         jMenuBar1.add(jMenu3View);
         
-        jMenu4Edit.setText("Edit");
+        jMenu4Edit.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_EDIT));
             getjMenuItem10ConfDB().setText(Language.FRAME_P_TEXT_BUTTON_CONF_DB_IT);
             getjMenuItem10ConfDB().setToolTipText(Language.FRAME_P_TOOLTIP_BUTTON_CONF_DB_IT);
              getjMenuItem10ConfDB().setAccelerator(KeyStroke.getKeyStroke("ctrl shift D"));
@@ -344,14 +325,14 @@ public class FramePrincipale extends FramePing {
             });
          jMenu2Info.add(getjMenuItemIstruzioni());
         
-            getjMenuItem1InfoApp().setText("Info Applicazione");
+            getjMenuItem1InfoApp().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_INFO_APP));
             getjMenuItem1InfoApp().setAccelerator(KeyStroke.getKeyStroke("ctrl A"));
         
             getjMenuItem1InfoApp().addActionListener(controllo.getAzioneSwing(AzioneInformazioniApplicazione.class.getName()));
             jMenu2Info.add(getjMenuItem1InfoApp());
             jMenu2Info.add(jSeparator1);
 
-            getjMenuItem2InfoPing().setText("Info Ping");
+            getjMenuItem2InfoPing().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_INFO_PING));
             getjMenuItem2InfoPing().setAccelerator(KeyStroke.getKeyStroke("ctrl P"));
             getjMenuItem2InfoPing().addActionListener(controllo.getAzioneSwing(AzioneInformazioniPing.class.getName()));
             jMenu2Info.add(getjMenuItem2InfoPing());
@@ -853,20 +834,6 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the JSottoMenuTool
-     */
-    public JMenu getJSottoMenuTool() {
-        return JSottoMenuTool;
-    }
-
-    /**
-     * @param JSottoMenuTool the JSottoMenuTool to set
-     */
-    public void setJSottoMenuTool(JMenu JSottoMenuTool) {
-        this.JSottoMenuTool = JSottoMenuTool;
-    }
-
-    /**
      * @return the modVisDesc
      */
     public JLabel getModVisDesc() {
@@ -881,16 +848,30 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the jMenuExsample
+     * @return the jMenuItemCannoneAlianti
      */
-    public JMenu getjMenuExsample() {
-        return jMenuExsample;
+    public JMenuItem getjMenuItemCannoneAlianti() {
+        return jMenuItemCannoneAlianti;
     }
 
     /**
-     * @param jMenuExsample the jMenuExsample to set
+     * @param jMenuItemCannoneAlianti the jMenuItemCannoneAlianti to set
      */
-    public void setjMenuExsample(JMenu jMenuExsample) {
-        this.jMenuExsample = jMenuExsample;
+    public void setjMenuItemCannoneAlianti(JMenuItem jMenuItemCannoneAlianti) {
+        this.jMenuItemCannoneAlianti = jMenuItemCannoneAlianti;
+    }
+
+    /**
+     * @return the jMenuItemArrow
+     */
+    public JMenuItem getjMenuItemArrow() {
+        return jMenuItemArrow;
+    }
+
+    /**
+     * @param jMenuItemArrow the jMenuItemArrow to set
+     */
+    public void setjMenuItemArrow(JMenuItem jMenuItemArrow) {
+        this.jMenuItemArrow = jMenuItemArrow;
     }
 }

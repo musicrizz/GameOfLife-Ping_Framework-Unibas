@@ -4,6 +4,7 @@ import it.musicrizz.gameoflife.controllo.ListenerMouseMove;
 import it.musicrizz.gameoflife.modello.Cellula;
 import it.musicrizz.gameoflife.modello.Sistema;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseListener;
@@ -29,6 +30,7 @@ public class PannelloGraphics2D extends JPanel{
         righe = h;
         colonne = w;
         setSize(w*16,h*16);
+        setMinimumSize(new Dimension(w*16, h*16));
         setBackground(Color.BLUE);
         addMouseMotionListener(new ListenerMouseMove(this));
         paint = false;

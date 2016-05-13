@@ -85,6 +85,15 @@ public class Costanti {
         //Frame Principale
     public static final String B_FRAME_P_TITLE = "FRAME_P_TITLE";
     public static final String B_FRAME_P_MSG_CHIUSURA_FRAME = "FRAME_P_MSG_CHIUSURA_FRAME";
+    public static final String B_FRAME_P_MENU_FILE = "FRAME_P_MENU_FILE";
+    public static final String B_FRAME_P_MENU_FILE_EXAMPLE = "FRAME_P_MENU_FILE_EXAMPLE";
+    public static final String B_FRAME_P_MENU_FILE_EXIT = "FRAME_P_MENU_FILE_EXIT";
+    public static final String B_FRAME_P_MENU_VIEW_TOOLB = "FRAME_P_MENU_VIEW_TOOLB";
+    public static final String B_FRAME_P_MENU_VIEW = "FRAME_P_MENU_VIEW";
+    public static final String B_FRAME_P_MENU_VIEW_CHAT = "FRAME_P_MENU_VIEW_CHAT";
+    public static final String B_FRAME_P_MENU_EDIT = "FRAME_P_MENU_EDIT";
+    public static final String B_FRAME_P_MENU_INFO_APP = "FRAME_P_MENU_INFO_APP";
+    public static final String B_FRAME_P_MENU_INFO_PING = "FRAME_P_MENU_INFO_PING";
     
     
 }
