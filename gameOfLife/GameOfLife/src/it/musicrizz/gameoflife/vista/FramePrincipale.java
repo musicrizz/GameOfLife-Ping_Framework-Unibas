@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -35,13 +36,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -80,7 +81,7 @@ public class FramePrincipale extends FramePing {
     private JPopupMenu.Separator JSeparator5;
     private JLabel etichettaStato;
     private JToolBar toolbar;
-    private final JFileChooser fileChooser = new JFileChooser();
+    private JFileChooser fileChooser;
     private JButton jButtonCannoneAlianti;
     private JButton jButtonAstronave;
     private JButton jButtonRospo;
@@ -537,7 +538,12 @@ public class FramePrincipale extends FramePing {
     } 
     
     private void inizializzaFileChooser()   {
-        fileChooser.setFileFilter(new FiltroFileChooser());
+        fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Properties (default)", "properties"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("XML", "xml"));
+        fileChooser.setAcceptAllFileFilterUsed(false);
         
     }
     

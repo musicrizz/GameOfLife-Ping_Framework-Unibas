@@ -4,6 +4,7 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.IconaSwing;
 import it.unibas.ping.annotazioni.Inietta;
@@ -20,10 +21,11 @@ import java.io.File;
 import java.util.EventObject;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 @NomeSwing(Language.FRAME_P_TEXT_MENU_SAVE_IT)
 @DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_SAVE_IT)
@@ -38,28 +40,29 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
             int opt = framePrincipale.getFileChooser().showSaveDialog(framePrincipale);
             if(opt == JFileChooser.APPROVE_OPTION)  {
                 File file = framePrincipale.getFileChooser().getSelectedFile();
-                StringTokenizer tok = new StringTokenizer(file.getName(), ".");
-                tok.nextToken();
-                String estenzioneFile = tok.nextToken();
-                if(estenzioneFile.equalsIgnoreCase("properties") || estenzioneFile.equalsIgnoreCase("xml"))   {
-                    if(estenzioneFile.equalsIgnoreCase("properties"))   {
-                        String nomeFile = file.getAbsolutePath();
-                        IDAOSalvataggio daoSalvataggioProperties = new DAOSalvataggioProperties();            
-                        daoSalvataggioProperties.salva(sistema, nomeFile);
-                    }
-                    if(estenzioneFile.equalsIgnoreCase("xml"))   {
-                        String nomeFile = file.getAbsolutePath();
-                        IDAOSalvataggio daoSalvataggioXML = new DAOSalvataggioXML();            
-                        daoSalvataggioXML.salva(sistema, nomeFile);
-                    }
-                }else{
-                    //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_FORMATO_FILE_IT);
-                    //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_FORMATO_FILE_EN);
+
+                if(file.exists())   {   
+                    int reply = JOptionPane.showConfirmDialog(framePrincipale, 
+                            Bundle.getString("AZIONE_SALVA_FILE_EXIST",file.getName()), "File already exist!!", JOptionPane.YES_NO_OPTION);
+                    if(reply == JOptionPane.NO_OPTION)return;
                 }
+                
+                if(file.getName().endsWith(".properties"))   {
+                        IDAOSalvataggio daoSalvataggioProperties = new DAOSalvataggioProperties();            
+                        daoSalvataggioProperties.salva(sistema, file.getAbsolutePath());
+                        return;
+                }
+                if(file.getName().endsWith(".xml"))   {
+                        IDAOSalvataggio daoSalvataggioXML = new DAOSalvataggioXML();            
+                        daoSalvataggioXML.salva(sistema, file.getAbsolutePath());
+                        return;
+                }              
+                File f = new File(file.getPath()+".properties");
+                IDAOSalvataggio daoSalvataggioProperties = new DAOSalvataggioProperties();            
+                daoSalvataggioProperties.salva(sistema, f.getAbsolutePath());           
             }
         }catch(Exception e)   {
-            //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_IT+" \n"+e);
-            //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_ERRORE_SALVATAGGIO_FILE_EN+"\n"+e);
+            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_SALVA_FILE_ERROR"), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 

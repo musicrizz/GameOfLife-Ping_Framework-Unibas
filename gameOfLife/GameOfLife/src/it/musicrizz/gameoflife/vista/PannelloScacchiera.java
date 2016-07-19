@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.vista;
 
 import it.musicrizz.gameoflife.Bundle;
@@ -31,7 +27,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class PannelloScacchiera extends JPanel   {
     

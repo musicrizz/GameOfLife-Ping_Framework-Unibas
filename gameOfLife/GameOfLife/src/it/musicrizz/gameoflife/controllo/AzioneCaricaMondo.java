@@ -4,6 +4,7 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.IconaSwing;
 import it.unibas.ping.annotazioni.NomeSwing;
@@ -22,6 +23,7 @@ import java.io.File;
 import java.util.EventObject;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -46,45 +48,40 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
             if(opt == JFileChooser.APPROVE_OPTION)   {
                 File file = framePrincipale.getFileChooser().getSelectedFile();
                 log.debug("Inizio Caricamento configurazione");
-                StringTokenizer tok = new StringTokenizer(file.getName(), ".");
-                tok.nextToken();
-                String estenzioneFile = tok.nextToken();
                 
-                if(estenzioneFile.equalsIgnoreCase("properties") || estenzioneFile.equalsIgnoreCase("xml"))   {
-                    
-                    if(estenzioneFile.equalsIgnoreCase("properties"))   {
-                        IDAOCaricamento daoProperties = new DAOCaricamentoProperties();
-                        s = daoProperties.carica(file);
-                        log.debug("Sistema Caricato");
-                    }
-                    
-                    if(estenzioneFile.equalsIgnoreCase("xml"))   {
-                        IDAOCaricamento daoXml = new DAOCaricamentoXML();
-                        s = daoXml.carica(file);
-                        log.debug("Sistema Caricato");
-                    }
-                    
-                    modello.putBean(Costanti.SISTEMA, s);
-                    log.debug("Sistema inserito nel bean");
-                    modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));
-                    modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Configurazione caricata , fai partire il Timer"));
-                    framePrincipale.cambiaPannello();
-                    framePrincipale.getPannelloScacchiera().inizializzaTimer(ConfigurazioneParametri.getInstance().getTimer());
-                    framePrincipale.getSliderTime().setValue(ConfigurazioneParametri.getInstance().getTimer());
-                    log.debug("Cambio pannello al frame Principale");
-                    framePrincipale.getPannelloScacchiera().setLarghezzaColonne(ConfigurazioneParametri.getInstance().getColonne());
-                    log.debug("Imposto la larghezza delle colonne della tabella");
-                    framePrincipale.pack();
-                    framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
-                    log.debug("Abilito il listener Mouse della tabella");
-                }else{
-                   //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_FORMATO_FILE_IT);
-                    //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_FORMATO_FILE_EN);
+                if(!(file.getName().endsWith(".properties") || file.getName().endsWith(".xml")))   {
+                    JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_CARICA_FILE_WRONG", file.getName()),"Wrong File" , JOptionPane.ERROR_MESSAGE);
+                    return;
                 }
+                
+                if(file.getName().endsWith(".properties"))   {
+                    IDAOCaricamento daoProperties = new DAOCaricamentoProperties();
+                    s = daoProperties.carica(file);
+                    log.debug("Sistema Caricato");
+                }
+                    
+                if(file.getName().endsWith(".xml"))   {
+                    IDAOCaricamento daoXml = new DAOCaricamentoXML();
+                    s = daoXml.carica(file);
+                    log.debug("Sistema Caricato");
+                }
+                    
+                modello.putBean(Costanti.SISTEMA, s);
+                log.debug("Sistema inserito nel bean");
+                modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));
+                modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString("AZIONE_CARICA_FILE_MSG")));
+                framePrincipale.cambiaPannello();
+                framePrincipale.getPannelloScacchiera().inizializzaTimer(ConfigurazioneParametri.getInstance().getTimer());
+                framePrincipale.getSliderTime().setValue(ConfigurazioneParametri.getInstance().getTimer());
+                log.debug("Cambio pannello al frame Principale");
+                framePrincipale.getPannelloScacchiera().setLarghezzaColonne(ConfigurazioneParametri.getInstance().getColonne());
+                log.debug("Imposto la larghezza delle colonne della tabella");
+                framePrincipale.pack();
+                framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
+                log.debug("Abilito il listener Mouse della tabella");
             }
         }catch(Exception e)   {
-            //if(framePrincipale.isRadioMenuIT())vista.finestraErrore(Language.MSG_ERRORE_CARICAMENTO_FILE_IT+"\n"+e);
-            //if(framePrincipale.isRadioMenuEN())vista.finestraErrore(Language.MSG_ERRORE_CARICAMENTO_FILE_EN+"\n"+e);
+            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_CARICA_FILE_ERROR"),"ERROR" , JOptionPane.ERROR_MESSAGE);
         }
     }
 
