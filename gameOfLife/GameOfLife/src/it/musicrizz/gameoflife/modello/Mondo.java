@@ -54,11 +54,9 @@ public class Mondo {
                 Cellula cell = new Cellula(i, j);
                 if(generazione.contains(cell)) {
                     cont++;
-                }
-                if(!generazione.contains(cell) && !memoized.contains(cell) && flag)   {
+                }else if(!memoized.contains(cell) && flag)   {
                     memoized.add(cell);
                     controllaIntorno(cell, analizzaIntornoMoore(cell,false));
-                    continue;
                 }                      
             }
         }
@@ -67,17 +65,18 @@ public class Mondo {
     }
     
     private void controllaIntorno(Cellula cell, int intorno)   {
-        if(!(generazione.contains(cell)) && (intorno == 3))   {
+        boolean isCell = generazione.contains(cell);
+        if(!(isCell) && (intorno == 3))   {
             newGenerazione.add(cell);
             log.debug("controlla crea la cellula che nascera alla prox generaz "+cell.getX()+","+cell.getY());
             return;
         }
-        if((generazione.contains(cell)) && ((intorno == 2) || (intorno == 3)))   {
+        if(isCell && ((intorno == 2) || (intorno == 3)))   {
             newGenerazione.add(cell);
             log.debug("controlla setta la cellula gia esistente a restare viva "+cell.getX()+","+cell.getY());
             return;
         }
-        if((generazione.contains(cell)) && ((intorno < 2) || (intorno > 3)))   {
+        if(isCell && ((intorno < 2) || (intorno > 3)))   {
             log.debug("controlla setta la cellula gia  esistente a morire nella prox generaz "+cell.getX()+","+cell.getY());
             return;
         }

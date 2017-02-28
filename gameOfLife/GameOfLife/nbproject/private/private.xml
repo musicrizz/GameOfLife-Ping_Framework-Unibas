@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/controllo/AzioneCaricaMondo.java</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/conf/LabelsButtonBundle_en_US.properties</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/controllo/ListenerMouseTabellaPing.java</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/vista/FramePrincipale.java</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/controllo/AzioneTimer.java</file>
+            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/modello/Sistema.java</file>
+            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/test/it/musicrizz/gameoflife/test/modello/TestModelloAnalizzaMondo.java</file>
+            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/modello/Mondo.java</file>
+            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/modello/Cellula.java</file>
         </group>
     </open-files>
 </project-private>
