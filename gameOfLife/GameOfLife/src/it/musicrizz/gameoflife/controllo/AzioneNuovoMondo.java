@@ -1,9 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
@@ -17,9 +14,9 @@ import java.util.EventObject;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
-@NomeSwing("OK")
+@NomeSwing(Costanti.AZIONE_NUOVO_MONDO_BUTTON_OK)
 public class AzioneNuovoMondo extends AzionePingAstratta   {
     
     private FinestraNuovoMondo finestraC;
@@ -32,7 +29,7 @@ public class AzioneNuovoMondo extends AzionePingAstratta   {
             int colonne = Integer.parseInt(finestraC.getColonne());
             int timer = finestraC.getTimer();
             if(righe < 0 || colonne < 0)   {
-                vista.finestraErrore("Righe e colonne devono essere numeri positivi");
+                vista.finestraErrore(Bundle.getString(Costanti.AZIONE_NUOVO_MONDO_ERRORE));
                 return;
             }else{
                 conf.setRighe(righe);
@@ -41,7 +38,7 @@ public class AzioneNuovoMondo extends AzionePingAstratta   {
                 Sistema s = new Sistema();
                 modello.putBean(Costanti.SISTEMA, s);
                 modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));
-                modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing("Crea la tua configurazione e fai partire il Timer"));
+                modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.AZIONE_NUOVO_MONDO_MSG)));
                 finestraC.nascondi();
                 framePrincipale.cambiaPannello();
                 framePrincipale.getPannelloScacchiera().inizializzaTimer(conf.getTimer());
@@ -51,7 +48,7 @@ public class AzioneNuovoMondo extends AzionePingAstratta   {
                 framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
             }
         }catch(Exception e)   {
-            vista.finestraErrore("Righe e Colonne devono essere numeri interi positivi"+e);
+            vista.finestraErrore(Bundle.getString(Costanti.AZIONE_NUOVO_MONDO_ERRORE));
         }
     }
 

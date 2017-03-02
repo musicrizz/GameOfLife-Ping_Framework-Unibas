@@ -22,6 +22,7 @@ import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.io.File;
 import java.util.EventObject;
 import java.util.StringTokenizer;
+import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;

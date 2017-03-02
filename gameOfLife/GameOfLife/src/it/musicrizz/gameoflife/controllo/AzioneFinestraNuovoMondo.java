@@ -4,21 +4,21 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.IconaSwing;
 import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.vista.FinestraNuovoMondo;
 import java.util.EventObject;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
-@NomeSwing(Language.FRAME_P_TEXT_MENU_NEW_IT)
-@DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_NEW_IT)
+@NomeSwing(Costanti.FRAME_P_TEXT_MENU_NEW)
+@DescrizioneSwing(Costanti.FRAME_P_TOOLTIP_MENU_NEW)
 @IconaSwing(Costanti.ICONA_BOTTONE_NEW)
 public class AzioneFinestraNuovoMondo extends AzionePingAstratta  {
     

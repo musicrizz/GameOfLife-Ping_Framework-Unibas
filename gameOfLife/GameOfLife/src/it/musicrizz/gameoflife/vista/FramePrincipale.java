@@ -148,24 +148,30 @@ public class FramePrincipale extends FramePing {
     
     private void initMenu()   {
         jMenuBar1 = new javax.swing.JMenuBar();
-        
         jMenu1File = new javax.swing.JMenu();
         setjMenuItem3NuovoMondo(new javax.swing.JMenuItem());
         setjMenuItem4CaricaMondo(new javax.swing.JMenuItem());
         setjMenuItem5SalvaMondo(new javax.swing.JMenuItem());
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        setjMenuItem6ConfChat(new JMenuItem());
+        setjMenuItem8CaricaDaDB(new JMenuItem());
+        setjMenuItem9SalvaSuDB(new JMenuItem());
         JsepSeparator3 = new JPopupMenu.Separator();
+        jSottoMenuExsample = new JMenu(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE_EXAMPLE));
+        try{
+            jSottoMenuExsample.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME_16))));
+        }catch(Exception e)   {
+            log.error("Errore caricamento immagine menuConfDB ->\n"+e);
+        }
         setjMenuItem6Esci(new javax.swing.JMenuItem());
         
         jMenu2Info = new javax.swing.JMenu();
         setjMenuItem1InfoApp(new javax.swing.JMenuItem());
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         setjMenuItem2InfoPing(new javax.swing.JMenuItem());
+                
         setJMenuItem7Chat(new JMenuItem());
-        setjMenuItem8CaricaDaDB(new JMenuItem());
-        setjMenuItem9SalvaSuDB(new JMenuItem());
         setjMenuItem10ConfDB(new JMenuItem());
+        setjMenuItem6ConfChat(new JMenuItem());
         JSeparator4 = new JPopupMenu.Separator();
         JSeparator5 = new JPopupMenu.Separator();
         jMenu3View = new JMenu();
@@ -173,19 +179,9 @@ public class FramePrincipale extends FramePing {
         jMenu4Edit = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
         jCheckBoxMenuToolbar = new JCheckBoxMenuItem();
-        jCheckBoxMenuExample = new JCheckBoxMenuItem();
         jCheckBoxMenuChat = new JCheckBoxMenuItem();
 
-        jSottoMenuExsample = new JMenu(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE_EXAMPLE));
-        try{
-                jSottoMenuExsample.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME))));
-            }catch(Exception e)   {
-                log.error("Errore caricamento immagine menuConfDB ->\n"+e);
-            }
-        setjMenuItemCannoneAlianti(new JMenuItem());
-        setjMenuItemArrow(new JMenuItem());
-        //TODO add other exsample
-        
+
 
         jMenu1File.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE));
 

@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.vista;
 
-import it.unibas.ping.binding.Form;
-import it.unibas.ping.binding.IForm;
 import it.unibas.ping.framework.FinestraDiDialogoPing;
-import it.unibas.ping.framework.ISottoVista;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.controllo.AzioneNuovoMondo;
 import java.awt.Image;
@@ -16,12 +9,16 @@ import java.awt.event.ActionListener;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class FinestraNuovoMondo extends FinestraDiDialogoPing {
+    
+    private static Log log = LogFactory.getLog(FinestraNuovoMondo.class);
     
     private Image img;
     
@@ -35,7 +32,7 @@ public class FinestraNuovoMondo extends FinestraDiDialogoPing {
             img = ImageIO.read(FinestraNuovoMondo.class.getResource(Costanti.ICONA_FRAME));
             if(img != null) this.setIconImage(img);
         }catch(Exception e)   {
-            System.out.println("Errore nel caricamento dell' immagine del frame -> "+e);
+            log.debug("Errore nel caricamento dell' immagine del frame -> ",e);
         }
         initComponents();
         initJSlider();

@@ -17,6 +17,7 @@ public class Costanti {
     //ICONE
     public static final String ICONA_PANNELLO_INIT = "/res/images/pannelloIniziale.jpg";
     public static final String ICONA_FRAME = "/res/images/frame.jpg";
+    public static final String ICONA_FRAME_16 = "/res/images/frame16.jpg";
     public static final String ICONA_BOTTONE_NEW = "/res/images/new.jpg";
     public static final String ICONA_BOTTONE_OPEN = "/res/images/open.jpg";
     public static final String ICONA_BOTTONE_SAVE = "/res/images/save.jpg";
@@ -69,6 +70,11 @@ public class Costanti {
     public static final String CONF = "ConfigurazParam";
     
     //BUNDLE
+    
+         //AzioneNuovoMondo
+    public static final String AZIONE_NUOVO_MONDO_ERRORE = "AZIONE_NUOVO_MONDO_ERRORE";
+    public static final String AZIONE_NUOVO_MONDO_MSG = "AZIONE_NUOVO_MONDO_MSG";
+
         //Azione Iniziale
     public static final String B_MSG_STATO_CONF_VUOTA = "MSG_STATO_CONF_VUOTA";
         //MouseListener Tabella & 2D 
@@ -95,5 +101,14 @@ public class Costanti {
     public static final String B_FRAME_P_MENU_INFO_APP = "FRAME_P_MENU_INFO_APP";
     public static final String B_FRAME_P_MENU_INFO_PING = "FRAME_P_MENU_INFO_PING";
     
+    //AZIONI PING VALORI COSTANTI
+    
+            //AzioneFinestraNuovoMondo
+    public static final String FRAME_P_TEXT_MENU_NEW = "New";
+    public static final String FRAME_P_TOOLTIP_MENU_NEW= "Create New empty World";
+            
+            //AzioneNuovoMondo
+    
+    public static final String AZIONE_NUOVO_MONDO_BUTTON_OK = "Ok";
     
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.chat;
 
 import it.unibas.ping.framework.Applicazione;
@@ -20,7 +16,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class GestioneConnessione extends Thread{
     
