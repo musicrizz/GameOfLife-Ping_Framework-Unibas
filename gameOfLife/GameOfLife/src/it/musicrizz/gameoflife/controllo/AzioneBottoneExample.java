@@ -33,7 +33,7 @@ public class AzioneBottoneExample extends AzionePingAstratta   {
     
     @Override
     public void esegui(EventObject eo) {
-        try{
+       /* try{
             String nomefile = null;
             JButton b = (JButton)eo.getSource();
             if(b.getName().equals("aliante")) nomefile=Costanti.CONFIGURAZIONE_CANNONE_ALIANTE;
@@ -54,7 +54,7 @@ public class AzioneBottoneExample extends AzionePingAstratta   {
             framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
         }catch(Exception e)   {
             log.error("Errore nel caricamento della configurazione esempio"+((JButton)eo.getSource()).getName()+" \n "+e);
-        }
+        }*/
     }
 
     @Override

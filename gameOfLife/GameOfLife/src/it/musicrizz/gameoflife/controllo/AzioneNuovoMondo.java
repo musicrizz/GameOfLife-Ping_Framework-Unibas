@@ -1,7 +1,6 @@
 package it.musicrizz.gameoflife.controllo;
 
 import it.musicrizz.gameoflife.Bundle;
-import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
@@ -16,7 +15,7 @@ import java.util.EventObject;
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
-@NomeSwing(Costanti.AZIONE_NUOVO_MONDO_BUTTON_OK)
+
 public class AzioneNuovoMondo extends AzionePingAstratta   {
     
     private FinestraNuovoMondo finestraC;

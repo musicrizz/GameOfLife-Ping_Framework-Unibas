@@ -50,6 +50,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
+@SuppressWarnings("unchecked")
 public class FramePrincipale extends FramePing {
     
     private JMenu jMenu1File;
@@ -187,14 +188,20 @@ public class FramePrincipale extends FramePing {
 
             getjMenuItem3NuovoMondo().setAction(controllo.getAzioneSwing(AzioneFinestraNuovoMondo.class.getName()));
             getjMenuItem3NuovoMondo().setAccelerator(KeyStroke.getKeyStroke("ctrl N"));
+            getjMenuItem3NuovoMondo().setText(Bundle.getString(Costanti.FRAME_P_TEXT_MENU_NEW));
+            getjMenuItem3NuovoMondo().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_NEW));
             jMenu1File.add(getjMenuItem3NuovoMondo());
 
             getjMenuItem4CaricaMondo().setAction(controllo.getAzioneSwing(AzioneCaricaMondo.class.getName()));
             getjMenuItem4CaricaMondo().setAccelerator(KeyStroke.getKeyStroke("ctrl O"));
+            getjMenuItem4CaricaMondo().setText(Bundle.getString(Costanti.FRAME_P_TEXT_MENU_OPEN));
+            getjMenuItem4CaricaMondo().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_OPEN));
             jMenu1File.add(getjMenuItem4CaricaMondo());
 
             getjMenuItem5SalvaMondo().setAction(controllo.getAzioneSwing(AzioneSalvaMondo.class.getName()));
             getjMenuItem5SalvaMondo().setAccelerator(KeyStroke.getKeyStroke("ctrl S"));
+            getjMenuItem5SalvaMondo().setText(Bundle.getString(Costanti.FRAME_P_TEXT_MENU_SAVE));
+            getjMenuItem5SalvaMondo().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_SAVE));
             jMenu1File.add(getjMenuItem5SalvaMondo());
             jMenu1File.add(jSeparator2);
         
@@ -207,6 +214,7 @@ public class FramePrincipale extends FramePing {
             jMenu1File.add(getjMenuItem9SalvaSuDB());
         
             jMenu1File.add(JSeparator5); 
+            jMenuItemCannoneAlianti = new JMenuItem();
             jMenu1File.add(jSottoMenuExsample);
             //TODO add exsample
             jMenu1File.add(JsepSeparator3);

@@ -21,8 +21,6 @@ import it.musicrizz.gameoflife.persistenza.IDAOCaricamento;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.io.File;
 import java.util.EventObject;
-import java.util.StringTokenizer;
-import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
@@ -32,8 +30,6 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Grandinetti Giovanni <musicrizz@hotmail.it>
  */
-@NomeSwing(Language.FRAME_P_TEXT_MENU_OPEN_IT)
-@DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_OPEN_IT)
 @IconaSwing(Costanti.ICONA_BOTTONE_OPEN)
 public class AzioneCaricaMondo extends AzionePingAstratta   {
     
@@ -51,7 +47,7 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
                 log.debug("Inizio Caricamento configurazione");
                 
                 if(!(file.getName().endsWith(".properties") || file.getName().endsWith(".xml")))   {
-                    JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_CARICA_FILE_WRONG", file.getName()),"Wrong File" , JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(framePrincipale, Bundle.getString(Costanti.AZIONE_CARICA_FILE_WRONG, file.getName()),"Wrong File" , JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 
@@ -70,7 +66,7 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
                 modello.putBean(Costanti.SISTEMA, s);
                 log.debug("Sistema inserito nel bean");
                 modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));
-                modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString("AZIONE_CARICA_FILE_MSG")));
+                modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.AZIONE_CARICA_FILE_MSG)));
                 framePrincipale.cambiaPannello();
                 framePrincipale.getPannelloScacchiera().inizializzaTimer(ConfigurazioneParametri.getInstance().getTimer());
                 framePrincipale.getSliderTime().setValue(ConfigurazioneParametri.getInstance().getTimer());
@@ -82,7 +78,7 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
                 log.debug("Abilito il listener Mouse della tabella");
             }
         }catch(Exception e)   {
-            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_CARICA_FILE_ERROR"),"ERROR" , JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString(Costanti.AZIONE_CARICA_FILE_ERROR),"ERROR" , JOptionPane.ERROR_MESSAGE);
         }
     }
 

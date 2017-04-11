@@ -10,8 +10,6 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JPanel;
 
 /**
@@ -23,16 +21,20 @@ public class PannelloGraphics2D extends JPanel{
     private Sistema sistema;
     private int righe;
     private int colonne;
+    private int worldTranslateX, worldTranslateY;
     private boolean paint;
     
     public PannelloGraphics2D(int w,int h,Sistema s)   {
         sistema = s;
         righe = h;
         colonne = w;
+        worldTranslateX = 0;
+        worldTranslateY = 0;
         setSize(w*16,h*16);
         setMinimumSize(new Dimension(w*16, h*16));
         setBackground(Color.BLUE);
         addMouseMotionListener(new ListenerMouseMove(this));
+        //addKeyListener(l)//TODO
         paint = false;
     }
     
@@ -48,6 +50,7 @@ public class PannelloGraphics2D extends JPanel{
     public void paintComponent(Graphics g)   {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        g2.translate(worldTranslateX, worldTranslateY);
         g2.setPaint(Color.BLACK);
         g2.draw(new Rectangle2D.Double(0, 0, colonne*16, righe*16));
         g2.draw(new Rectangle2D.Double(0, 0, colonne*16+2, righe*16+2));
@@ -62,6 +65,7 @@ public class PannelloGraphics2D extends JPanel{
             g2.setPaint(Color.GREEN);
             g2.fill(e);
         }
+        
     }
     
     public void ridisegna()   {
@@ -74,5 +78,39 @@ public class PannelloGraphics2D extends JPanel{
     
     public void disabilitaMouseListener(MouseListener m)   {
         removeMouseListener(m);
+    }
+
+    /**
+     * @return the worldTranslateX
+     */
+    public int getWorldTranslateX() {
+        return worldTranslateX;
+    }
+
+    /**
+     * @param worldTranslateX the worldTranslateX to set
+     */
+    public void setWorldTranslateX(int worldTranslateX) {
+        this.worldTranslateX = worldTranslateX;
+    }
+    public void addWorldTranslateX(int Xoffset) {
+        this.worldTranslateX += Xoffset;
+    }
+
+    /**
+     * @return the worldTranslateY
+     */
+    public int getWorldTranslateY() {
+        return worldTranslateY;
+    }
+
+    /**
+     * @param worldTranslateY the worldTranslateY to set
+     */
+    public void setWorldTranslateY(int worldTranslateY) {
+        this.worldTranslateY = worldTranslateY;
+    }
+    public void addworldTranslateY(int Yoffset) {
+        this.worldTranslateY += Yoffset;
     }
 }

@@ -20,6 +20,8 @@ public class ListenerMousePannello2D extends MouseAdapter  {
     private PannelloScacchiera pannello;
     private Sistema sistema;
     private Controllo controllo;
+    private static Point init;
+    private int x,y;
     
     public ListenerMousePannello2D (PannelloScacchiera p,Controllo c)   {
         pannello = p;
@@ -27,12 +29,14 @@ public class ListenerMousePannello2D extends MouseAdapter  {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if(pannello.getPannello2D() == null)return;
         sistema = (Sistema)controllo.getModello().getBean(Costanti.SISTEMA);
         Point p = e.getPoint();
-        int x = p.x/16;
-        int y = p.y/16;
+        x = (p.x - pannello.getPannello2D().getWorldTranslateX())/16;
+        y = (p.y - pannello.getPannello2D().getWorldTranslateY())/16;
+        if(x < 0)x--;
+        if(y < 0)y--;
         if(sistema.isCellula(new Cellula(y, x)))   {
             sistema.removeCellula(y, x);
             controllo.getModello().putBean(Controllo.MESSAGGIO_STATO, 
@@ -44,4 +48,26 @@ public class ListenerMousePannello2D extends MouseAdapter  {
         }
         pannello.getPannello2D().ridisegna();
     }  
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        init = e.getPoint(); 
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if(init.equals(e.getPoint())){
+            return;
+        }
+        Point translate = new Point();
+        translate.x = e.getPoint().x - init.x;
+        translate.y = e.getPoint().y - init.y;
+        pannello.getPannello2D().addWorldTranslateX(translate.x);
+        pannello.getPannello2D().addworldTranslateY(translate.y);
+        pannello.getPannello2D().ridisegna();
+    }
+
+    
+   
+    
 }

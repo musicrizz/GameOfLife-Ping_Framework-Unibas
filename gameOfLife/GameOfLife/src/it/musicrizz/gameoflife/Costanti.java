@@ -42,13 +42,14 @@ public class Costanti {
     public static final String ICONA_BOTTONE_GRAPHICS2D = "/res/images/2d.jpg";
      public static final String ICONA_BOTTONE_OPENGL = "/res/images/opengl.jpg";
     
-    
-    public static final String CONFIGURAZIONE_CANNONE_ALIANTE = "/res/images/CannoneDiAlianti.properties";
-    public static final String CONFIGURAZIONE_ASTRONAVE = "/res/images/AstronaveLeggera.properties";
-    public static final String CONFIGURAZIONE_LAMPEGGIATORE = "/res/images/Lampeggiatore.properties";
-    public static final String CONFIGURAZIONE_ROSPO = "/res/images/Rospo.properties";
-    public static final String CONFIGURAZIONE_FRECCIA = "/res/images/Freccia.properties";
-    
+    //ESEMPI
+    public static final String CONFIGURAZIONE = "ESEMPIO_CONFIGURAZIONE";
+    public static final String ESEMPIO_CANNONE_ALIANTE = "/res/images/CannoneDiAlianti.properties";
+    public static final String ESEMPIO_ASTRONAVE = "/res/images/AstronaveLeggera.properties";
+    public static final String ESEMPIO_LAMPEGGIATORE = "/res/images/Lampeggiatore.properties";
+    public static final String ESEMPIO_ROSPO = "/res/images/Rospo.properties";
+    public static final String ESEMPIO_FRECCIA = "/res/images/Freccia.properties";
+     public static final String ESEMPIO_NULLO = "...";
     
     //STATO APPLICAZIONE
     public static final int STATO_INIZIALE = 0;
@@ -71,23 +72,40 @@ public class Costanti {
     
     //BUNDLE
     
+          //AzioneFinestraNuovoMondo
+    public static final String FRAME_P_TEXT_MENU_NEW = "FRAME_P_TEXT_MENU_NEW";
+    public static final String FRAME_P_TOOLTIP_MENU_NEW= "FRAME_P_TOOLTIP_MENU_NEW";
+    
          //AzioneNuovoMondo
+    public static final String FRAME_P_TEXT_MENU_SAVE = "FRAME_P_TEXT_MENU_SAVE";
+    public static final String FRAME_P_TOOLTIP_MENU_SAVE = "FRAME_P_TOOLTIP_MENU_SAVE";
     public static final String AZIONE_NUOVO_MONDO_ERRORE = "AZIONE_NUOVO_MONDO_ERRORE";
     public static final String AZIONE_NUOVO_MONDO_MSG = "AZIONE_NUOVO_MONDO_MSG";
+    
+        //AzioneCaricaMondo
+    public static final String FRAME_P_TEXT_MENU_OPEN = "FRAME_P_TEXT_MENU_OPEN";
+    public static final String FRAME_P_TOOLTIP_MENU_OPEN = "FRAME_P_TOOLTIP_MENU_OPEN";
+    public static final String AZIONE_CARICA_FILE_WRONG = "AZIONE_CARICA_FILE_WRONG";
+    public static final String AZIONE_CARICA_FILE_MSG = "AZIONE_CARICA_FILE_MSG";
+    public static final String AZIONE_CARICA_FILE_ERROR = "AZIONE_CARICA_FILE_ERROR";
 
         //Azione Iniziale
     public static final String B_MSG_STATO_CONF_VUOTA = "MSG_STATO_CONF_VUOTA";
+    
         //MouseListener Tabella & 2D 
     public static final String B_MSG_NUOVA_CELL = "MSG_NUOVA_CELL";
     public static final String B_MSG_CELL_RIMOSSA = "MSG_CELL_RIMOSSA";
+    
         //AzioneTimer
     public static final String B_BUTTON_LABEL_TIMER_START = "BUTTON_LABEL_TIMER_START";
     public static final String B_BUTTON_LABEL_TIMER_STOP = "BUTTON_LABEL_TIMER_STOP";
     public static final String B_MSG_STATO_TIMER_START = "MSG_STATO_TIMER_START";
     public static final String B_MSG_STATO_TIMER_STOP = "MSG_STATO_TIMER_STOP";
+    
         //PannelloScacchiera
     public static final String B_LABEL_GENERAZIONI = "LABEL_GENERAZIONI";
     public static final String B_LABEL_POPOLAZIONE = "LABEL_POPOLAZIONE";
+    
         //Frame Principale
     public static final String B_FRAME_P_TITLE = "FRAME_P_TITLE";
     public static final String B_FRAME_P_MSG_CHIUSURA_FRAME = "FRAME_P_MSG_CHIUSURA_FRAME";
@@ -103,12 +121,10 @@ public class Costanti {
     
     //AZIONI PING VALORI COSTANTI
     
-            //AzioneFinestraNuovoMondo
-    public static final String FRAME_P_TEXT_MENU_NEW = "New";
-    public static final String FRAME_P_TOOLTIP_MENU_NEW= "Create New empty World";
+
             
-            //AzioneNuovoMondo
+            //
     
-    public static final String AZIONE_NUOVO_MONDO_BUTTON_OK = "Ok";
+    
     
 }

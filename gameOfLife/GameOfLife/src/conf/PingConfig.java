@@ -39,7 +39,4 @@ public class PingConfig extends Configurazione  {
         this.setRegistraOsservatori(true);
     }
     
-    
-    
-    
 }

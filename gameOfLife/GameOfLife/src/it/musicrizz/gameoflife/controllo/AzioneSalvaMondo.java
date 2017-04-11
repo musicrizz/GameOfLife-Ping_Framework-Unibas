@@ -5,13 +5,10 @@
 package it.musicrizz.gameoflife.controllo;
 
 import it.musicrizz.gameoflife.Bundle;
-import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.IconaSwing;
 import it.unibas.ping.annotazioni.Inietta;
-import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOSalvataggioProperties;
 import it.musicrizz.gameoflife.persistenza.DAOSalvataggioXML;
@@ -19,7 +16,6 @@ import it.musicrizz.gameoflife.persistenza.IDAOSalvataggio;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.io.File;
 import java.util.EventObject;
-import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -27,8 +23,6 @@ import javax.swing.JOptionPane;
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
-@NomeSwing(Language.FRAME_P_TEXT_MENU_SAVE_IT)
-@DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_SAVE_IT)
 @IconaSwing(Costanti.ICONA_BOTTONE_SAVE)
 public class AzioneSalvaMondo extends AzionePingAstratta   {
     

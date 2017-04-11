@@ -10,15 +10,6 @@ public class Language {
     public static final String EN = "en";
     
     //TESTO & TOOLTIP MENU FRAME PRINCIPALE
-    public static final String FRAME_P_TEXT_MENU_NEW_IT = "Nuovo";
-    public static final String FRAME_P_TEXT_MENU_NEW_EN = "New";
-    public static final String FRAME_P_TOOLTIP_MENU_NEW_IT = "Crea un nuovo mondo vuoto";
-    public static final String FRAME_P_TOOLTIP_MENU_NEW_EN = "Create a new empty world";
-    
-    public static final String FRAME_P_TEXT_MENU_OPEN_IT = "Apri";
-    public static final String FRAME_P_TEXT_MENU_OPEN_EN = "Open";
-    public static final String FRAME_P_TOOLTIP_MENU_OPEN_IT = "Carica mondo da file .properties o .xml";
-    public static final String FRAME_P_TOOLTIP_MENU_OPEN_EN = "Open World from a file .properties o .xml";
     
     public static final String FRAME_P_TEXT_MENU_SAVE_IT = "Salva";
     public static final String FRAME_P_TEXT_MENU_SAVE_EN = "Save";

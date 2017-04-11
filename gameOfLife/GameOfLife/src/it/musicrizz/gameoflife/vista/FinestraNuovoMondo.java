@@ -43,6 +43,7 @@ public class FinestraNuovoMondo extends FinestraDiDialogoPing {
     
     private void initButton()   {
         JbuttonOk.setAction(controllo.getAzioneSwing(AzioneNuovoMondo.class.getName()));
+        JbuttonOk.setText("OK");
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new ActionListener() {
 
