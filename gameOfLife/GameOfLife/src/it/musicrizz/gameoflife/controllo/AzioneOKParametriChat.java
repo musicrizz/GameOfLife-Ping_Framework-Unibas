@@ -60,7 +60,7 @@ public class AzioneOKParametriChat extends AzionePingAstratta   {
             modello.putBean(Controllo.STATO, stato);
             finestra.nascondi();
         }catch(Exception e)   {
-            JOptionPane.showMessageDialog(finestra, "HostName è una Stringa \n"
+            JOptionPane.showMessageDialog(finestra, "HostName e' una Stringa \n"
                                                    +"Le Porte sono numeri interi \n", "ATTENZIONE", JOptionPane.ERROR_MESSAGE);
         }
     }

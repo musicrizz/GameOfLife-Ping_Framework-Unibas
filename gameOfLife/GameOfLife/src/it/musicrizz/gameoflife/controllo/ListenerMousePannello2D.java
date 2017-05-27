@@ -28,6 +28,7 @@ public class ListenerMousePannello2D extends MouseAdapter  {
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if(e.getButton() != 1)return;
         if(pannello.getPannello2D() == null)return;
         sistema = (Sistema)controllo.getModello().getBean(Costanti.SISTEMA);
         Point p = e.getPoint();
