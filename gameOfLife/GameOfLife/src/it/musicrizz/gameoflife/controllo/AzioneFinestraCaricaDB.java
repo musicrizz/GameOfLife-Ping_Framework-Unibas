@@ -4,11 +4,8 @@
  */
 package it.musicrizz.gameoflife.controllo;
 
-import it.unibas.ping.annotazioni.DescrizioneSwing;
-import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.persistenza.ConfigurazioneDatabase;
 import it.musicrizz.gameoflife.persistenza.DAOMondoSQL;
 import it.musicrizz.gameoflife.persistenza.Descrizione;
@@ -16,7 +13,6 @@ import it.musicrizz.gameoflife.vista.FinestraSceltaMondiDataBase;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.util.EventObject;
 import java.util.List;
-import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -24,8 +20,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Grandinetti Giovanni <musicrizz@hotmail.it>
  */
-@NomeSwing(Language.FRAME_P_TEXT_MENU_OPEN_DB_IT)
-@DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_SAVE_DB_IT)
+
 public class AzioneFinestraCaricaDB extends AzionePingAstratta   {
     
     private Log log = LogFactory.getLog(AzioneFinestraCaricaDB.class.getName());

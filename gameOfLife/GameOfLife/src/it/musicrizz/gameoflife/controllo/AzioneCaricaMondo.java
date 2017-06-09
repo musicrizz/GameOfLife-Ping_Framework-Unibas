@@ -1,19 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
 import it.musicrizz.gameoflife.Bundle;
-import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.IconaSwing;
-import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoProperties;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoXML;
@@ -28,7 +21,7 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 @IconaSwing(Costanti.ICONA_BOTTONE_OPEN)
 public class AzioneCaricaMondo extends AzionePingAstratta   {
@@ -100,7 +93,5 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
         if(statusId != Costanti.STATO_INIZIALE)return true;
         return false;
     }
-    
-    
     
 }

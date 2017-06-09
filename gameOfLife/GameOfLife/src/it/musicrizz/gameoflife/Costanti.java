@@ -27,6 +27,8 @@ public class Costanti {
     public static final String ICONA_MENU_LANG_IT = "/res/images/ita.jpg";
     public static final String ICONA_MENU_LANG_EN = "/res/images/eng.jpg";
     public static final String ICONA_MENU_EXAMPLE = "/res/images/examples.jpg";
+    public static final String ICONA_EXAMPLE_CANN_GLINDER = "/res/images/aliante16.jpg";
+    public static final String ICONA_EXAMPLE_LIGHT_SPACESH = "/res/images/astronave16.jpg";
     public static final String ICONA_MENU_CHAT = "/res/images/chat.jpg";
     public static final String ICONA_TOOL_BAR = "/res/images/toolbar.jpg";
     public static final String ICONA_MENU_TOOL = "/res/images/tool.jpg";
@@ -40,16 +42,18 @@ public class Costanti {
     public static final String ICONA_BOTTONE_FRECCIA = "/res/images/freccia.jpg";
     public static final String ICONA_BOTTONE_TAB_SWING = "/res/images/tabswing.jpg";
     public static final String ICONA_BOTTONE_GRAPHICS2D = "/res/images/2d.jpg";
-     public static final String ICONA_BOTTONE_OPENGL = "/res/images/opengl.jpg";
+    public static final String ICONA_BOTTONE_OPENGL = "/res/images/opengl.jpg";
     
     //ESEMPI
     public static final String CONFIGURAZIONE = "ESEMPIO_CONFIGURAZIONE";
     public static final String ESEMPIO_CANNONE_ALIANTE = "/res/images/CannoneDiAlianti.properties";
+    public static final String ESEMPIO_CANNONE_ALIANTE_ID = "cannone";
     public static final String ESEMPIO_ASTRONAVE = "/res/images/AstronaveLeggera.properties";
+    public static final String ESEMPIO_ASTRONAVE_LEGGERA_ID = "astronave";
     public static final String ESEMPIO_LAMPEGGIATORE = "/res/images/Lampeggiatore.properties";
     public static final String ESEMPIO_ROSPO = "/res/images/Rospo.properties";
     public static final String ESEMPIO_FRECCIA = "/res/images/Freccia.properties";
-     public static final String ESEMPIO_NULLO = "...";
+    public static final String ESEMPIO_NULLO = "...";
     
     //STATO APPLICAZIONE
     public static final int STATO_INIZIALE = 0;
@@ -70,15 +74,14 @@ public class Costanti {
     //Configurazione Parametri
     public static final String CONF = "ConfigurazParam";
     
+    //*********************************************************************************************//
     //BUNDLE
     
           //AzioneFinestraNuovoMondo
     public static final String FRAME_P_TEXT_MENU_NEW = "FRAME_P_TEXT_MENU_NEW";
     public static final String FRAME_P_TOOLTIP_MENU_NEW= "FRAME_P_TOOLTIP_MENU_NEW";
     
-         //AzioneNuovoMondo
-    public static final String FRAME_P_TEXT_MENU_SAVE = "FRAME_P_TEXT_MENU_SAVE";
-    public static final String FRAME_P_TOOLTIP_MENU_SAVE = "FRAME_P_TOOLTIP_MENU_SAVE";
+         //AzioneNuovoMondo    
     public static final String AZIONE_NUOVO_MONDO_ERRORE = "AZIONE_NUOVO_MONDO_ERRORE";
     public static final String AZIONE_NUOVO_MONDO_MSG = "AZIONE_NUOVO_MONDO_MSG";
     
@@ -89,6 +92,32 @@ public class Costanti {
     public static final String AZIONE_CARICA_FILE_MSG = "AZIONE_CARICA_FILE_MSG";
     public static final String AZIONE_CARICA_FILE_ERROR = "AZIONE_CARICA_FILE_ERROR";
 
+       //Azione Salva Mondo
+    public static final String FRAME_P_TEXT_MENU_SAVE = "FRAME_P_TEXT_MENU_SAVE";
+    public static final String FRAME_P_TOOLTIP_MENU_SAVE = "FRAME_P_TOOLTIP_MENU_SAVE";
+    public static final String AZIONE_SALVA_FILE_EXIST = "AZIONE_SALVA_FILE_EXIST";
+    public static final String AZIONE_SALVA_FILE_ERROR = "AZIONE_SALVA_FILE_ERROR";
+            
+    //Azione Finestra carica db
+    public static final String FRAME_P_TEXT_MENU_OPEN_DB = "FRAME_P_TEXT_MENU_OPEN_DB";
+    public static final String FRAME_P_TOOLTIP_MENU_OPEN_DB= "FRAME_P_TOOLTIP_MENU_OPEN_DB";
+    
+    //Azione Finestra salva su DB
+    public static final String FRAME_P_TEXT_MENU_SAVE_DB = "FRAME_P_TEXT_MENU_SAVE_DB";
+    public static final String FRAME_P_TOOLTIP_MENU_SAVE_DB = "FRAME_P_TOOLTIP_MENU_SAVE_DB";
+    
+    //esempi
+    public static final String FRAME_P_EXAMPLE_ALIANTE = "FRAME_P_EXAMPLE_ALIANTE";
+    public static final String FRAME_P_EXAMPLE_ASTRONAVE = "FRAME_P_EXAMPLE_ASTRONAVE";
+    public static final String FRAME_P_TOOLTIP_EXAMPLE = "FRAME_P_TOOLTIP_EXAMPLE";
+    
+    //View Mode
+    public static final String VIEW_MODE_2D_TOOLTIP = "VIEW_MODE_2D_TOOLTIP";
+    public static final String VIEW_MODE_TABSWING_TOOLTIP = "VIEW_MODE_TABSWING_TOOLTIP";
+    public static final String VIEW_MODE_LABEL = "VIEW_MODE_LABEL";
+    public static final String VIEW_2D_MENU_LABEL = "VIEW_2D_MENU_LABEL";
+    public static final String VIEW_TAB_MENU_LABEL = "VIEW_TAB_MENU_LABEL";
+    
         //Azione Iniziale
     public static final String B_MSG_STATO_CONF_VUOTA = "MSG_STATO_CONF_VUOTA";
     
@@ -118,6 +147,12 @@ public class Costanti {
     public static final String B_FRAME_P_MENU_EDIT = "FRAME_P_MENU_EDIT";
     public static final String B_FRAME_P_MENU_INFO_APP = "FRAME_P_MENU_INFO_APP";
     public static final String B_FRAME_P_MENU_INFO_PING = "FRAME_P_MENU_INFO_PING";
+    public static final String FRAME_P_TEXT_BUTTON_CONF_CHAT = "FRAME_P_TEXT_BUTTON_CONF_CHAT";
+    public static final String FRAME_P_TOOLTIP_BUTTON_CONF_CHAT = "FRAME_P_TOOLTIP_BUTTON_CONF_CHAT";
+    
+    //Finestra Istruzioni
+    public static final String FINES_ISTRUZIONI_TITLE = "FINES_ISTRUZIONI_TITLE";
+    public static final String FINES_ISTRUZIONI_TEXT = "FINES_ISTRUZIONI_TEXT";
     
     //AZIONI PING VALORI COSTANTI
     

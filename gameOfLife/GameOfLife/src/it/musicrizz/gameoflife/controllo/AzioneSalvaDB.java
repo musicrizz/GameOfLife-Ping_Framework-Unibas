@@ -1,16 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
-import it.unibas.ping.annotazioni.DescrizioneSwing;
 import it.unibas.ping.annotazioni.Inietta;
-import it.unibas.ping.annotazioni.NomeSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
-import it.musicrizz.gameoflife.modello.Cellula;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.ConfigurazioneDatabase;
 import it.musicrizz.gameoflife.persistenza.DAOMondoSQL;
@@ -24,8 +16,6 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author Grandinetti Giovanni <musicrizz@hotmail.it>
  */
-@NomeSwing(Language.FRAME_P_TEXT_MENU_SAVE_DB_IT)
-@DescrizioneSwing(Language.FRAME_P_TOOLTIP_MENU_SAVE_DB_IT)
 public class AzioneSalvaDB extends AzionePingAstratta   {
     
     private Log log = LogFactory.getLog(AzioneSalvaDB.class);
@@ -37,12 +27,10 @@ public class AzioneSalvaDB extends AzionePingAstratta   {
         boolean continua = true;
         String nome = null;;
         while(continua)   {
-            //if(frame.isRadioMenuIT())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_IT);
-            //if(frame.isRadioMenuEN())nome = JOptionPane.showInputDialog(frame, Language.TEXT_DIALOG_SAVE_DB_INS_NAME_EN);
+            
             if(nome == null) return;
             if(nome.isEmpty())   {
-                //if(frame.isRadioMenuIT())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_IT);
-                //if(frame.isRadioMenuEN())JOptionPane.showMessageDialog(frame, Language.TEXT_DIALOG_SAVE_DB_MSG_ERR_NAME_EN);
+       
             }else{
                 continua = false;
             }

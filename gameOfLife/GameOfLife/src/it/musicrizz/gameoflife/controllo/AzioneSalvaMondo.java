@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
 import it.musicrizz.gameoflife.Bundle;
@@ -37,7 +33,7 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
 
                 if(file.exists())   {   
                     int reply = JOptionPane.showConfirmDialog(framePrincipale, 
-                            Bundle.getString("AZIONE_SALVA_FILE_EXIST",file.getName()), "File already exist!!", JOptionPane.YES_NO_OPTION);
+                            Bundle.getString(Costanti.AZIONE_SALVA_FILE_EXIST,file.getName()), "File already exist!!", JOptionPane.YES_NO_OPTION);
                     if(reply == JOptionPane.NO_OPTION)return;
                 }
                 
@@ -56,7 +52,7 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
                 daoSalvataggioProperties.salva(sistema, f.getAbsolutePath());           
             }
         }catch(Exception e)   {
-            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString("AZIONE_SALVA_FILE_ERROR"), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(framePrincipale, Bundle.getString(Costanti.AZIONE_SALVA_FILE_ERROR), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
 

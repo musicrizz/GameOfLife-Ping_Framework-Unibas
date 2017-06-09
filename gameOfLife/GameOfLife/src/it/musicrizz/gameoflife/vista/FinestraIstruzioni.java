@@ -4,9 +4,9 @@
  */
 package it.musicrizz.gameoflife.vista;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.framework.FinestraDiDialogoPing;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import java.awt.Image;
 import javax.imageio.ImageIO;
 
@@ -24,7 +24,7 @@ public class FinestraIstruzioni extends FinestraDiDialogoPing   {
     
     @Override
     public void inizializza() {
-        this.setTitle(Language.FINES_ISTRUZIONI_TITLE_IT);
+        this.setTitle(Bundle.getString(Costanti.FINES_ISTRUZIONI_TITLE));
         
         try{
             img = ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME));
