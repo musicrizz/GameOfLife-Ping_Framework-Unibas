@@ -10,12 +10,16 @@ import it.musicrizz.gameoflife.vista.PannelloScacchiera;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Musicrizz
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  */
 public class ListenerMousePannello2D extends MouseAdapter  {
+    
+    private static Log log = LogFactory.getLog(ListenerMousePannello2D.class.getName());
     
     private PannelloScacchiera pannello;
     private Sistema sistema;
@@ -67,7 +71,4 @@ public class ListenerMousePannello2D extends MouseAdapter  {
         pannello.getPannello2D().ridisegna();
     }
 
-    
-   
-    
 }

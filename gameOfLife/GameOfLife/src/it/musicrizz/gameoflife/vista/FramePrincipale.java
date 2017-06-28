@@ -67,8 +67,6 @@ public class FramePrincipale extends FramePing {
     private JMenuItem jMenuItem3NuovoMondo;
     private JMenuItem jMenuItem4CaricaMondo;
     private JMenuItem jMenuItem5SalvaMondo;
-    private JMenuItem jMenuItem6ConfChat;
-    private JMenuItem JMenuItem7Chat;
     private JMenuItem jMenuItem8CaricaDaDB;
     private JMenuItem jMenuItem9SalvaSuDB;
     private JMenuItem jMenuItem6Esci;
@@ -91,13 +89,10 @@ public class FramePrincipale extends FramePing {
     private JButton jButtonNew;
     private JButton jButtonOpen;
     private JButton jButtonSave;
-    private JButton JbuttonConfChat;
     private JCheckBoxMenuItem jCheckBoxMenuToolbar;
     private JCheckBoxMenuItem jCheckBoxMenuExample;
-    private JCheckBoxMenuItem jCheckBoxMenuChat;
     private JButton JButtonTabwSing;
     private JButton JButtonGraphics2D;
-    private PannelloChat pannelloChat;  
     private Image img;
     private JSlider sliderTime;
     private JLabel labelModVisDesc;
@@ -137,7 +132,6 @@ public class FramePrincipale extends FramePing {
         initMenu();
         inizializzaFileChooser();
         pannelloIniziale = new PannelloIniziale();
-        pannelloChat = new PannelloChat(controllo);
         this.getContentPane().add(pannelloIniziale,BorderLayout.CENTER);
         initMenuToolBar();
         initEtichettaStato();
@@ -167,16 +161,12 @@ public class FramePrincipale extends FramePing {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         setjMenuItem2InfoPing(new javax.swing.JMenuItem());
                 
-        setJMenuItem7Chat(new JMenuItem());
-        setjMenuItem6ConfChat(new JMenuItem());
         JSeparator5 = new JPopupMenu.Separator();
         jMenu3View = new JMenu();
         
         jMenu4Edit = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
         jCheckBoxMenuToolbar = new JCheckBoxMenuItem();
-        jCheckBoxMenuChat = new JCheckBoxMenuItem();
-
 
         //MENU FILE
         jMenu1File.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE));
@@ -307,46 +297,10 @@ public class FramePrincipale extends FramePing {
                 }
             });
             jMenu3View.add(getjCheckBoxMenuToolbar());
-            
-                  
-            getjCheckBoxMenuChat().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_VIEW_CHAT));
-            try{
-                getjCheckBoxMenuChat().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_MENU_CHAT))));
-            }catch(Exception e)   {
-                log.error("Errore caricamento immagine menu Chat ->\n"+e);
-            }
-                getjCheckBoxMenuChat().addActionListener(new ActionListener() {
-                    
-                    public void actionPerformed(ActionEvent e) {
-                        if(getjCheckBoxMenuChat().isSelected())   {
-                            visualizzaChat();
-                        }else{
-                            nascondiChat();
-                        }
-                    }
-                });
-                jMenu3View.add(getjCheckBoxMenuChat());
                 
             jMenuBar1.add(jMenu3View);
             
         //MENU EDIT
-        jMenu4Edit.setText(Bundle.getString(Costanti.B_FRAME_P_MENU_EDIT));
-        
-            getjMenuItem6ConfChat().setText(Bundle.getString(Costanti.FRAME_P_TEXT_BUTTON_CONF_CHAT));
-            getjMenuItem6ConfChat().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_BUTTON_CONF_CHAT));
-            getjMenuItem6ConfChat().setAccelerator(KeyStroke.getKeyStroke("ctrl shift C"));
-            try{
-                getjMenuItem6ConfChat().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_CONF_CHAT))));
-            }catch(Exception e)   {
-                log.error("Errore caricamento immagine menuConfChat ->\n"+e);
-            }
-            getjMenuItem6ConfChat().addActionListener(new ActionListener() {
-
-                public void actionPerformed(ActionEvent e) {
-                    vista.visualizzaSottoVista(FinestraConfChat.class.getName());
-                }
-            });
-        jMenu4Edit.add(getjMenuItem6ConfChat());
      
         jMenuBar1.add(jMenu4Edit);
         
@@ -391,7 +345,6 @@ public class FramePrincipale extends FramePing {
         jButtonNew = new JButton();
         jButtonOpen = new JButton();
         jButtonSave = new JButton();
-        JbuttonConfChat = new JButton();
         JButtonGraphics2D = new JButton(); 
         JButtonTabwSing = new JButton();
         
@@ -403,19 +356,6 @@ public class FramePrincipale extends FramePing {
   
         getjButtonSave().setAction(controllo.getAzioneSwing(AzioneSalvaMondo.class.getName()));
         getjButtonSave().setText("");      
-        
-        getJbuttonConfChat().addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                vista.visualizzaSottoVista(FinestraConfChat.class.getName());
-            }
-        });
-        try{
-            getJbuttonConfChat().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_CONF_CHAT))));
-        }catch(Exception e)   {
-            log.error("Errore caricamento immagine ButtonConfCHAT");
-        }
-        getJbuttonConfChat().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_BUTTON_CONF_CHAT));
         
         setSliderTime(new JSlider());
         getSliderTime().setMinimum(100);
@@ -448,7 +388,6 @@ public class FramePrincipale extends FramePing {
         toolbar.add(getjButtonNew());toolbar.addSeparator();
         toolbar.add(getjButtonOpen());toolbar.addSeparator();
         toolbar.add(getjButtonSave());toolbar.addSeparator();
-        toolbar.add(getJbuttonConfChat());toolbar.addSeparator();
         toolbar.add(getSliderTime());
         toolbar.addSeparator();
         labelModVisDesc = new JLabel(Bundle.getString(Costanti.VIEW_MODE_LABEL));
@@ -478,16 +417,6 @@ public class FramePrincipale extends FramePing {
 
     }
     
-    private void visualizzaChat()   {
-        getContentPane().add(getPannelloChat(),BorderLayout.EAST);
-        pack();
-    }
-    
-    private void nascondiChat()   {
-        getContentPane().remove(getPannelloChat());
-        pack();
-    }
-    
     private void visualizzaMenuToolBar()   {
         getContentPane().add(toolbar,BorderLayout.NORTH);
         pack();
@@ -514,14 +443,6 @@ public class FramePrincipale extends FramePing {
     
     public JFileChooser getFileChooser()   {
         return this.fileChooser;
-    }
-    
-    public String getMessageChat()   {
-        return getPannelloChat().getMessage();
-    }
-    
-    public void pulisciTextAreaChat()   {
-        getPannelloChat().pulisciTextArea();
     }
     
     /**
@@ -609,34 +530,6 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the jMenuItem6ConfChat
-     */
-    public JMenuItem getjMenuItem6ConfChat() {
-        return jMenuItem6ConfChat;
-    }
-
-    /**
-     * @param jMenuItem6ConfChat the jMenuItem6ConfChat to set
-     */
-    public void setjMenuItem6ConfChat(JMenuItem jMenuItem6ConfChat) {
-        this.jMenuItem6ConfChat = jMenuItem6ConfChat;
-    }
-
-    /**
-     * @return the JMenuItem7Chat
-     */
-    public JMenuItem getJMenuItem7Chat() {
-        return JMenuItem7Chat;
-    }
-
-    /**
-     * @param JMenuItem7Chat the JMenuItem7Chat to set
-     */
-    public void setJMenuItem7Chat(JMenuItem JMenuItem7Chat) {
-        this.JMenuItem7Chat = JMenuItem7Chat;
-    }
-
-    /**
      * @return the jMenuItem8CaricaDaDB
      */
     public JMenuItem getjMenuItem8CaricaDaDB() {
@@ -695,13 +588,6 @@ public class FramePrincipale extends FramePing {
     }
 
     /**
-     * @return the JbuttonConfChat
-     */
-    public JButton getJbuttonConfChat() {
-        return JbuttonConfChat;
-    }
-
-    /**
      * @return the jCheckBoxMenuToolbar
      */
     public JCheckBoxMenuItem getjCheckBoxMenuToolbar() {
@@ -713,20 +599,6 @@ public class FramePrincipale extends FramePing {
      */
     public JCheckBoxMenuItem getjCheckBoxMenuExample() {
         return jCheckBoxMenuExample;
-    }
-
-    /**
-     * @return the jCheckBoxMenuChat
-     */
-    public JCheckBoxMenuItem getjCheckBoxMenuChat() {
-        return jCheckBoxMenuChat;
-    }
-
-    /**
-     * @return the pannelloChat
-     */
-    public PannelloChat getPannelloChat() {
-        return pannelloChat;
     }
 
     /**

@@ -10,6 +10,8 @@ import it.musicrizz.gameoflife.vista.PannelloGraphics2D;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -17,6 +19,8 @@ import java.awt.event.MouseMotionListener;
  */
 public class ListenerMouseMove implements MouseMotionListener  {
     
+    private static Log log = LogFactory.getLog(ListenerMouseMove.class.getName());
+     
     private PannelloGraphics2D pannello;
     
     public ListenerMouseMove(PannelloGraphics2D p)   {
@@ -33,6 +37,9 @@ public class ListenerMouseMove implements MouseMotionListener  {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-
+            log.debug(e.getPoint());
+            System.out.println(e.getPoint());
         }   
+        
+        
 }

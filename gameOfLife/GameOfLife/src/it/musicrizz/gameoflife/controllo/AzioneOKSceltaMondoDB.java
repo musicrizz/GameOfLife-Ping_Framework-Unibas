@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
 import it.unibas.ping.annotazioni.NomeSwing;
@@ -10,14 +6,12 @@ import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOMondoSQL;
 import it.musicrizz.gameoflife.persistenza.Descrizione;
 import it.musicrizz.gameoflife.vista.FinestraSceltaMondiDataBase;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.util.EventObject;
-import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

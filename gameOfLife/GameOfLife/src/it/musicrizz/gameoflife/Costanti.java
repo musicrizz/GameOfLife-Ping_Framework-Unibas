@@ -154,11 +154,12 @@ public class Costanti {
     public static final String FINES_ISTRUZIONI_TITLE = "FINES_ISTRUZIONI_TITLE";
     public static final String FINES_ISTRUZIONI_TEXT = "FINES_ISTRUZIONI_TEXT";
     
-    //AZIONI PING VALORI COSTANTI
-    
-
+    //FINESTRA COFIGURAZIONE CHAT
+    public static final String FINES_CONF_CHAT_TITLE = "FINES_CONF_CHAT_TITLE";
             
-            //
+    //FinestrasceltaMondiDatabase
+    public static final String FINES_MONDI_DB_TITLE = "FINES_MONDI_DB_TITLE";
+            
     
     
     

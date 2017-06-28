@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.vista;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.unibas.ping.framework.FinestraDiDialogoPing;
 import it.musicrizz.gameoflife.Costanti;
-import it.musicrizz.gameoflife.Language;
 import it.musicrizz.gameoflife.controllo.AzioneOKSceltaMondoDB;
-import it.musicrizz.gameoflife.persistenza.Descrizione;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +12,6 @@ import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -40,7 +30,7 @@ public class FinestraSceltaMondiDataBase extends FinestraDiDialogoPing   {
     }
     
     public void inizializza()   {
-        this.setTitle(Language.FINES_MONDI_DB_TITLE_IT);
+        this.setTitle(Bundle.getString(Costanti.FINES_MONDI_DB_TITLE));
         try{
             img = ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME));
             if(img != null) this.setIconImage(img);
