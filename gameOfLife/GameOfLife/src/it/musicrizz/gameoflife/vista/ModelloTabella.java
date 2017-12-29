@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.vista;
 
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
@@ -12,24 +8,31 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovannni13@gmail.com>
+ * 
  */
+
 public class ModelloTabella extends ModelloTabellaPing   {
     
+    private ImageIcon img;
+    
+    {
+        try{
+            img = new ImageIcon(ModelloTabella.class.getResource("/res/images/cellula.jpg"));             
+        }catch(Exception e)   {}
+    }
     
     public Object getValueAt(int x,int y)   {
         Sistema s = (Sistema)super.getBean();
         if(!s.isCellula(new Cellula(x,y)))   {
             return "";
         }else{
-            try{
-                ImageIcon img = new ImageIcon(ModelloTabella.class.getResource("/res/images/cellula.jpg"));
-                if(img != null) return img;
-            }catch(Exception e)   {
-                return "errore caricamento immagine";
+            if(img != null) {
+                return img;
+            }else{
+                return "error";
             }
         }
-        return null;
     }
     
     @Override

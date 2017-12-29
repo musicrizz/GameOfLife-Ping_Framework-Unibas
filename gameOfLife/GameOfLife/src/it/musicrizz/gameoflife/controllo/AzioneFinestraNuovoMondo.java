@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.controllo;
 
 import it.unibas.ping.annotazioni.IconaSwing;
@@ -13,6 +9,7 @@ import java.util.EventObject;
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
 @IconaSwing(Costanti.ICONA_BOTTONE_NEW)
 public class AzioneFinestraNuovoMondo extends AzionePingAstratta  {

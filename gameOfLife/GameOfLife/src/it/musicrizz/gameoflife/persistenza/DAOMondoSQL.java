@@ -1,190 +1,249 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
 import it.musicrizz.gameoflife.modello.Cellula;
+import it.musicrizz.gameoflife.modello.Mondo;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOMondoSQL {
     
     private static Log log = LogFactory.getLog(DAOMondoSQL.class);
     
     private DAOMondoSQL(){}
     
-    
-    public static void doInsertConfigurazioneMondo(String nome) throws DAOException {
+    public static boolean doInsertMondo(long id, String nome, Mondo m) throws DAOException {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement insertMondo = null, insertCellula = null;
+        IDataSource datasource = null;
+        String query_insertMondo = "insert into MONDO values (?, ?, ?, ?, ?)";
+        String query_insertCellula = "insert into CELLULE (posX, posY, mondoID) values (?, ?, ?)";
+        boolean flag_insertMondo = false, flag_inserCellula = false;
         try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            String query = "insert into configurazioni values (" +
-                            "'" + nome + "'," +
-                            ConfigurazioneParametri.getInstance().getRighe() + "," +
-                            ConfigurazioneParametri.getInstance().getColonne() + "," +
-                            ConfigurazioneParametri.getInstance().getTimer() + ")";
-            log.debug("doInsertConfigurazione query -> "+query);
-            statement.executeUpdate(query);
-        } catch (SQLException sqle) {
-            log.error(sqle);
-            throw new DAOException(sqle);
-        } finally {
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
-        }
-    }
-    
-    public static void doInsertCellula(Cellula c,String nomeConf)  throws DAOException {
-        Connection connection = null;
-        Statement statement = null;
-        try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            //TODO
-            /*String query =
-                    "insert into cellule values (" + c.getPosX() + ", " +
-                                                     c.getPosY() + ", " +
-                                                "'" + nomeConf + "')";
-            log.debug("doInsertCellula query -> "+query);
-            statement.executeUpdate(query);*/
-        } catch (SQLException sqle) {
-            log.error(sqle);
-            throw new DAOException(sqle);
-        } finally {
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
-        }
-    }
-    
-    public static boolean doSelectLookUp(String nome) throws DAOException{
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        boolean trovato = false;
-        try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            String query = "select * from configurazioni "+
-                           "where nome = '" + nome + "'";
-            log.debug("doSelectLookUp -> "+query);
-            resultSet = statement.executeQuery(query);
-            if (resultSet.next()){
-                trovato = true;
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            connection.setAutoCommit(false);
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            
+            insertMondo = connection.prepareStatement(query_insertMondo);
+            insertCellula = connection.prepareStatement(query_insertCellula);
+            
+            insertMondo.setLong(1, id);
+            insertMondo.setString(2, nome);
+            insertMondo.setInt(3, ConfigurazioneParametri.getInstance().getRighe());
+            insertMondo.setInt(4, ConfigurazioneParametri.getInstance().getColonne());
+            insertMondo.setInt(5, ConfigurazioneParametri.getInstance().getTimer());
+            
+            flag_insertMondo = (insertMondo.executeUpdate() > 0);
+            if(!flag_insertMondo)   {
+                connection.rollback();
+                throw new DAOException("Errore inserimento mondo");
             }
+            
+            for(Cellula c : m.getGenerazione())   {
+                flag_inserCellula = doInsertCellula(c, insertCellula, id);
+                if(!flag_inserCellula)   {
+                    connection.rollback();
+                    throw new DAOException("Errore inserimento cellule");
+                }
+            }
+            connection.commit();
         } catch (SQLException sqle) {
+            try{
+                connection.rollback();
+            }catch(SQLException rollback)   {
+                log.error("Error rollback",rollback);
+            }
             log.error(sqle);
             throw new DAOException(sqle);
+        }catch(DAOException daoe)  {
+            try{
+                connection.rollback();
+            }catch(SQLException rollback)   {
+                log.error("Error rollback",rollback);
+            }
+            log.error(daoe);
+            throw daoe;
         } finally {
-            DataSource.closeResultSet(resultSet);
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
+            try{
+                connection.setAutoCommit(true);
+                datasource.close(insertMondo);
+                datasource.close(insertCellula);
+                datasource.close(connection);
+            }catch(Exception e)   {
+                
+            }
         }
-        return trovato;
+        return flag_insertMondo;
     }
     
-    public static boolean doSelectNomeMondo(String nome) throws DAOException{
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        boolean effettuato = false;
+    private static boolean doInsertCellula(Cellula c, PreparedStatement insert, long mondoID)  throws SQLException {
         try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            String query = "select * from configurazioni "+
-                            "where nome = '" + nome + "'";
-            log.debug("doSelectNome query -> "+query);
-            resultSet = statement.executeQuery(query);
-            if (resultSet.next()){
-                ConfigurazioneParametri.getInstance().setRighe(resultSet.getInt("righe"));
-                ConfigurazioneParametri.getInstance().setColonne(resultSet.getInt("colonne"));
-                ConfigurazioneParametri.getInstance().setTimer(resultSet.getInt("timer"));
-                effettuato = true;
-            }
+            insert.setInt(1, c.getX());
+            insert.setInt(2, c.getY());
+            insert.setLong(3, mondoID);
+            return (insert.executeUpdate() > 0);
         } catch (SQLException sqle) {
-            log.error(sqle);
-            throw new DAOException(sqle);
-        } finally {
-            DataSource.closeResultSet(resultSet);
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
+            log.error("Eccezione inserimento cellula",sqle);
+            throw sqle;
         }
-        return effettuato;
     }
     
-    public static List<Descrizione> doSelectAllMondiDescrizione() throws DAOException {
+    public static boolean doDeleteMondo(long id) throws DAOException  {
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement deleteMondo = null;
+        IDataSource datasource = null;
+        String query_deleteMondo = "delete from MONDO where id = ? ";
+        try{
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            deleteMondo = connection.prepareStatement(query_deleteMondo);
+            deleteMondo.setLong(1, id);
+            return (deleteMondo.executeUpdate() > 0);
+        }catch(SQLException sqle)   {
+            log.error("Errore delete mondo", sqle);
+            throw new DAOException("Errore delete mondo", sqle);
+        }finally{
+            datasource.close(deleteMondo);
+            datasource.close(connection);
+        }
+    }
+    
+    public static boolean doSelectLookupNome(String nome) throws DAOException{
+        IDataSource datasource = null;
+        Connection connection = null;
+        PreparedStatement select = null;
         ResultSet resultSet = null;
-        List<Descrizione> listaConfigurazioni = new ArrayList<Descrizione>();
+        String query = "select * from MONDO where nome = ?";
         try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            String query = "select * from configurazioni";
-            log.debug("doSelectALLMondi query -> "+query);
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                String nome = resultSet.getString("nome");
-                int righe =   resultSet.getInt("righe");
-                int colonne = resultSet.getInt("colonne");
-                int timer = resultSet.getInt("timer");
-                Descrizione descrizione = new Descrizione(nome, righe, colonne, timer);
-                listaConfigurazioni.add(descrizione);
-            }
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            select = connection.prepareStatement(query);
+            select.setString(1, nome);     
+            resultSet = select.executeQuery();
+            if (resultSet.next())return true;
         } catch (SQLException sqle) {
             log.error(sqle);
             throw new DAOException(sqle);
         } finally {
-            DataSource.closeResultSet(resultSet);
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
+            datasource.close(resultSet);
+            datasource.close(select);
+            datasource.close(connection);
+        }
+        return false;
+    }
+    
+        public static boolean doSelectLookupID(long id) throws DAOException{
+        IDataSource datasource = null;
+        Connection connection = null;
+        PreparedStatement select = null;
+        ResultSet resultSet = null;
+        String query = "select * from MONDO where id = ?";
+        try {
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            select = connection.prepareStatement(query);
+            select.setLong(1, id);     
+            resultSet = select.executeQuery();
+            if (resultSet.next())return true;
+        } catch (SQLException sqle) {
+            log.error(sqle);
+            throw new DAOException(sqle);
+        } finally {
+            datasource.close(resultSet);
+            datasource.close(select);
+            datasource.close(connection);
+        }
+        return false;
+    }
+    
+    public static List<DescrizioneMondiDB> doSelectAllDescrizione() throws DAOException {
+        IDataSource datasource = null;
+        Connection connection = null;
+        Statement select_statement = null;
+        PreparedStatement count_p_statement = null;
+        ResultSet resultSelect = null, resultCount = null;
+        String query_select = "select * from MONDO";
+        String query_count = "select count(*) from CELLULE where mondoID = ?";
+        List<DescrizioneMondiDB> listaConfigurazioni = new ArrayList<DescrizioneMondiDB>();
+        try {
+            
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            select_statement = connection.createStatement();
+            count_p_statement = connection.prepareStatement(query_count);
+            
+            resultSelect = select_statement.executeQuery(query_select);
+            while (resultSelect.next()){
+                long id = resultSelect.getLong("id");
+                String nome = resultSelect.getString("nome");
+                int righe =   resultSelect.getInt("numRighe");
+                int colonne = resultSelect.getInt("numColonne");
+                int timer = resultSelect.getInt("timer");
+                count_p_statement.setLong(1, id);
+                resultCount = count_p_statement.executeQuery();
+                resultCount.next();
+                listaConfigurazioni.add(new DescrizioneMondiDB(id, nome, righe, colonne, timer, resultCount.getInt(1)));
+            }
+            
+        } catch (SQLException sqle) {
+            log.error(sqle);
+            throw new DAOException(sqle);
+        } finally {
+            datasource.close(resultSelect);
+            datasource.close(resultCount);
+            datasource.close(select_statement);
+            datasource.close(count_p_statement);
+            datasource.close(connection);
         }
         return listaConfigurazioni;
     }
+    
+    
         
-        public static Map<String,Cellula> doSelectCellule(String nome) throws DAOException {
+    public static Set<Cellula> doSelectCellule(long mondoId) throws DAOException {
+        IDataSource datasource = null;
         Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        Map<String,Cellula> listaCellule = new HashMap<String,Cellula>();
-        /*try {
-            connection = DataSource.getConnection(ConfigurazioneDatabase.getInstance().getTipoDB());
-            statement = connection.createStatement();
-            String query = "select * from cellule where configurazione = '"+nome+"'";
-            log.debug("doSelectCellule -> "+query);
-            resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
-                Cellula c = new Cellula();
-                c.setPosX(resultSet.getInt("posX"));
-                c.setPosY(resultSet.getInt("posY"));
-                c.setStatoCorrente(true);
-                c.setStatoFuturo(false);
-                listaCellule.put(c.getPosX()+","+c.getPosY(),c);
-                log.debug("Cellula posX:"+c.getPosX()+" posY:"+c.getPosY()+" aggiunta alla mappaTMP");
+        PreparedStatement select = null;
+        ResultSet result = null;
+        Set<Cellula> setCellule = new HashSet<Cellula>();
+        String query = "select * from CELLULE where mondoID = ?";
+        try {
+            datasource = DataSourceFactory.getInstance().getDataSource();
+            connection = datasource.getConnection();
+            select = connection.prepareStatement(query);      
+            select.setLong(1, mondoId);
+            result = select.executeQuery();
+            
+            while (result.next()){
+                Cellula c = new Cellula(result.getInt("posX"),result.getInt("posY"));
+                setCellule.add(c);
+                log.debug("Cellula posX:"+c.getX()+" posY:"+c.getY()+" aggiunta alla generazione_TMP");
             }
+            
         } catch (SQLException sqle) {
             log.error(sqle);
             throw new DAOException(sqle);
         } finally {
-            DataSource.closeResultSet(resultSet);
-            DataSource.closeStatement(statement);
-            DataSource.closeConnection(connection);
-        }*/
-        return listaCellule;
+            datasource.close(result);
+            datasource.close(select);
+            datasource.close(connection);
+        }
+        return setCellule;
     }
 }

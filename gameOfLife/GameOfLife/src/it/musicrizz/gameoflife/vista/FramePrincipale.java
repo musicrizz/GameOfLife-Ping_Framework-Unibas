@@ -15,6 +15,7 @@ import it.musicrizz.gameoflife.controllo.AzioneSalvaDB;
 import it.musicrizz.gameoflife.controllo.AzioneFinestraNuovoMondo;
 import it.musicrizz.gameoflife.controllo.AzioneGraphics2D;
 import it.musicrizz.gameoflife.controllo.AzioneTabSwing;
+import it.musicrizz.gameoflife.controllo.AzioneTimer;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -24,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
@@ -40,6 +42,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
 import javax.swing.JSlider;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
@@ -52,14 +55,16 @@ import org.apache.commons.logging.LogFactory;
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 @SuppressWarnings("unchecked")
 public class FramePrincipale extends FramePing {
     
     private JMenu jMenu1File;
     private JMenu jMenu2Info;
     private JMenu jMenu3View;
-    private JMenu jMenu4Edit;
+
     private JMenuBar jMenuBar1;
     private JMenuItem jMenuItemIstruzioni;
     private JMenuItem jMenuItem1InfoApp;
@@ -69,10 +74,13 @@ public class FramePrincipale extends FramePing {
     private JMenuItem jMenuItem5SalvaMondo;
     private JMenuItem jMenuItem8CaricaDaDB;
     private JMenuItem jMenuItem9SalvaSuDB;
+    
     private JMenuItem jMenuItem6Esci;
+    
     private JMenu jSottoMenuExsample;
     private JMenuItem jMenuItemCannoneAlianti;
     private JMenuItem jMenuItemLightSpaceShip;  
+    
     private ButtonGroup viewModeGroup;
     private JRadioButtonMenuItem view2D;
     private JRadioButtonMenuItem viewTab;
@@ -89,6 +97,7 @@ public class FramePrincipale extends FramePing {
     private JButton jButtonNew;
     private JButton jButtonOpen;
     private JButton jButtonSave;
+    private JButton jButtonPlay_Pause;
     private JCheckBoxMenuItem jCheckBoxMenuToolbar;
     private JCheckBoxMenuItem jCheckBoxMenuExample;
     private JButton JButtonTabwSing;
@@ -122,7 +131,7 @@ public class FramePrincipale extends FramePing {
             img = ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME));
             if(img != null) this.setIconImage(img);
         }catch(Exception e)   {
-            log.error("Errore nel caricamento dell' immagine del frame -> "+e);
+            log.error(Bundle.getString(Costanti.ERROR_ICONA_FRAME, e.toString()));
         }      
         Toolkit tol = Toolkit.getDefaultToolkit();
         Dimension d = tol.getScreenSize();
@@ -164,7 +173,6 @@ public class FramePrincipale extends FramePing {
         JSeparator5 = new JPopupMenu.Separator();
         jMenu3View = new JMenu();
         
-        jMenu4Edit = new JMenu();
         setjMenuItemIstruzioni(new JMenuItem());
         jCheckBoxMenuToolbar = new JCheckBoxMenuItem();
 
@@ -191,13 +199,13 @@ public class FramePrincipale extends FramePing {
             
             jMenu1File.add(jSeparator2);
         
-            //TODO load from db
+            //load from db
             getjMenuItem8CaricaDaDB().setAction(controllo.getAzioneSwing(AzioneFinestraCaricaDB.class.getName()));
             getjMenuItem8CaricaDaDB().setAccelerator(KeyStroke.getKeyStroke("ctrl shift O"));
             getjMenuItem8CaricaDaDB().setText(Bundle.getString(Costanti.FRAME_P_TEXT_MENU_OPEN_DB));
             getjMenuItem8CaricaDaDB().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_OPEN_DB));
             jMenu1File.add(getjMenuItem8CaricaDaDB());
-            //TODO save to db
+            //save to db
             getjMenuItem9SalvaSuDB().setAction(controllo.getAzioneSwing(AzioneSalvaDB.class.getName()));
             getjMenuItem9SalvaSuDB().setAccelerator(KeyStroke.getKeyStroke("ctrl shift S"));
             getjMenuItem9SalvaSuDB().setText(Bundle.getString(Costanti.FRAME_P_TEXT_MENU_SAVE_DB));
@@ -216,9 +224,10 @@ public class FramePrincipale extends FramePing {
                 try{
                     jMenuItemCannoneAlianti.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_EXAMPLE_CANN_GLINDER))));
                 }catch(Exception e)   {
-                    log.error("Errore caricamento immagine menu esempio cannone alianti ->\n"+e);
+                    log.error(Bundle.getString(Costanti.ERROR_ICONA_EXAMPLE_GLINDER, e.toString()));
                 }
                 jSottoMenuExsample.add(jMenuItemCannoneAlianti);
+                jSottoMenuExsample.add(new JSeparator());
                 
                 jMenuItemLightSpaceShip = new JMenuItem();
                 jMenuItemLightSpaceShip.setName(Costanti.ESEMPIO_ASTRONAVE_LEGGERA_ID);
@@ -226,21 +235,22 @@ public class FramePrincipale extends FramePing {
                 jMenuItemLightSpaceShip.setText(Bundle.getString(Costanti.FRAME_P_EXAMPLE_ASTRONAVE));
                 jMenuItemLightSpaceShip.setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_EXAMPLE));
                 try{
-                    jMenuItemLightSpaceShip.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_EXAMPLE_CANN_GLINDER))));
+                    jMenuItemLightSpaceShip.setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_EXAMPLE_LIGHT_SPACESH))));
                 }catch(Exception e)   {
-                    log.error("Errore caricamento immagine menu esempio astonave leggera ->\n"+e);
+                    log.error(Bundle.getString(Costanti.ERROR_ICONA_EXAMPLE_SHIP, e.toString()));
                 }
                 jSottoMenuExsample.add(jMenuItemLightSpaceShip);
                 
             jMenu1File.add(JsepSeparator3);
         
+            //EXIT
             getjMenuItem6Esci().setText(Bundle.getString(Costanti.B_FRAME_P_MENU_FILE_EXIT));
             getjMenuItem6Esci().setAccelerator(KeyStroke.getKeyStroke("ctrl E"));
             
             try{
                 getjMenuItem6Esci().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_EXIT))));
             }catch(Exception e)   {
-                log.error("Errore caricamento immagine menu Esci ->\n"+e);
+                log.error(Bundle.getString(Costanti.ERROR_ICONA_EXIT, e.toString()));
             }
             getjMenuItem6Esci().addActionListener(new ActionListener() {
 
@@ -270,7 +280,7 @@ public class FramePrincipale extends FramePing {
             viewTab.setToolTipText(Bundle.getString(Costanti.VIEW_MODE_TABSWING_TOOLTIP));
             view2D.setAction(controllo.getAzioneSwing(AzioneGraphics2D.class.getName()));
             view2D.setText(Bundle.getString(Costanti.VIEW_2D_MENU_LABEL));
-            view2D.setToolTipText(Bundle.getString(Costanti.VIEW_MODE_TABSWING_TOOLTIP));
+            view2D.setToolTipText(Bundle.getString(Costanti.VIEW_MODE_2D_TOOLTIP));
             viewModeGroup.add(viewTab);
             viewModeGroup.add(view2D);
             viewTab.setSelected(true);
@@ -283,7 +293,7 @@ public class FramePrincipale extends FramePing {
             try{
                 getjCheckBoxMenuToolbar().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_TOOL_BAR))));
             }catch(Exception e)   {
-                log.error("Errore caricamento immagine toolBarMenu ->\n"+e);
+                log.error(Bundle.getString(Costanti.ERROR_ICONA_TOOLBAR, e.toString()));
             }
             getjCheckBoxMenuToolbar().setSelected(true);
             getjCheckBoxMenuToolbar().addActionListener(new ActionListener() {
@@ -302,9 +312,9 @@ public class FramePrincipale extends FramePing {
             
         //MENU EDIT
      
-        jMenuBar1.add(jMenu4Edit);
+        //TODO EDIT .... maybe ..
         
-            
+        //MENU info
         jMenu2Info.setText("?");
             getjMenuItemIstruzioni().setText(Bundle.getString(Costanti.FINES_ISTRUZIONI_TITLE));
             getjMenuItemIstruzioni().setAccelerator(KeyStroke.getKeyStroke("ctrl I"));
@@ -345,17 +355,31 @@ public class FramePrincipale extends FramePing {
         jButtonNew = new JButton();
         jButtonOpen = new JButton();
         jButtonSave = new JButton();
+        
+        jButtonPlay_Pause = new JButton();
+        
         JButtonGraphics2D = new JButton(); 
         JButtonTabwSing = new JButton();
         
         getjButtonNew().setAction(controllo.getAzioneSwing(AzioneFinestraNuovoMondo.class.getName()));
         getjButtonNew().setText("");
+        getjButtonNew().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_NEW));
         
         getjButtonOpen().setAction(controllo.getAzioneSwing(AzioneCaricaMondo.class.getName()));
         getjButtonOpen().setText("");
+        getjButtonOpen().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_OPEN));
   
         getjButtonSave().setAction(controllo.getAzioneSwing(AzioneSalvaMondo.class.getName()));
-        getjButtonSave().setText("");      
+        getjButtonSave().setText("");  
+        getjButtonSave().setToolTipText(Bundle.getString(Costanti.FRAME_P_TOOLTIP_MENU_SAVE));
+        
+        getjButtonPlay_Pause().setAction(controllo.getAzioneSwing(AzioneTimer.class.getName()));
+        getjButtonPlay_Pause().setText("");
+        try{
+            getjButtonPlay_Pause().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_PLAY))));
+        }catch(IOException ioe){
+            log.error(Bundle.getString(Costanti.ERROR_ICONA_PLAYPAUSE, ioe.toString()));
+        }
         
         setSliderTime(new JSlider());
         getSliderTime().setMinimum(100);
@@ -388,6 +412,7 @@ public class FramePrincipale extends FramePing {
         toolbar.add(getjButtonNew());toolbar.addSeparator();
         toolbar.add(getjButtonOpen());toolbar.addSeparator();
         toolbar.add(getjButtonSave());toolbar.addSeparator();
+        toolbar.add(getjButtonPlay_Pause());toolbar.addSeparator();
         toolbar.add(getSliderTime());
         toolbar.addSeparator();
         labelModVisDesc = new JLabel(Bundle.getString(Costanti.VIEW_MODE_LABEL));
@@ -627,6 +652,20 @@ public class FramePrincipale extends FramePing {
      */
     public void setModVisDesc(JLabel modVisDesc) {
         this.labelModVisDesc = modVisDesc;
+    }
+
+    /**
+     * @return the jButtonPlay_Pause
+     */
+    public JButton getjButtonPlay_Pause() {
+        return jButtonPlay_Pause;
+    }
+
+    /**
+     * @param jButtonPlay_Pause the jButtonPlay_Pause to set
+     */
+    public void setjButtonPlay_Pause(JButton jButtonPlay_Pause) {
+        this.jButtonPlay_Pause = jButtonPlay_Pause;
     }
 
 

@@ -8,7 +8,10 @@ import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
+import java.io.IOException;
 import java.util.EventObject;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,13 +25,20 @@ public class AzioneTimer extends AzionePingAstratta   {
     
     public void esegui(EventObject o)   {
         if(!flagStart)  {
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer(Bundle.getString(Costanti.B_BUTTON_LABEL_TIMER_STOP));      
+        
+            try{
+                framePrincipale.getjButtonPlay_Pause().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_PAUSE))));
+            }catch(IOException ioe){}
+            
             framePrincipale.getPannelloScacchiera().startTimer();
             flagStart = true;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_START_TIMER));
             modello.putBean(Controllo.MESSAGGIO_STATO, new MessaggioPing(Bundle.getString(Costanti.B_MSG_STATO_TIMER_START)));
         }else{
-            framePrincipale.getPannelloScacchiera().setTextButtonTimer(Bundle.getString(Costanti.B_BUTTON_LABEL_TIMER_START)); 
+            
+            try{
+                framePrincipale.getjButtonPlay_Pause().setIcon(new ImageIcon(ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_BOTTONE_PLAY))));
+            }catch(IOException ioe){}
             framePrincipale.getPannelloScacchiera().stopTimer();
             flagStart = false;
             modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_STOP_TIMER));
@@ -42,6 +52,14 @@ public class AzioneTimer extends AzionePingAstratta   {
         if(statusId >= Costanti.STATO_NUOVA_CONFIGURAZIONE)return true;
         return false;
     }
+
+    @Override
+    public boolean disabilita(Integer statusId) {
+       if(statusId < Costanti.STATO_NUOVA_CONFIGURAZIONE)return true;
+        return false;
+    }
+    
+    
 
     /**
      * @param framePrincipale the framePrincipale to set

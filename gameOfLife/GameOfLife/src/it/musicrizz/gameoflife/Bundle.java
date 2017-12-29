@@ -17,7 +17,7 @@ public class Bundle {
         try {
             return R.getString(key);
         }catch(MissingResourceException e)   {
-            return "!" + key + "!!";
+            return "Bundle key not found : " + key + "!!";
         }
     }
     
@@ -25,7 +25,7 @@ public class Bundle {
         try {
             return MessageFormat.format(R.getString(key), params);
         } catch (MissingResourceException e) {
-            return "!!" + key + "!!";
+            return "Bundle key not found : " + key + "!!";
         }
     }
 }

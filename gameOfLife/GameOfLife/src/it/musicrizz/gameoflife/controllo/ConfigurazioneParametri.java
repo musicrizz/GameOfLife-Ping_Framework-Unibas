@@ -1,15 +1,17 @@
 package it.musicrizz.gameoflife.controllo;
-
 /**
  *
- * @author Grandinetti Giovanni <grandinetti.giovanni13@hotmail.com>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  * Classe singleton , viene creata una sola volta.
  * mantiene la configurazione corrente impostata dall' utente o dal caricamento da file
+ * 
  */
+
 public class ConfigurazioneParametri {
     
     private static ConfigurazioneParametri singleton = new ConfigurazioneParametri();
     
+    private String nome;
     private int righe;
     private int colonne;
     private int timer;
@@ -59,5 +61,19 @@ public class ConfigurazioneParametri {
      */
     public void setTimer(int timer) {
         this.timer = timer;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

@@ -12,9 +12,12 @@ import org.apache.commons.logging.LogFactory;
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  * La Classe Sistema. incapsula la classe Mondo 
  * Ha i metodi per segnalare al Modello la modifica dei Bean.
+ * 
  */
+
 public class Sistema {
     
     private static final Log log = LogFactory.getLog(Sistema.class);

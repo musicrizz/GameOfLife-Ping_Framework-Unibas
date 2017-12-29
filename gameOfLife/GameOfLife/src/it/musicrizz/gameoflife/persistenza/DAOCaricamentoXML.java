@@ -14,8 +14,10 @@ import org.jdom2.input.SAXBuilder;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOCaricamentoXML implements IDAOCaricamento   {
     
     private static Log log = LogFactory.getLog(DAOCaricamentoXML.class);
@@ -46,6 +48,7 @@ public class DAOCaricamentoXML implements IDAOCaricamento   {
             
             doc = builder.build(file);
             Element root = doc.getRootElement();
+            ConfigurazioneParametri.getInstance().setNome(root.getAttributeValue("nome"));
             
             Element numeroRighe = root.getChild("numeroRighe");
             Element numeroColonne = root.getChild("numeroColonne");

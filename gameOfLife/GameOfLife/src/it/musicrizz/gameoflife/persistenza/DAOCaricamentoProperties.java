@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
@@ -13,8 +9,10 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOCaricamentoProperties implements IDAOCaricamento{
     
     private static Log log = LogFactory.getLog(DAOCaricamentoProperties.class);
@@ -45,6 +43,8 @@ public class DAOCaricamentoProperties implements IDAOCaricamento{
         Sistema sistema = null;
         try{
             log.debug("Properties Caricate");
+            String nome = p.getProperty("Nome");
+            log.debug("Nome caricato "+nome);
             int numCellule = Integer.parseInt(p.getProperty("NumeroCellule"));
             log.debug("Numero Cellule caricato "+numCellule);
             int righe = Integer.parseInt(p.getProperty("NumeroRighe"));
@@ -53,6 +53,7 @@ public class DAOCaricamentoProperties implements IDAOCaricamento{
             log.debug("Numero Colonne caricato "+colonne);
             int timer = Integer.parseInt(p.getProperty("Timer"));
             log.debug("Timer caricato "+timer);
+            ConfigurazioneParametri.getInstance().setNome(nome);
             ConfigurazioneParametri.getInstance().setRighe(righe);
             ConfigurazioneParametri.getInstance().setColonne(colonne);
             ConfigurazioneParametri.getInstance().setTimer(timer);

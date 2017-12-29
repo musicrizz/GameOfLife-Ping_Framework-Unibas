@@ -14,6 +14,7 @@ import java.util.EventObject;
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
 
 public class AzioneNuovoMondo extends AzionePingAstratta   {
@@ -24,13 +25,15 @@ public class AzioneNuovoMondo extends AzionePingAstratta   {
     public void esegui(EventObject o)   {
         ConfigurazioneParametri conf = ConfigurazioneParametri.getInstance();
         try{
+            String nome = finestraC.getNomeConfigurazione().trim();
             int righe = Integer.parseInt(finestraC.getRighe());
             int colonne = Integer.parseInt(finestraC.getColonne());
             int timer = finestraC.getTimer();
-            if(righe < 0 || colonne < 0)   {
+            if(righe < 0 || colonne < 0 || nome == null || nome.isEmpty())   {
                 vista.finestraErrore(Bundle.getString(Costanti.AZIONE_NUOVO_MONDO_ERRORE));
                 return;
             }else{
+                conf.setNome(nome);
                 conf.setRighe(righe);
                 conf.setColonne(colonne);
                 conf.setTimer(timer);

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
 import it.musicrizz.gameoflife.controllo.ConfigurazioneParametri;
@@ -14,8 +10,10 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOSalvataggioProperties implements IDAOSalvataggio{
     
     private static Log log = LogFactory.getLog(DAOSalvataggioProperties.class);
@@ -29,6 +27,7 @@ public class DAOSalvataggioProperties implements IDAOSalvataggio{
             log.debug("Creazione del PrintWriter");
             if(s != null)   {
                 int cont = 0;
+                pw.println("Nome="+ConfigurazioneParametri.getInstance().getNome());
                 pw.println("NumeroRighe="+ConfigurazioneParametri.getInstance().getRighe());
                 pw.println("NumeroColonne="+ConfigurazioneParametri.getInstance().getColonne());
                 pw.println("Timer="+ConfigurazioneParametri.getInstance().getTimer());

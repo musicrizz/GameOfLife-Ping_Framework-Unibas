@@ -1,8 +1,9 @@
 package it.musicrizz.gameoflife.vista;
 
-import it.musicrizz.gameoflife.controllo.ListenerMouseMove;
+import it.musicrizz.gameoflife.controllo.ListenerMousePannello2D;
 import it.musicrizz.gameoflife.modello.Cellula;
 import it.musicrizz.gameoflife.modello.Sistema;
+import it.unibas.ping.framework.Controllo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -23,8 +24,9 @@ public class PannelloGraphics2D extends JPanel{
     private int colonne;
     private int worldTranslateX, worldTranslateY;
     private boolean paint;
+    private ListenerMousePannello2D mouseListener;
     
-    public PannelloGraphics2D(int w,int h,Sistema s)   {
+    public PannelloGraphics2D(int w, int h, Sistema s, Controllo c)   {
         sistema = s;
         righe = h;
         colonne = w;
@@ -33,8 +35,7 @@ public class PannelloGraphics2D extends JPanel{
         setSize(w*16,h*16);
         setMinimumSize(new Dimension(w*16, h*16));
         setBackground(Color.BLUE);
-        addMouseMotionListener(new ListenerMouseMove(this));
-        //addKeyListener(l)//TODO
+        mouseListener = new ListenerMousePannello2D(this, c);
         paint = false;
     }
     
@@ -72,12 +73,16 @@ public class PannelloGraphics2D extends JPanel{
         repaint();
     }
     
-    public void abilitaMouseListener(MouseListener m)   {
-        addMouseListener(m);
+    public void abilitaMouseListener()   {
+        addMouseMotionListener(mouseListener);
+        addMouseListener(mouseListener);
+        
+       // addMouseListener();
     }
     
-    public void disabilitaMouseListener(MouseListener m)   {
-        removeMouseListener(m);
+    public void disabilitaMouseListener()   {
+        removeMouseMotionListener(mouseListener);
+        removeMouseListener(mouseListener);
     }
 
     /**

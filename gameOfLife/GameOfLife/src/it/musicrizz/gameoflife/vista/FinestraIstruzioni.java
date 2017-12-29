@@ -9,6 +9,8 @@ import it.unibas.ping.framework.FinestraDiDialogoPing;
 import it.musicrizz.gameoflife.Costanti;
 import java.awt.Image;
 import javax.imageio.ImageIO;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 /**
  *
@@ -17,6 +19,8 @@ import javax.imageio.ImageIO;
 public class FinestraIstruzioni extends FinestraDiDialogoPing   {
 
     private Image img;
+    
+    private static Log log = LogFactory.getLog(FinestraIstruzioni.class);
     
     static{
         setDefaultLookAndFeelDecorated(true);
@@ -30,11 +34,12 @@ public class FinestraIstruzioni extends FinestraDiDialogoPing   {
             img = ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME));
             if(img != null) this.setIconImage(img);
         }catch(Exception e)   {
-            System.out.println("Errore nel caricamento dell' immagine del frame -> "+e);
+            log.error(Bundle.getString(Costanti.ERROR_ICONA_FRAME, e.toString()));
         }
         
         this.setModal(true);
         initComponents();
+        jTextArea1.setText(Bundle.getString(Costanti.ISTRUZIONI));
     }
 
     @SuppressWarnings("unchecked")

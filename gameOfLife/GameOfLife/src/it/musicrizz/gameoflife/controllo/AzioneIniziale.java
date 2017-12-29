@@ -6,7 +6,6 @@ import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
 import it.musicrizz.gameoflife.Costanti;
-
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>

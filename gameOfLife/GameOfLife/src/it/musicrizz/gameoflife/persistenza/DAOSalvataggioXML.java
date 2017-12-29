@@ -14,8 +14,10 @@ import org.jdom2.output.XMLOutputter;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOSalvataggioXML implements IDAOSalvataggio   {
     
     private static Log log = LogFactory.getLog(DAOSalvataggioXML.class);
@@ -27,7 +29,7 @@ public class DAOSalvataggioXML implements IDAOSalvataggio   {
         try{
             if(s!=null)   {
                 Element root = new Element("mondo");
-                root.setAttribute("nome", "conf");
+                root.setAttribute("nome", ConfigurazioneParametri.getInstance().getNome());
             
                 Element numeroRighe = new Element("numeroRighe");
                 numeroRighe.setAttribute("num",""+ConfigurazioneParametri.getInstance().getRighe());

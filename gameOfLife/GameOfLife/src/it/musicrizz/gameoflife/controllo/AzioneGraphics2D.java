@@ -24,8 +24,8 @@ public class AzioneGraphics2D extends AzionePingAstratta {
     public void esegui(EventObject eo) {
         if(framePrincipale.getPannelloScacchiera() == null) return;
         if(framePrincipale.getPannelloScacchiera().getTabella() != null)  {
-            int w = framePrincipale.getSize().width+50;
-            int h = framePrincipale.getSize().height+50;
+            int w = framePrincipale.getSize().width;
+            int h = framePrincipale.getSize().height;
             Dimension d = new Dimension(w, h);
             framePrincipale.getPannelloScacchiera().rimuoviTabella();
             framePrincipale.getPannelloScacchiera().initPannello2D();

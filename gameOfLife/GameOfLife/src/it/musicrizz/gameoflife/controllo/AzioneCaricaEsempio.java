@@ -4,17 +4,13 @@ import it.musicrizz.gameoflife.Bundle;
 import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoProperties;
-import it.musicrizz.gameoflife.persistenza.DAOCaricamentoXML;
 import it.musicrizz.gameoflife.persistenza.IDAOCaricamento;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import it.unibas.ping.azioni.AzionePingAstratta;
 import it.unibas.ping.framework.Controllo;
 import it.unibas.ping.framework.MessaggioPing;
 import it.unibas.ping.framework.StatoPing;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.EventObject;
-import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import org.apache.commons.logging.Log;
@@ -30,6 +26,7 @@ public class AzioneCaricaEsempio extends AzionePingAstratta   {
 private static Log log = LogFactory.getLog(AzioneCaricaMondo.class);
     
     private FramePrincipale framePrincipale;
+    private IDAOCaricamento daoProperties;
     
     @Override
     public void esegui(EventObject eo) {
@@ -37,7 +34,7 @@ private static Log log = LogFactory.getLog(AzioneCaricaMondo.class);
         JMenuItem item = (JMenuItem)eo.getSource();
         try{
             log.debug("Inizio Caricamento configurazione");
-            IDAOCaricamento daoProperties = new DAOCaricamentoProperties();
+            daoProperties = new DAOCaricamentoProperties();
             if(item.getName().equals(Costanti.ESEMPIO_CANNONE_ALIANTE_ID))   {
                 s = daoProperties.carica(Costanti.ESEMPIO_CANNONE_ALIANTE);
             }else if(item.getName().equals(Costanti.ESEMPIO_ASTRONAVE_LEGGERA_ID)){

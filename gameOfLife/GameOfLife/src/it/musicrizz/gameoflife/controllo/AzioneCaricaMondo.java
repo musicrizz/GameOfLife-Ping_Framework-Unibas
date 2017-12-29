@@ -10,6 +10,7 @@ import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.modello.Sistema;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoProperties;
 import it.musicrizz.gameoflife.persistenza.DAOCaricamentoXML;
+import it.musicrizz.gameoflife.persistenza.DAOException;
 import it.musicrizz.gameoflife.persistenza.IDAOCaricamento;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import java.io.File;
@@ -22,13 +23,16 @@ import org.apache.commons.logging.LogFactory;
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 @IconaSwing(Costanti.ICONA_BOTTONE_OPEN)
 public class AzioneCaricaMondo extends AzionePingAstratta   {
     
     private static Log log = LogFactory.getLog(AzioneCaricaMondo.class);
     
     private FramePrincipale framePrincipale;
+    private IDAOCaricamento dao;
     
     @Override
     public void esegui(EventObject eo) {
@@ -45,17 +49,18 @@ public class AzioneCaricaMondo extends AzionePingAstratta   {
                 }
                 
                 if(file.getName().endsWith(".properties"))   {
-                    IDAOCaricamento daoProperties = new DAOCaricamentoProperties();
-                    s = daoProperties.carica(file);
-                    log.debug("Sistema Caricato");
+                    dao = new DAOCaricamentoProperties();
                 }
                     
                 if(file.getName().endsWith(".xml"))   {
-                    IDAOCaricamento daoXml = new DAOCaricamentoXML();
-                    s = daoXml.carica(file);
-                    log.debug("Sistema Caricato");
+                    dao = new DAOCaricamentoXML();
                 }
                     
+                if(dao == null)throw new DAOException("DAO NULL !!!");
+                
+                s = dao.carica(file);
+                log.debug("Sistema Caricato");
+                
                 modello.putBean(Costanti.SISTEMA, s);
                 log.debug("Sistema inserito nel bean");
                 modello.putBean(Controllo.STATO, new StatoPing(Costanti.STATO_NUOVA_CONFIGURAZIONE));

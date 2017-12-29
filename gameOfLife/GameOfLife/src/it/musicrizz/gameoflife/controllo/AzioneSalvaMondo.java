@@ -24,12 +24,14 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
     
     private FramePrincipale framePrincipale;
     private Sistema sistema;
+    private IDAOSalvataggio dao;
+    private File file;
     
     public void esegui(EventObject o)   {
         try{
             int opt = framePrincipale.getFileChooser().showSaveDialog(framePrincipale);
             if(opt == JFileChooser.APPROVE_OPTION)  {
-                File file = framePrincipale.getFileChooser().getSelectedFile();
+                file = framePrincipale.getFileChooser().getSelectedFile();
 
                 if(file.exists())   {   
                     int reply = JOptionPane.showConfirmDialog(framePrincipale, 
@@ -38,18 +40,14 @@ public class AzioneSalvaMondo extends AzionePingAstratta   {
                 }
                 
                 if(file.getName().endsWith(".properties"))   {
-                        IDAOSalvataggio daoSalvataggioProperties = new DAOSalvataggioProperties();            
-                        daoSalvataggioProperties.salva(sistema, file.getAbsolutePath());
-                        return;
-                }
-                if(file.getName().endsWith(".xml"))   {
-                        IDAOSalvataggio daoSalvataggioXML = new DAOSalvataggioXML();            
-                        daoSalvataggioXML.salva(sistema, file.getAbsolutePath());
-                        return;
-                }              
-                File f = new File(file.getPath()+".properties");
-                IDAOSalvataggio daoSalvataggioProperties = new DAOSalvataggioProperties();            
-                daoSalvataggioProperties.salva(sistema, f.getAbsolutePath());           
+                        dao = new DAOSalvataggioProperties();            
+                }else if(file.getName().endsWith(".xml"))   {
+                        dao = new DAOSalvataggioXML();            
+                }else{
+                    file = new File(file.getPath()+".properties");
+                    dao = new DAOSalvataggioProperties(); 
+                }                     
+                dao.salva(sistema, file.getAbsolutePath());           
             }
         }catch(Exception e)   {
             JOptionPane.showMessageDialog(framePrincipale, Bundle.getString(Costanti.AZIONE_SALVA_FILE_ERROR), "ERROR", JOptionPane.ERROR_MESSAGE);

@@ -5,6 +5,7 @@ package it.musicrizz.gameoflife;
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  * 
  */
+
 public class Costanti {
     
     //AUDIO
@@ -21,8 +22,8 @@ public class Costanti {
     public static final String ICONA_BOTTONE_NEW = "/res/images/new.jpg";
     public static final String ICONA_BOTTONE_OPEN = "/res/images/open.jpg";
     public static final String ICONA_BOTTONE_SAVE = "/res/images/save.jpg";
-    public static final String ICONA_BOTTONE_CONF_DB = "/res/images/database.jpg";
-    public static final String ICONA_BOTTONE_CONF_CHAT = "/res/images/network.jpg";
+    public static final String ICONA_BOTTONE_LOAD_DB = "/res/images/database.jpg";
+    public static final String ICONA_BOTTONE_SAVE_DB = "/res/images/savedb.jpg";
     public static final String ICONA_BOTTONE_EXIT = "/res/images/exit.jpg";
     public static final String ICONA_MENU_LANG_IT = "/res/images/ita.jpg";
     public static final String ICONA_MENU_LANG_EN = "/res/images/eng.jpg";
@@ -43,6 +44,8 @@ public class Costanti {
     public static final String ICONA_BOTTONE_TAB_SWING = "/res/images/tabswing.jpg";
     public static final String ICONA_BOTTONE_GRAPHICS2D = "/res/images/2d.jpg";
     public static final String ICONA_BOTTONE_OPENGL = "/res/images/opengl.jpg";
+    public static final String ICONA_BOTTONE_PLAY = "/res/images/play.png";
+    public static final String ICONA_BOTTONE_PAUSE = "/res/images/pause.png";
     
     //ESEMPI
     public static final String CONFIGURAZIONE = "ESEMPIO_CONFIGURAZIONE";
@@ -64,12 +67,6 @@ public class Costanti {
     //Sistema
     public static final String SISTEMA = "mondoOO";
     public static final String MONDO_MATRICE = "matricedELmondo";
-    
-    //Chat
-    public static final String SERVER = "serverChat";
-    public static final String MESSAGGI_CHAT = "msgClass";
-    public static final String MESSAGGI_CHAT_LISTA = "msgList";
-    
     
     //Configurazione Parametri
     public static final String CONF = "ConfigurazParam";
@@ -131,6 +128,19 @@ public class Costanti {
     public static final String B_MSG_STATO_TIMER_START = "MSG_STATO_TIMER_START";
     public static final String B_MSG_STATO_TIMER_STOP = "MSG_STATO_TIMER_STOP";
     
+    //AzioneOKSceltaMondoDB
+    public static final String INFO_SELEZIONE_DB = "INFO_SELEZIONE_DB";
+    public static final String INFO_SELEZIONE_DB_TITLE = "INFO_SELEZIONE_DB_TITLE";
+    public static final String INFO_MONDO_NON_TROVATO= "INFO_MONDO_NON_TROVATO";
+    
+    //AzioneSalvaDB
+    public static final String SELEZIONE_NOME = "SELEZIONE_NOME";
+    public static final String SELEZIONE_NOME_FAIL = "SELEZIONE_NOME_FAIL";
+    public static final String NOME_ESISTENTE = "NOME_ESISTENTE";
+    public static final String SALVATAGGIO_DB_OK = "SALVATAGGIO_DB_OK";
+    public static final String SALVATAGGIO_DB_FAIL = "SALVATAGGIO_DB_FAIL";
+
+    
         //PannelloScacchiera
     public static final String B_LABEL_GENERAZIONI = "LABEL_GENERAZIONI";
     public static final String B_LABEL_POPOLAZIONE = "LABEL_POPOLAZIONE";
@@ -161,6 +171,24 @@ public class Costanti {
     public static final String FINES_MONDI_DB_TITLE = "FINES_MONDI_DB_TITLE";
             
     
+    //ERORRI
+    public static final String ERROR_ICONA_FRAME = "ERROR_ICONA_FRAME";
+    public static final String ERROR_ICONA_EXAMPLE_GLINDER = "ERROR_ICONA_EXAMPLE_GLINDER";
+    public static final String ERROR_ICONA_EXAMPLE_SHIP = "ERROR_ICONA_EXAMPLE_SHIP";
+    public static final String ERROR_ICONA_EXIT = "ERROR_ICONA_EXIT";
+    public static final String ERROR_ICONA_TOOLBAR = "ERROR_ICONA_TOOLBAR";
+    public static final String ERROR_ICONA_PLAYPAUSE = "ERROR_ICONA_PLAYPAUSE";
+    public static final String ERROR_ICONA_PANNELLO_INIZIALE = "ERROR_ICONA_PANNELLO_INIZIALE";
+    
+    //ISTRUZIONI
+    public static final String ISTRUZIONI = "ISTRUZIONI";
+    
+    //DESCRIZIONEMONDIDB
+    public static final String DESC_DB_NOME = "DESC_DB_NOME";
+    public static final String DESC_DB_RIGHE = "DESC_DB_RIGHE";
+    public static final String DESC_DB_COLONNE = "DESC_DB_COLONNE";
+    public static final String DESC_DB_TIMER = "DESC_DB_TIMER";
+    public static final String DESC_DB_NUM_CELLULE = "DESC_DB_NUM_CELLULE";
     
     
 }

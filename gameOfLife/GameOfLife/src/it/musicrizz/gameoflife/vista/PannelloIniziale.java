@@ -4,13 +4,12 @@
  */
 package it.musicrizz.gameoflife.vista;
 
+import it.musicrizz.gameoflife.Bundle;
 import it.musicrizz.gameoflife.Costanti;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Toolkit;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -31,7 +30,7 @@ public class PannelloIniziale extends javax.swing.JPanel {
         try{
             img = ImageIO.read(PannelloIniziale.class.getResource(Costanti.ICONA_PANNELLO_INIT));
         }catch(Exception e)   {
-            label.setText("Error load Image");
+            label.setText(Bundle.getString(Costanti.ERROR_ICONA_PANNELLO_INIZIALE, e.toString()));
             this.add(label);
         }
     }

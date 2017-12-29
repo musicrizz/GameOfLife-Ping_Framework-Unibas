@@ -4,7 +4,6 @@ import it.musicrizz.gameoflife.Costanti;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
 import it.unibas.ping.annotazioni.IconaSwing;
 import it.unibas.ping.azioni.AzionePingAstratta;
-import java.awt.Dimension;
 import java.util.EventObject;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,7 +29,7 @@ public class AzioneTabSwing extends AzionePingAstratta  {
             framePrincipale.getPannelloScacchiera().initTabella();
             framePrincipale.getPannelloScacchiera().abilitaMouseListenerTabella();
             framePrincipale.getPannelloScacchiera().setLarghezzaColonne(ConfigurazioneParametri.getInstance().getColonne());
-            framePrincipale.pack();
+            //framePrincipale.pack();
         }         
     }
     

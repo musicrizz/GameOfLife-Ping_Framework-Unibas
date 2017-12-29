@@ -7,7 +7,6 @@ import it.musicrizz.gameoflife.vista.FinestraNuovoMondo;
 import it.musicrizz.gameoflife.vista.FinestraIstruzioni;
 import it.musicrizz.gameoflife.vista.FinestraSceltaMondiDataBase;
 import it.musicrizz.gameoflife.vista.FramePrincipale;
-
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>

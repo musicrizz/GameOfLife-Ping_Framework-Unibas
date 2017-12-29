@@ -17,8 +17,10 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class FinestraSceltaMondiDataBase extends FinestraDiDialogoPing   {
     
     private Log log = LogFactory.getLog(FinestraSceltaMondiDataBase.class);
@@ -32,7 +34,7 @@ public class FinestraSceltaMondiDataBase extends FinestraDiDialogoPing   {
     public void inizializza()   {
         this.setTitle(Bundle.getString(Costanti.FINES_MONDI_DB_TITLE));
         try{
-            img = ImageIO.read(FramePrincipale.class.getResource(Costanti.ICONA_FRAME));
+            img = ImageIO.read(FinestraSceltaMondiDataBase.class.getResource(Costanti.ICONA_FRAME));
             if(img != null) this.setIconImage(img);
         }catch(Exception e)   {
             log.error("Errore nel caricamento dell' immagine del frame -> "+e);
@@ -65,6 +67,7 @@ public class FinestraSceltaMondiDataBase extends FinestraDiDialogoPing   {
     }
     
     public Object getSelectedValue()   {
+        if(listaMondi == null)return null;
         return listaMondi.getSelectedValue();
     }
     

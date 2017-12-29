@@ -1,9 +1,11 @@
 package it.musicrizz.gameoflife.modello;
+
 /**
  *
  * @author Grandinetti Giovanni <grandinetti.giovanni13@gmail.com>
  * 
  */
+
 public class Cellula {
     
     private int X;

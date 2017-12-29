@@ -3,9 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/vista/PannelloGraphics2D.java</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/controllo/ListenerMousePannello2D.java</file>
-            <file>file:/D:/Dropbox/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/controllo/ListenerMouseMove.java</file>
+            <file>file:/E:/Drive/STUDY/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/conf/LabelsButtonBundle_en_US.properties</file>
+            <file>file:/E:/Drive/STUDY/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/Costanti.java</file>
+            <file>file:/E:/Drive/STUDY/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/src/it/musicrizz/gameoflife/persistenza/DAOMondoSQL.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package it.musicrizz.gameoflife.persistenza;
 
 /**
  *
- * @author Grandinetti Giovanni <musicrizz@hotmail.it>
+ * @author Grandinetti Giovanni <gr4andinetti.giovanni13@gmail.com>
+ * 
  */
+
 public class DAOException extends Exception   {
 
     public DAOException() {
