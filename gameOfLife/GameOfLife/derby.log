@@ -1,7 +1,7 @@
 ----------------------------------------------------------------
-Fri Dec 29 13:53:33 CET 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0160-a255-b21e-000000986ec8 
-on database directory E:\Drive\STUDY\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\gameoflife_test3DB with class loader sun.misc.Launcher$AppClassLoader@1db9742 
+Tue Feb 20 03:08:57 CET 2018:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0161-b0f8-965a-00000077ba90 
+on database directory E:\Drive\STUDY\00_Source_on_GIT\Java\GameOfLife-Ping_Framework-Unibas\gameOfLife\GameOfLife\gameoflife_DB with class loader sun.misc.Launcher$AppClassLoader@1db9742 
 Loaded from file:/E:/Drive/STUDY/00_Source_on_GIT/Java/GameOfLife-Ping_Framework-Unibas/gameOfLife/GameOfLife/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_60-b27

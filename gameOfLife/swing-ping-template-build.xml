@@ -21,25 +21,23 @@
             <fileset dir="${lib.dir}" >
                 <include name="commons-logging-*.jar" />
                 <include name="jdom*.jar" />
-                <!-- <include name="postgresql*.jar" /> -->
-                <!-- <include name="sqljdbc*.jar" /> -->
+				<include name="derby.jar" />
             </fileset>
         </path>
         <path id="run.classpath">
             <path refid="compile.classpath" />
             <fileset dir="${lib.dir}" >
+				<include name="commons-logging-*.jar" />
                 <include name="log4j-*.jar" />
                 <include name="jdom*.jar" />
-                <!-- <include name="postgresql*.jar" /> -->
-                <!-- <include name="sqljdbc*.jar" /> -->
+				<include name="derby.jar" />
             </fileset>
         </path>
         <fileset id="run.jar.fileset" dir="${lib.dir}">        
             <include name="commons-logging-*.jar" />
             <include name="ping-${ping.version}.jar" />
             <include name="jdom*.jar" />
-            <!-- <include name="postgresql*.jar" /> -->
-            <!-- <include name="sqljdbc*.jar" /> -->
+			<include name="derby.jar" />
         </fileset>
         <path id="run.jar.classpath">
             <fileset refid="run.jar.fileset" />
