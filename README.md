@@ -1,2 +1,7 @@
-# GameOfLife-Ping_Framework-Unibas
-Game of Life 
+<html>
+  <head>
+    <title>Game of Life</title>
+  </head>
+  <body>
+  </body>
+</html>
